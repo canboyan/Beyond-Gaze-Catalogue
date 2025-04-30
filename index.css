@@ -45,10 +45,11 @@ body {
   text-overflow: ellipsis; /* Optional: Adds "..." if the text overflows */
 }
 
-/* Sidebar Header Link (Anchor) Styling */
+/* Sidebar Header Link (Anchor) Styling - Override browser defaults */
 .sidebar h1 a {
   color: black; /* Ensure the title link text is black */
-  text-decoration: none; /* Remove underline from the link */
+  text-decoration: none !important; /* Remove underline from the link */
+  display: inline; /* Make sure it's inline to prevent block-level styling */
 }
 
 /* Sidebar Navigation List */
@@ -86,3 +87,4 @@ body {
   overflow-x: hidden; /* Ensure no horizontal overflow in content */
   margin-left: 0; /* Remove any margin on the left side */
 }
+
