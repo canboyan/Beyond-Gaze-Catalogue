@@ -25,7 +25,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-  width: 250px; /* Fixed width for the sidebar */
+  width: 350px; /* Increased the width to fit the title */
   padding: 20px;
   background-color: white; /* Sidebar background is white */
   font-size: 14px;
@@ -36,11 +36,13 @@ body {
 
 /* Sidebar Header Links */
 .sidebar h1 {
-  font-size: 14px;
+  font-size: 18px; /* Title font size */
   font-weight: bold;
   color: black; /* Black color for header links */
   text-decoration: none;
   white-space: nowrap; /* Prevent wrapping of title, keep on one line */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Optional: Adds "..." if the text overflows */
 }
 
 /* Sidebar Navigation List */
