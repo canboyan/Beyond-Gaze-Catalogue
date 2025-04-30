@@ -34,15 +34,21 @@ body {
   outline: none; /* Remove outline */
 }
 
-/* Sidebar Header Links */
+/* Sidebar Header */
 .sidebar h1 {
   font-size: 18px; /* Title font size */
   font-weight: bold;
-  color: black; /* Black color for header links */
+  color: black; /* Black color for header text */
   text-decoration: none;
   white-space: nowrap; /* Prevent wrapping of title, keep on one line */
   overflow: hidden; /* Prevent overflow */
   text-overflow: ellipsis; /* Optional: Adds "..." if the text overflows */
+}
+
+/* Sidebar Header Link (Anchor) Styling */
+.sidebar h1 a {
+  color: black; /* Ensure the title link text is black */
+  text-decoration: none; /* Remove underline from the link */
 }
 
 /* Sidebar Navigation List */
