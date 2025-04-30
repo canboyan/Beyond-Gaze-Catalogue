@@ -1,58 +1,69 @@
+/* Universal Reset for All Elements */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Body Styles: Set Font, Background Color, and Text Color */
 body {
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: white;
-  color: black;
+  font-family: 'Arial Black', Arial, sans-serif; /* Apply Arial Black font */
+  background-color: white; /* White background */
+  color: black; /* Black text */
 }
 
+/* Container Styles */
 .container {
   display: flex;
   min-height: 100vh;
 }
 
+/* Sidebar Styles */
 .sidebar {
   width: 250px;
   padding: 20px;
-  background-color: white;
+  background-color: white; /* Sidebar background is white */
   font-size: 14px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #ccc; /* Light border for separation */
 }
 
+/* Sidebar Header Links */
 .sidebar h1 a {
   font-size: 14px;
   font-weight: bold;
-  color: black;
+  color: black; /* Black color for header links */
   text-decoration: none;
 }
 
+/* Sidebar Navigation List */
 .sidebar nav ul {
   list-style: none;
   margin: 20px 0;
 }
 
+/* Sidebar Navigation List Items */
 .sidebar nav li {
   margin: 5px 0;
 }
 
+/* Sidebar Navigation Links */
 .sidebar nav a {
   text-decoration: none;
-  color: black;
+  color: black; /* Black color for sidebar links */
   font-weight: bold;
 }
 
+/* Hover Effects for Sidebar Links */
 .sidebar nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Underline on hover */
 }
 
+/* Sidebar Info Paragraphs */
 .sidebar .info p {
   margin-bottom: 10px;
 }
 
+/* Main Content Area Styles */
 .content {
   flex-grow: 1;
   padding: 20px;
