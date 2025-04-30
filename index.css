@@ -24,12 +24,6 @@ body {
   padding: 20px;
   background-color: white; /* Sidebar background is white */
   font-size: 14px;
-  /* Sidebar Styles */
-.sidebar {
-  width: 250px;
-  padding: 20px;
-  background-color: white; /* Sidebar background is white */
-  font-size: 14px;
   /* Removed the border-right line */
 }
 
