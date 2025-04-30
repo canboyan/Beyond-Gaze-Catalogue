@@ -19,27 +19,28 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow: hidden; /* Prevent any overflow in the container */
+  width: 100vw; /* Ensure container takes the full width of the viewport */
 }
 
 /* Sidebar Styles */
 .sidebar {
-  width: 350px;
+  width: 250px; /* Fixed width for the sidebar */
   padding: 20px;
   background-color: white; /* Sidebar background is white */
   font-size: 14px;
-  /* Removed border and box-shadow for clean look */
-  border: none;
-  box-shadow: none;
-  outline: none; /* Remove any outline that could cause a line */
+  border: none;  /* Ensure no border on sidebar */
+  box-shadow: none;  /* Ensure no shadow */
+  outline: none; /* Remove outline */
 }
 
 /* Sidebar Header Links */
-.sidebar h1 a {
+.sidebar h1 {
   font-size: 14px;
   font-weight: bold;
   color: black; /* Black color for header links */
   text-decoration: none;
+  white-space: nowrap; /* Prevent wrapping of title, keep on one line */
 }
 
 /* Sidebar Navigation List */
@@ -74,4 +75,6 @@ body {
 .content {
   flex-grow: 1;
   padding: 20px;
+  overflow-x: hidden; /* Ensure no horizontal overflow in content */
+  margin-left: 0; /* Remove any margin on the left side */
 }
