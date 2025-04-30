@@ -3,6 +3,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: none;  /* Remove any default outline that could cause lines */
+  border: none;   /* Remove any borders applied by the browser */
 }
 
 /* Body Styles: Set Font, Background Color, and Text Color */
@@ -10,13 +12,14 @@ body {
   font-family: 'Arial Black', Arial, sans-serif; /* Apply Arial Black font */
   background-color: white; /* White background */
   color: black; /* Black text */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Container Styles */
 .container {
   display: flex;
   min-height: 100vh;
-  border: none; /* Ensure no border for the main container */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Sidebar Styles */
@@ -25,9 +28,10 @@ body {
   padding: 20px;
   background-color: white; /* Sidebar background is white */
   font-size: 14px;
-  /* Remove any borders, box shadows, or unwanted lines */
+  /* Removed border and box-shadow for clean look */
   border: none;
   box-shadow: none;
+  outline: none; /* Remove any outline that could cause a line */
 }
 
 /* Sidebar Header Links */
