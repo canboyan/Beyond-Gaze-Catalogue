@@ -16,6 +16,7 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
+  border: none; /* Ensure no border for the main container */
 }
 
 /* Sidebar Styles */
@@ -24,7 +25,9 @@ body {
   padding: 20px;
   background-color: white; /* Sidebar background is white */
   font-size: 14px;
-  /* Removed the border-right line */
+  /* Remove any borders, box shadows, or unwanted lines */
+  border: none;
+  box-shadow: none;
 }
 
 /* Sidebar Header Links */
