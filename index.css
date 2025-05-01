@@ -71,7 +71,9 @@ body {
 }
 
 .sidebar nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;       /* Removes underline */
+  color: gray;                 /* Changes text color on hover */
+  cursor: pointer;             /* Optional: makes it clear it's clickable */
 }
 
 /* Group Separation */
