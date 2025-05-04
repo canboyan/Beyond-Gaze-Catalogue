@@ -7,7 +7,7 @@
   border: none;
 }
 
-/* Global Anchor Tags */
+/* Remove underlines and set color globally */
 a {
   text-decoration: none !important;  /* Remove underlines from all links */
   color: black !important;           /* Set color to black globally */
@@ -16,10 +16,10 @@ a {
 
 /* Body Styles */
 body {
-  font-family: 'Arial', sans-serif;  /* Use regular Arial */
+  font-family: 'Arial', sans-serif !important;  /* Force regular Arial for body text */
   background-color: white;
   color: black;
-  font-weight: normal;  /* Set font-weight to normal */
+  font-weight: normal;  /* Ensure normal weight */
 }
 
 /* Container Styles */
@@ -79,5 +79,6 @@ body {
   padding: 20px;
   overflow-x: hidden;
   margin-left: 0;
+  font-family: 'Arial', sans-serif !important;  /* Ensure all content uses Arial */
 }
 
