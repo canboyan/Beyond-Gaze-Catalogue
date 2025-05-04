@@ -7,6 +7,13 @@
   border: none;
 }
 
+/* Global Anchor Tags */
+a {
+  text-decoration: none; /* Remove underlining */
+  color: inherit; /* Inherit color from parent element */
+  font-family: 'Arial Black', Arial, sans-serif; /* Set font to Arial Black */
+}
+
 /* Body Styles */
 body {
   font-family: 'Arial Black', Arial, sans-serif;
@@ -66,14 +73,15 @@ body {
 /* Navigation Links */
 .sidebar nav a {
   text-decoration: none;
-  color: black;
+  color: black; /* Default color for all links */
   font-weight: bold;
+  font-family: 'Arial Black', Arial, sans-serif; /* Font for links */
 }
 
 .sidebar nav a:hover {
-  text-decoration: none;
-  color: red;
+  color: red; /* Turn red on hover */
   cursor: pointer;
+  text-decoration: none; /* Ensure no underline on hover */
 }
 
 /* Group Separation */
