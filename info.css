@@ -29,6 +29,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   width: 100vw;
+  flex-wrap: wrap; /* Allow wrapping of content on small screens */
 }
 
 /* Sidebar Styles */
@@ -37,6 +38,7 @@ body {
   padding: 20px;
   background-color: white;
   font-size: 14px;
+  word-wrap: break-word; /* Ensure long words wrap properly */
 }
 
 /* Sidebar Header */
@@ -109,4 +111,35 @@ body {
   padding: 20px;
   overflow-x: hidden;
   margin-left: 0;
+  word-wrap: break-word; /* Ensure text wraps properly */
+}
+
+/* Responsive Design: Mobile Screens */
+@media (max-width: 768px) {
+  /* Adjust sidebar to take full width on small screens */
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Adjust main content padding on smaller screens */
+  .content {
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  /* Make sure the header font size is readable */
+  .sidebar h1 {
+    font-size: 16px;
+  }
+
+  /* Adjust the font size for links on smaller screens */
+  .sidebar nav a {
+    font-size: 12px;
+  }
+
+  /* Adjust menu item spacing for better layout */
+  .sidebar nav li {
+    margin: 10px 0;
+  }
 }
