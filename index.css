@@ -7,6 +7,20 @@
   border: none;
 }
 
+/* Global Anchor Tags */
+a {
+  text-decoration: none !important;
+  color: black !important;
+  font-family: 'Arial Black', Arial, sans-serif !important;
+  font-weight: bold !important;
+}
+
+a:hover {
+  color: red !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
 /* Body Styles */
 body {
   font-family: 'Arial Black', Arial, sans-serif;
@@ -65,20 +79,35 @@ body {
 
 /* Navigation Links */
 .sidebar nav a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
+  text-decoration: none !important;
+  color: black !important;
+  font-weight: bold !important;
+  font-family: 'Arial Black', Arial, sans-serif !important;
 }
 
 .sidebar nav a:hover {
-  text-decoration: none;       /* Removes underline */
-  color: red;                 /* Changes text color on hover */
-  cursor: pointer;             /* Optional: makes it clear it's clickable */
+  text-decoration: none !important;
+  color: red !important;
+  cursor: pointer;
+}
+
+/* Info Section Links (e.g. Contact, License) */
+.sidebar .info a {
+  text-decoration: none !important;
+  color: black !important;
+  font-family: 'Arial Black', Arial, sans-serif !important;
+  font-weight: bold !important;
+}
+
+.sidebar .info a:hover {
+  color: red !important;
+  text-decoration: none !important;
+  cursor: pointer;
 }
 
 /* Group Separation */
 .menu-info {
-  margin-top: 100px; /* Creates space between groups */
+  margin-top: 100px;
 }
 
 /* Sidebar Info Text */
@@ -93,3 +122,4 @@ body {
   overflow-x: hidden;
   margin-left: 0;
 }
+
