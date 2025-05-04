@@ -11,7 +11,9 @@
 a {
   text-decoration: none !important;
   color: inherit !important;
-  font-family: 'Arial Black', Arial, sans-serif !important;
+  font-family: Arial, sans-serif !important;
+  font-weight: bold !important;
+
 }
 
 /* Body Styles */
