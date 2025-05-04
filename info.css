@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   width: 100vw;
-  flex-wrap: wrap; /* Allow wrapping of content on small screens */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 /* Sidebar Styles */
@@ -39,6 +39,7 @@ body {
   background-color: white;
   font-size: 14px;
   word-wrap: break-word; /* Ensure long words wrap properly */
+  flex-shrink: 0; /* Prevent the sidebar from shrinking */
 }
 
 /* Sidebar Header */
@@ -143,3 +144,4 @@ body {
     margin: 10px 0;
   }
 }
+
