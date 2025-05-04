@@ -1,4 +1,4 @@
-/* Universal Reset */
+/* Universal Reset for All Elements */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,16 +23,17 @@ body {
   font-weight: bold;
 }
 
-/* Container */
+/* Container Styles */
 .container {
   display: flex;
+  flex-direction: row;
   min-height: 100vh;
   overflow: hidden;
   width: 100vw;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-/* Sidebar */
+/* Sidebar Styles */
 .sidebar {
   width: 350px;
   padding: 20px;
@@ -42,6 +43,7 @@ body {
   flex-shrink: 0;
 }
 
+/* Sidebar Header */
 .sidebar h1 {
   font-size: 18px;
   font-weight: bold;
@@ -59,7 +61,7 @@ body {
   white-space: nowrap;
 }
 
-/* Nav Lists */
+/* Navigation Lists */
 .menu-group ul,
 .menu-info ul {
   list-style: none;
@@ -67,10 +69,12 @@ body {
   margin: 0;
 }
 
+/* List Items */
 .sidebar nav li {
   margin: 5px 0;
 }
 
+/* Navigation Links */
 .sidebar nav a {
   text-decoration: none !important;
   color: black !important;
@@ -78,12 +82,7 @@ body {
   font-family: 'Arial Black', Arial, sans-serif;
 }
 
-.sidebar .info a {
-  text-decoration: none !important;
-  color: black !important;
-  font-family: 'Arial Black', Arial, sans-serif;
-}
-
+/* Hover Effects */
 .sidebar nav a:hover,
 .sidebar .info a:hover {
   color: red !important;
@@ -91,17 +90,12 @@ body {
   text-decoration: none !important;
 }
 
-/* Info Text in Sidebar */
+/* Sidebar Info Text */
 .sidebar .info p {
   margin-bottom: 10px;
 }
 
-/* Group Separation */
-.menu-info {
-  margin-top: 100px;
-}
-
-/* Main Content */
+/* Main Content Area */
 .content {
   flex-grow: 1;
   padding: 20px;
@@ -110,8 +104,18 @@ body {
   word-wrap: break-word;
 }
 
-/* Responsive Styles */
+/* Add space between paragraphs in the main content */
+.content p {
+  margin-bottom: 15px; /* Adjust as needed */
+}
+
+/* Responsive Design: Mobile Screens */
 @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
   .sidebar {
     width: 100%;
     padding: 10px;
@@ -134,3 +138,4 @@ body {
     margin: 10px 0;
   }
 }
+
