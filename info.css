@@ -9,25 +9,23 @@
 
 /* Global Anchor Tags */
 a {
-  text-decoration: none !important; /* Remove underlining from all links */
-  color: inherit !important; /* Make sure links inherit color from their parents */
-  font-family: 'Arial Black', Arial, sans-serif !important; /* Ensure all links use Arial Black */
+  text-decoration: none !important;  /* Remove underlines from all links */
+  color: black !important;           /* Set color to black globally */
+  font-family: 'Arial', sans-serif !important; /* Use regular Arial */
 }
 
 /* Body Styles */
 body {
-  font-family: 'Arial Black', Arial, sans-serif;
+  font-family: 'Arial', sans-serif;  /* Use regular Arial */
   background-color: white;
   color: black;
-  overflow-x: hidden;
-  font-weight: bold;
+  font-weight: normal;  /* Set font-weight to normal */
 }
 
 /* Container Styles */
 .container {
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
   width: 100vw;
 }
 
@@ -45,62 +43,34 @@ body {
   font-weight: bold;
   color: black;
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .sidebar h1 a {
   color: black !important;
   text-decoration: none !important;
-  display: inline-block;
-  white-space: nowrap;
 }
 
-/* Navigation Lists */
-.menu-group ul,
-.menu-info ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* List Items */
-.sidebar nav li {
-  margin: 5px 0;
-}
-
-/* More Specific Navigation Links Styling */
+/* Navigation Links Styling */
 .sidebar nav a {
   text-decoration: none !important; /* Ensure no underline */
-  color: black !important; /* Set default color to black */
+  color: black !important;          /* Set default color to black */
   font-weight: bold;
-  font-family: 'Arial Black', Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 /* Specifically target the "Contact" and "License" Links in the Info Section */
 .sidebar .info a {
-  text-decoration: none !important; /* Remove underline */
-  color: black !important; /* Set default color to black */
-  font-family: 'Arial Black', Arial, sans-serif;
+  text-decoration: none !important;  /* Remove underline */
+  color: black !important;           /* Set default color to black */
+  font-family: 'Arial', sans-serif;
 }
 
-/* Hover Effects */
+/* Hover Effects for All Links */
 .sidebar nav a:hover,
 .sidebar .info a:hover {
-  color: red !important; /* Turn red on hover */
+  color: red !important;           /* Turn red on hover */
   cursor: pointer;
   text-decoration: none !important; /* Ensure no underline on hover */
-}
-
-/* Group Separation */
-.menu-info {
-  margin-top: 100px;
-}
-
-/* Sidebar Info Text */
-.sidebar .info p {
-  margin-bottom: 10px;
 }
 
 /* Main Content Area */
@@ -110,3 +80,4 @@ body {
   overflow-x: hidden;
   margin-left: 0;
 }
+
