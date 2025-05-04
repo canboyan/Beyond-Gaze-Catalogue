@@ -1,0 +1,95 @@
+/* Universal Reset for All Elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Arial Black', Arial, sans-serif;
+  background-color: white;
+  color: black;
+  overflow-x: hidden;
+  font-weight: bold;
+}
+
+/* Container Styles */
+.container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  font-size: 14px;
+}
+
+/* Sidebar Header */
+.sidebar h1 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar h1 a {
+  color: black !important;
+  text-decoration: none !important;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Navigation Lists */
+.menu-group ul,
+.menu-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* List Items */
+.sidebar nav li {
+  margin: 5px 0;
+}
+
+/* Navigation Links */
+.sidebar nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.sidebar nav a:hover {
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
+}
+
+/* Group Separation */
+.menu-info {
+  margin-top: 100px;
+}
+
+/* Sidebar Info Text */
+.sidebar .info p {
+  margin-bottom: 10px;
+}
+
+/* Main Content Area */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-x: hidden;
+  margin-left: 0;
+}
