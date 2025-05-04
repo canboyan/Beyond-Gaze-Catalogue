@@ -9,9 +9,9 @@
 
 /* Global Anchor Tags */
 a {
-  text-decoration: none; /* Remove underlining */
-  color: inherit; /* Inherit color from parent element */
-  font-family: 'Arial Black', Arial, sans-serif; /* Set font to Arial Black */
+  text-decoration: none !important; /* Remove underlining from all links */
+  color: inherit !important; /* Make sure links inherit color from their parents */
+  font-family: 'Arial Black', Arial, sans-serif !important; /* Ensure all links use Arial Black */
 }
 
 /* Body Styles */
@@ -70,18 +70,27 @@ body {
   margin: 5px 0;
 }
 
-/* Navigation Links */
+/* More Specific Navigation Links Styling */
 .sidebar nav a {
-  text-decoration: none;
-  color: black; /* Default color for all links */
+  text-decoration: none !important; /* Ensure no underline */
+  color: black !important; /* Set default color to black */
   font-weight: bold;
-  font-family: 'Arial Black', Arial, sans-serif; /* Font for links */
+  font-family: 'Arial Black', Arial, sans-serif;
 }
 
-.sidebar nav a:hover {
-  color: red; /* Turn red on hover */
+/* Specifically target the "Contact" and "License" Links in the Info Section */
+.sidebar .info a {
+  text-decoration: none !important; /* Remove underline */
+  color: black !important; /* Set default color to black */
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+/* Hover Effects */
+.sidebar nav a:hover,
+.sidebar .info a:hover {
+  color: red !important; /* Turn red on hover */
   cursor: pointer;
-  text-decoration: none; /* Ensure no underline on hover */
+  text-decoration: none !important; /* Ensure no underline on hover */
 }
 
 /* Group Separation */
