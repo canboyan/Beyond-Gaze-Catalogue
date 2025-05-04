@@ -116,6 +116,11 @@ body {
   word-wrap: break-word;
 }
 
+/* Add space between paragraphs in the main content */
+.content p {
+  margin-bottom: 15px; /* Adjust as needed */
+}
+
 /* Responsive Design: Mobile Screens */
 @media (max-width: 768px) {
   .container {
