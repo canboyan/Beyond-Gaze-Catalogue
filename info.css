@@ -7,7 +7,7 @@
   border: none;
 }
 
-/* Remove underlines and set color globally */
+/* Global Anchor Tags */
 a {
   text-decoration: none !important;  /* Remove underlines from all links */
   color: black !important;           /* Set color to black globally */
@@ -50,6 +50,19 @@ body {
   text-decoration: none !important;
 }
 
+/* Navigation List Styling */
+.menu-group ul,
+.menu-info ul {
+  list-style: none;  /* Remove the dots before the list items */
+  padding: 0;
+  margin: 0;
+}
+
+/* List Items */
+.sidebar nav li {
+  margin: 5px 0;
+}
+
 /* Navigation Links Styling */
 .sidebar nav a {
   text-decoration: none !important; /* Ensure no underline */
@@ -81,4 +94,3 @@ body {
   margin-left: 0;
   font-family: 'Arial', sans-serif !important;  /* Ensure all content uses Arial */
 }
-
