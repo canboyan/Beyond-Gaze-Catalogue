@@ -102,14 +102,14 @@ body {
   overflow-x: hidden;
   margin-left: 0;
   word-wrap: break-word;
-  text-align: left; /* Ensures text is aligned to the left */
+  text-align: left !important; /* Ensures text is aligned to the left */
   padding-left: 20px; /* Optional: Adds padding from the left */
 }
 
 /* Add space between paragraphs in the main content */
 .content p {
   margin-bottom: 15px; /* Adjust as needed */
-  text-align: left; /* Ensures paragraphs are aligned to the left */
+  text-align: left !important; /* Ensures paragraphs are aligned to the left */
 }
 
 /* Responsive Design: Mobile Screens */
@@ -141,5 +141,6 @@ body {
     margin: 10px 0;
   }
 }
+
 
 
