@@ -28,9 +28,8 @@ body {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  overflow: hidden;
   width: 100vw;
-  flex-wrap: nowrap;
+  padding: 20px;
 }
 
 /* Sidebar Styles */
@@ -61,19 +60,6 @@ body {
   white-space: nowrap;
 }
 
-/* Navigation Lists */
-.menu-group ul,
-.menu-info ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* List Items */
-.sidebar nav li {
-  margin: 5px 0;
-}
-
 /* Navigation Links */
 .sidebar nav a {
   text-decoration: none !important;
@@ -83,8 +69,7 @@ body {
 }
 
 /* Hover Effects */
-.sidebar nav a:hover,
-.sidebar .info a:hover {
+.sidebar nav a:hover {
   color: red !important;
   cursor: pointer;
   text-decoration: none !important;
@@ -99,11 +84,9 @@ body {
 .content {
   flex-grow: 1;
   padding: 20px;
-  overflow-x: hidden;
   margin-left: 0;
   word-wrap: break-word;
-  text-align: left !important; /* Ensures text is aligned to the left */
-  padding-left: 20px; /* Optional: Adds padding from the left */
+  text-align: left !important; /* Forces left-alignment */
 }
 
 /* Add space between paragraphs in the main content */
@@ -141,6 +124,4 @@ body {
     margin: 10px 0;
   }
 }
-
-
 
