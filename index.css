@@ -148,4 +148,8 @@ a:hover {
   color: red !important; /* Red when hovered */
   text-decoration: none !important; /* No underline on hover */
 }
+.email-highlight {
+  color: red; /* Changes the text to red */
+}
+
 
