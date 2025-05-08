@@ -139,6 +139,9 @@ a:hover {
 .content p span a {
   color: red !important;
 }
+.content p {
+  margin-bottom: 15px;
+}
 /* Target the License Link Specifically */
 .content p a {
   color: black; /* Default link color */
