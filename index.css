@@ -86,7 +86,6 @@ body {
 }
 
 .sidebar nav a:hover {
-  text-decoration: none !important;
   color: red !important;
   cursor: pointer;
 }
@@ -101,7 +100,6 @@ body {
 
 .sidebar .info a:hover {
   color: red !important;
-  text-decoration: none !important;
   cursor: pointer;
 }
 
@@ -122,39 +120,22 @@ body {
   overflow-x: hidden;
   margin-left: 0;
 }
-/* Global Anchor Tags */
-a {
-  text-decoration: none !important;
-  color: black !important;
-  font-family: 'Arial Black', Arial, sans-serif !important;
-  font-weight: bold !important;
-}
 
-a:hover {
-  color: red !important;
-  text-decoration: none !important;
-  cursor: pointer;
-}
-/* License Text in Red */
-.content p span a {
-  color: red !important;
-}
+/* Add space between paragraphs */
 .content p {
   margin-bottom: 15px;
 }
-/* Target the License Link Specifically */
-.content p a {
-  color: black; /* Default link color */
+
+/* Default style for all links in .content */
+.content a {
+  color: red !important; /* Make email or any content links red */
+  text-decoration: none !important;
 }
 
-.content p a:hover {
-  color: red !important; /* Red when hovered */
-  text-decoration: none !important; /* No underline on hover */
-}
-/* Make the email link text fully red (not just on hover) */
-.content a {
-  color: red; /* Make the text red by default */
-  text-decoration: none !important; /* Removes underline if it's there */
+.content a:hover {
+  color: red !important;
+  text-decoration: none !important;
+  cursor: pointer;
 }
 
 
