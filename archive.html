@@ -31,7 +31,7 @@
 <main class="content">
   <!-- Video Wrapper -->
   <div class="video-wrapper" style="position: relative; width: 520px; height: 293px; margin-top: 5px;">
-    <!-- The API replaces this div with the iframe -->
+    <!-- API will replace this div with the iframe -->
     <div id="yt-player"></div>
 
     <!-- Overlay Play Button -->
@@ -50,7 +50,7 @@
            align-items: center;
            justify-content: center;
            filter: grayscale(100%);
-           transition: opacity 0.9s ease;
+           transition: opacity 0.8s ease;
          ">
       <!-- Triangle Play Icon -->
       <div style="
@@ -78,7 +78,7 @@
     </p>
 
     <p>
-      Running time: 1:10:57
+      Running time: 1:10:58
     </p>
   </div>
 
@@ -86,21 +86,20 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
-    let played = false; // track if video has started
+    let played = false;
 
-    // API ready callback
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('yt-player', {
         height: '293',
         width: '520',
-        videoId: 'mZl7oarLLLY', // your video ID
+        videoId: 'mZl7oarLLLY',
         playerVars: {
-          controls: 1,           // show timeline & gear
-          modestbranding: 1,     // remove red logo
-          rel: 0,                // no related videos
+          controls: 0,          // hide timeline & "Watch on YouTube"
+          modestbranding: 1,    // remove red logo
+          rel: 0,               // no related videos
           autoplay: 0,
-          iv_load_policy: 3,     // hide annotations
-          fs: 1                  // fullscreen enabled
+          iv_load_policy: 3,    // hide annotations
+          fs: 1                 // allow fullscreen
         },
         events: {
           'onReady': onPlayerReady
@@ -109,13 +108,12 @@
     }
 
     function onPlayerReady(event) {
-      // Try to set HD1080 quality
+      // Attempt to start in 1080p
       player.setPlaybackQuality('hd1080');
     }
 
-    // Custom overlay play button
     function playVideo() {
-      if (played) return; // prevent multiple clicks
+      if (played) return;
       played = true;
 
       const overlay = document.querySelector('.custom-play');
@@ -123,6 +121,7 @@
       setTimeout(() => { overlay.style.display = 'none'; }, 500);
 
       player.playVideo();
+      player.setPlaybackQuality('hd1080'); // reinforce HD after play
     }
   </script>
 </main>
