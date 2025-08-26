@@ -138,5 +138,17 @@ body {
   cursor: pointer;
 }
 
+/* -------------------------------
+   SPECIAL CLASS FOR QUESTIONS LINK
+-------------------------------- */
+.link-questions {
+  color: black !important;      /* black by default */
+  font-weight: bold !important;
+}
+
+.link-questions:hover {
+  color: red !important;        /* red on hover */
+}
+
 
 
