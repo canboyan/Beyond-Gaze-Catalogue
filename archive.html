@@ -132,3 +132,107 @@
   </script>
 </main>
 
+    <main class="content">
+  <!-- Video Wrapper -->
+  <div class="video-wrapper" style="position: relative; width: 540px; height: 304px; margin-top: -5px;">
+    
+    <!-- Thumbnail overlay -->
+    <img src="https://github.com/canboyan/Beyond-Gaze-Catalogue/raw/009cf62a7f7733f8edbf4128ee80789a4a56af57/Screenshot%202025-08-26%20at%2022.22.00.png" 
+         alt="Video thumbnail" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
+    
+    <!-- Faux Play Button -->
+    <div class="custom-play" onclick="playVideo()" 
+         style="
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           width: 75px;
+           height: 75px;
+           background: black;
+           border-radius: 50%;
+           cursor: pointer;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           filter: grayscale(100%);
+           transition: opacity 0.6s ease;
+           z-index: 3;
+         ">
+      <!-- Triangle Play Icon -->
+      <div style="
+          width: 0; 
+          height: 0; 
+          border-left: 15px solid white; 
+          border-top: 12px solid transparent; 
+          border-bottom: 12px solid transparent;
+      "></div>
+    </div>
+
+    <!-- YouTube iframe -->
+    <div id="yt-player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+  </div>
+
+  <!-- Text Under Video -->
+  <div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#333333; margin-top: 10px; width: 480px; font-weight: normal;">
+    <p>
+      With <strong>Fieldworks</strong>, we explored questions around non-visual witnessing, their <strong><em>choreographic resistance</em></strong> as I call it, and how the works choreograph perception itself. Touching on everything from the thickness of space between bodies to sound as a form of non-contact touch.
+    </p>
+
+    <p>
+      The discussion moves through their practice in depth, examining how <strong><em>folding</em></strong> becomes a way of structuring knowledge, how objects generate their own tactile choreographies, and whether the body functions as an archive of touch across performances.
+    </p>
+
+    <p>
+      It's an exchange about the sensory worlds you create and the alternative forms of presence they make possible.
+    </p>
+
+    <p>
+      <strong><em>Running time: 1:10:57</em></strong>
+    </p>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    let played = false;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt-player', {
+        height: '304',
+        width: '540',
+        videoId: 'mZl7oarLLLY',
+        playerVars: {
+          controls: 0,          // hide timeline & "Watch on YouTube"
+          modestbranding: 1,    // remove red logo
+          rel: 0,               // no related videos
+          autoplay: 0,
+          iv_load_policy: 3,    // hide annotations
+          fs: 1                 // allow fullscreen
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      player.setPlaybackQuality('hd1080'); // attempt HD playback
+    }
+
+    function playVideo() {
+      if (played) return;
+      played = true;
+
+      // Hide overlay and thumbnail
+      document.querySelector('.custom-play').style.display = 'none';
+      document.querySelector('img').style.display = 'none';
+
+      player.playVideo();
+      player.setPlaybackQuality('hd1080'); // reinforce HD after play
+    }
+  </script>
+</main>
+
