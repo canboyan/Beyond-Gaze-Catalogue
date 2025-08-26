@@ -141,17 +141,16 @@ body {
 /* -------------------------------
    SPECIAL CLASS FOR QUESTIONS LINK
 -------------------------------- */
-.link-questions {
+/* Make this more specific than .content a */
+.content a.link-questions {
   color: black !important;      /* black by default */
   font-weight: bold !important;
   text-decoration: none !important;
 }
 
-.link-questions:hover {
+.content a.link-questions:hover {
   color: red !important;        /* red on hover */
   text-decoration: none !important;
   cursor: pointer;
 }
-
-
 
