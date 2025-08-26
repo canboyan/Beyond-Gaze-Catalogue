@@ -31,11 +31,8 @@
 <main class="content">
   <!-- Video Wrapper -->
   <div class="video-wrapper" style="position: relative; width: 520px; height: 293px; margin-top: 5px;">
-    <iframe id="yt-player"
-      src="https://www.youtube.com/embed/mZl7oarLLLY?rel=0&modestbranding=1&controls=0&autoplay=0&vq=hd1080&nocache=1"
-      style="width:100%; height:100%; border:0;"
-      allowfullscreen>
-    </iframe>
+    <!-- The API replaces this div with the iframe -->
+    <div id="yt-player"></div>
 
     <!-- Overlay Play Button -->
     <div class="custom-play" onclick="playVideo()" 
@@ -67,42 +64,65 @@
   </div>
 
   <!-- Text Under Video -->
+  <div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#333333; margin-top: 10px; width: 480px; font-weight: normal;">
+    <p>
+      With <strong>Fieldworks</strong>, we explored questions around non-visual witnessing, their <strong><em>choreographic resistance</em></strong> as I call it, and how the works choreograph perception itself. Touching on everything from the <strong><em>thickness of space between bodies</em></strong> to sound as a form of <strong><em>non-contact touch</em></strong>.
+    </p>
 
-    <p>  
-  <p>
-<div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#333333; margin-top: 10px; width: 480px; font-weight: normal;">
-  <p>
-    With <strong>Fieldworks</strong>, we explored questions around non-visual witnessing, their <strong><em>choreographic resistance</em></strong> as I call it, and how the works choreograph perception itself. Touching on everything from the <strong><em>thickness of space between bodies</em></strong> to sound as a form of <strong><em>non-contact touch</em></strong>.
-  </p>
+    <p>
+      The discussion moves through their practice in depth, examining how <strong><em>folding</em></strong> becomes a way of structuring knowledge, how objects generate their own tactile choreographies, and whether the body functions as an archive of touch across performances.
+    </p>
 
-  <p>
-    The discussion moves through their practice in depth, examining how <strong><em>folding</em></strong> becomes a way of structuring knowledge, how objects generate their own tactile choreographies, and whether the body functions as an archive of touch across performances.
-  </p>
+    <p>
+      It's an exchange about the sensory worlds you create and the alternative forms of presence they make possible.
+    </p>
 
-  <p>
-    It's an exchange about the sensory worlds you create and the alternative forms of presence they make possible.
-  </p>
+    <p>
+      Running time: 1:10:58
+    </p>
+  </div>
 
-   <p>
-     Running time: 1:10:58
-</div>
-
-
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+    let player;
     let played = false; // track if video has started
+
+    // API ready callback
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt-player', {
+        height: '293',
+        width: '520',
+        videoId: 'mZl7oarLLLY', // your video ID
+        playerVars: {
+          controls: 1,           // show timeline & gear
+          modestbranding: 1,     // remove red logo
+          rel: 0,                // no related videos
+          autoplay: 0,
+          iv_load_policy: 3,     // hide annotations
+          fs: 1                  // fullscreen enabled
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Try to set HD1080 quality
+      player.setPlaybackQuality('hd1080');
+    }
+
+    // Custom overlay play button
     function playVideo() {
-      if (played) return; // prevent multiple reloads
+      if (played) return; // prevent multiple clicks
       played = true;
 
       const overlay = document.querySelector('.custom-play');
-      const player = document.getElementById('yt-player');
-
-      // Enable autoplay only once by replacing src
-      player.src = player.src.replace("autoplay=0", "autoplay=1");
-
-      // Fade out overlay immediately to cover red button
       overlay.style.opacity = 0;
       setTimeout(() => { overlay.style.display = 'none'; }, 500);
+
+      player.playVideo();
     }
   </script>
 </main>
