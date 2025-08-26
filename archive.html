@@ -30,25 +30,39 @@
     </aside>
 <main class="content">
   <!-- Video Container -->
-  <div style="position: relative; width: 500px; height: 281px; overflow: hidden; margin-top: 10px; margin-bottom: 15px;">
-    <!-- Change margin-top to adjust space above video -->
-    <iframe 
-      src="https://www.youtube.com/embed/ucG9ZBqkquw?rel=0&modestbranding=1&controls=1"
-      style="position: absolute; top:0; left:0; width:100%; height:100%;"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+  <div id="player-container" style="position: relative; width: 500px; height: 281px; overflow: hidden; margin-top: 10px; margin-bottom: 15px;">
+    <div id="player" style="position: absolute; top:0; left:0; width:100%; height:100%;"></div>
   </div>
 
   <!-- Text under the video -->
   <p style="
       font-family: Arial, sans-serif;  /* Change font here */
-      font-size: 10 px;                  /* Change size here */
-      font-weight: normal;                /* Change to normal or bold */
-      line-height: 1;                 /* Adjust spacing between lines */
-      color: #333333;                   /* Change text color */
-      margin: 5;
+      font-size: 12px;                 /* Adjust font size */
+      font-weight: normal;             /* normal or bold */
+      line-height: 1.5;                /* spacing between lines */
+      color: #333333;                  /* text color */
+      margin: 5px 0 0 0;               /* top, right, bottom, left */
   ">
     This is the description text for your video. You can edit it, make it bold, change the font or color.
   </p>
+
+  <!-- YouTube API Script -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '281',
+        width: '500',
+        videoId: 'ucG9ZBqkquw',
+        playerVars: { rel: 0, modestbranding: 1, controls: 1 },
+        events: { 'onReady': onPlayerReady }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.setPlaybackQuality('highres'); // Request highest resolution
+      // event.target.playVideo(); // Optional: auto-play
+    }
+  </script>
 </main>
