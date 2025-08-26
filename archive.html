@@ -29,40 +29,54 @@
       </div>
     </aside>
 <main class="content">
-  <!-- Video Container -->
-  <div id="player-container" style="position: relative; width: 500px; height: 281px; overflow: hidden; margin-top: 5px; margin-bottom: 15px;">
-    <div id="player" style="position: absolute; top:0; left:0; width:100%; height:100%;"></div>
+  <!-- Video Wrapper -->
+  <div class="video-wrapper" style="position: relative; width: 500px; height: 281px; margin-top: 20px;">
+    <iframe id="yt-player" 
+      src="https://www.youtube.com/embed/ucG9ZBqkquw?rel=0&modestbranding=1&controls=0"
+      style="width:100%; height:100%; border:0;"
+      allowfullscreen>
+    </iframe>
+
+    <!-- Overlay Play Button -->
+    <div class="custom-play" onclick="playVideo()" 
+         style="
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           width: 60px;
+           height: 60px;
+           background: white;
+           border-radius: 50%;
+           cursor: pointer;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           filter: grayscale(100%);
+         ">
+      <!-- Triangle Play Icon -->
+      <div style="
+          width: 0; 
+          height: 0; 
+          border-left: 20px solid black; 
+          border-top: 12px solid transparent; 
+          border-bottom: 12px solid transparent;
+      "></div>
+    </div>
   </div>
 
-  <!-- Text under the video -->
-  <p style="
-      font-family: Arial, sans-serif;  /* Change font here */
-      font-size: 12px;                 /* Adjust font size */
-      font-weight: normal;             /* normal or bold */
-      line-height: 1.5;                /* spacing between lines */
-      color: #333333;                  /* text color */
-      margin: 5px 0 0 0;               /* top, right, bottom, left */
-  ">
-    This is the description text for your video. You can edit it, make it bold, change the font or color.
+  <!-- Text Under Video -->
+  <p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#333333; margin-top: 5px;">
+    This is the description text for your video.
   </p>
 
-  <!-- YouTube API Script -->
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '281',
-        width: '500',
-        videoId: 'ucG9ZBqkquw',
-        playerVars: { rel: 0, modestbranding: 1, controls: 1 },
-        events: { 'onReady': onPlayerReady }
-      });
-    }
-
-    function onPlayerReady(event) {
-      event.target.setPlaybackQuality('highres'); // Request highest resolution
-      // event.target.playVideo(); // Optional: auto-play
+    function playVideo() {
+      // Hide the overlay
+      document.querySelector('.custom-play').style.display = 'none';
+      // Start video autoplay
+      document.getElementById('yt-player').src += "&autoplay=1";
     }
   </script>
 </main>
+
