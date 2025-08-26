@@ -32,7 +32,7 @@
   <!-- Video Wrapper -->
   <div class="video-wrapper" style="position: relative; width: 500px; height: 281px; margin-top: 10px;">
     <iframe id="yt-player" 
-      src="https://www.youtube.com/embed/ucG9ZBqkquw?rel=0&modestbranding=1&controls=0"
+      src="https://www.youtube.com/embed/ucG9ZBqkquw?rel=0&modestbranding=1&controls=0&autoplay=0"
       style="width:100%; height:100%; border:0;"
       allowfullscreen>
     </iframe>
@@ -72,19 +72,20 @@
   </p>
 
   <script>
+    let played = false; // track if video has started
     function playVideo() {
+      if (played) return; // prevent multiple reloads
+      played = true;
+
       const overlay = document.querySelector('.custom-play');
       const player = document.getElementById('yt-player');
 
-      // Start video autoplay
-      player.src += "&autoplay=1";
+      // Enable autoplay only once by replacing src
+      player.src = player.src.replace("autoplay=0", "autoplay=1");
 
-      // Keep overlay for 1.2 seconds, then fade out
-      setTimeout(() => {
-        overlay.style.opacity = 0;
-        // Optional: fully hide after fade completes
-        setTimeout(() => { overlay.style.display = 'none'; }, 500);
-      }, 1200);
+      // Fade out overlay immediately to cover red button
+      overlay.style.opacity = 0;
+      setTimeout(() => { overlay.style.display = 'none'; }, 500);
     }
   </script>
 </main>
