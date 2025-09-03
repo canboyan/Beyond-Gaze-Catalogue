@@ -1,12 +1,32 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beyond Gaze Catalogue</title>
-  
-  <!-- Link to the correct CSS file -->
+  <title>Archive - Beyond Gaze Catalogue</title>
   <link rel="stylesheet" href="index.css" />
+
+  <!-- Fix: make .content stack its children vertically and override inline margins -->
+  <style>
+    /* make the main content stack its children vertically */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* change to center if you want them horizontally centered */
+      gap: 25px;               /* spacing between videos / blocks */
+    }
+
+    /* ensure each video wrapper behaves as a block and override inline margin-top */
+    .video-wrapper {
+      display: block;
+      width: 540px !important;            /* respect the width already used inline */
+      height: 304px !important;           /* respect the height already used inline */
+      margin-top: 0 !important;           /* override the inline margin-top values */
+      margin-bottom: 0;
+      clear: both;                        /* avoid floats affecting layout */
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -16,7 +36,7 @@
         <div class="menu-group">
           <ul>
             <li><a href="archive.html">Archive</a></li>
-            <li><a href="index1.html">Index</a></li>
+            <li><a href="index1.html">Index</a></li>  
           </ul>
         </div>
         <div class="menu-info">
@@ -26,12 +46,151 @@
         </div>
       </nav>
       <div class="info">
-         <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
     </aside>
+<main class="content">
+  <!-- Video 1 -->
+  <div class="video-wrapper" style="position: relative; width: 540px; height: 304px; margin-top: -10px;">
+    
+    <!-- Thumbnail overlay -->
+    <img src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/Screenshot%202025-08-26%20at%2022.22.00bw.png" 
+         alt="Video thumbnail 1" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
+    
+    <!-- Faux Play Button -->
+    <div class="custom-play" onclick="playVideo(this)" 
+         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 75px; height: 75px; background: black; border-radius: 50%;
+                cursor: pointer; display: flex; align-items: center; justify-content: center;
+                filter: grayscale(100%); transition: opacity 0.6s ease; z-index: 3;">
+      <div style="width: 0; height: 0; border-left: 15px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent;"></div>
+    </div>
 
-    <main class="content"></main>
+    <!-- YouTube iframe -->
+    <div class="yt-player" id="yt-player-1" data-video-id="mZl7oarLLLY" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
   </div>
+
+  <!-- Text Under Video -->
+  <div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#000000; margin-top: 10px; width: 480px; font-weight: normal;">
+    <p>
+      With <strong>Fieldworks</strong>, we explored questions around non-visual witnessing, their <strong><em>choreographic resistance</em></strong> as I call it, and how the works choreograph perception itself. Touching on everything from the thickness of space between bodies to sound as a form of non-contact touch.
+    </p>
+
+    <p>
+      The discussion moves through their practice in depth, examining how <strong><em>folding</em></strong> becomes a way of structuring knowledge, how objects generate their own tactile choreographies, and whether the body functions as an archive of touch across performances.
+    </p>
+
+    <p>
+      It's an exchange about how their work makes space for alternative forms of attention and encounter.
+    </p>
+
+    <p>
+      <strong><em>Running time: 1:10:57</em></strong>
+    </p>
+  
+
+<p>
+  Click for the<a href="https://docs.google.com/document/d/1pV1VBmYKF47y5HlwNF3Ta-Hhk5zbj-3rwhsJTx2zpFQ/edit?usp=sharing" target="_blank" class="link-questions"> full list of questions</a>.
+</p>
+
+
+ </div>
+
+  <!-- Video 2 -->
+  <div class="video-wrapper" style="position: relative; width: 540px; height: 304px; margin-top: 25px;">
+    
+    <!-- Thumbnail overlay -->
+    <img src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/Screenshot%202025-08-27%20at%2016.50.55bw.png" 
+         alt="Video thumbnail 2" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
+    
+    <!-- Faux Play Button -->
+    <div class="custom-play" onclick="playVideo(this)" 
+         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 75px; height: 75px; background: black; border-radius: 50%;
+                cursor: pointer; display: flex; align-items: center; justify-content: center;
+                filter: grayscale(100%); transition: opacity 0.6s ease; z-index: 3;">
+      <div style="width: 0; height: 0; border-left: 15px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent;"></div>
+    </div>
+
+    <!-- YouTube iframe -->
+    <div class="yt-player" id="yt-player-2" data-video-id="mZl7oarLLLY" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+  </div>
+
+  <!-- Text Under Video -->
+  <div style="font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color:#000000; margin-top: 10px; width: 480px; font-weight: normal;">
+    <p>
+      With <strong>Fieldworks</strong>, we explored questions around non-visual witnessing, their <strong><em>choreographic resistance</em></strong> as I call it, and how the works choreograph perception itself. Touching on everything from the thickness of space between bodies to sound as a form of non-contact touch.
+    </p>
+
+    <p>
+      The discussion moves through their practice in depth, examining how <strong><em>folding</em></strong> becomes a way of structuring knowledge, how objects generate their own tactile choreographies, and whether the body functions as an archive of touch across performances.
+    </p>
+
+    <p>
+      It's an exchange about how their work makes space for alternative forms of attention and encounter.
+    </p>
+
+    <p>
+      <strong><em>Running time: 1:10:57</em></strong>
+    </p>
+
+<p>
+  Click for the <a href="https://docs.google.com/document/d/1pV1VBmYKF47y5HlwNF3Ta-Hhk5zbj-3rwhsJTx2zpFQ/edit?usp=sharing"
+                  target="_blank"
+                  class="link-questions">full list of questions</a>.
+</p>
+
+
+    
+  </div>
+
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = {};
+
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('.yt-player').forEach(div => {
+        const id = div.id;
+        const videoId = div.getAttribute('data-video-id');
+        players[id] = new YT.Player(id, {
+          height: '304',
+          width: '540',
+          videoId: videoId,
+          playerVars: {
+            controls: 1,
+            modestbranding: 1,
+            rel: 0,
+            autoplay: 0,
+            iv_load_policy: 3,
+            fs: 1
+          },
+          events: {
+            'onReady': e => e.target.setPlaybackQuality('hd1080')
+          }
+        });
+      });
+    }
+
+    function playVideo(button) {
+      const wrapper = button.closest('.video-wrapper');
+      const img = wrapper.querySelector('img');
+      const playerDiv = wrapper.querySelector('.yt-player');
+      const player = players[playerDiv.id];
+
+      button.style.display = 'none';
+      img.style.display = 'none';
+
+      player.playVideo();
+      player.setPlaybackQuality('hd1080');
+    }
+  </script>
+</main>
 </body>
 </html>
