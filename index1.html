@@ -1,124 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Index - Beyond Gaze Catalogue</title>
-
+  
+  <!-- Local overrides for this page only (won't change your global CSS files) -->
   <style>
-    /* basic reset for this page only */
-    html, body {
-      height: 100%;
+    /* remove browser defaults */
+    html, body { margin: 0; padding: 0; height: 100%; }
+
+    /* keep your existing container behaviour but make sure items start at the top */
+    .container {
+      display: flex;
+      min-height: 100vh;
+      width: 100vw;
+      align-items: flex-start; /* <-- critical: forces main column to align to top */
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* keep sidebar markup unchanged visually (width must match your existing value) */
+    .sidebar {
+      width: 350px;
+      padding: 20px;
+      background-color: white;
+      box-sizing: border-box;
+      /* other sidebar styles are unaffected */
+    }
+
+    /* main area for PDF: make it a flex child that starts at the very top,
+       but do not change the sidebar or other pages */
+    .pdf-main {
+      flex: 1 1 auto;
+      margin: 0;
+      padding: 0;         /* remove internal padding for this page only */
+      min-height: 100vh;  /* ensure it can fill viewport vertically */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* wrapper directly around the embed — eliminate line-box gaps */
+    .pdf-wrapper {
       margin: 0;
       padding: 0;
-    }
-
-    /* Sidebar: unchanged visually, pinned to the left */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 350px;           /* keep your sidebar width */
-      height: 100vh;
-      padding: 20px;
+      line-height: 0;
       background: #ffffff;
+      height: 100vh;      /* make wrapper fill viewport vertically */
       box-sizing: border-box;
-      overflow: auto;
-      z-index: 20;
     }
 
-    /* Sidebar typography & links - keep appearance identical to the rest of the site */
-    .sidebar h1, .sidebar nav, .sidebar .info {
-      font-family: 'Arial Black', Arial, sans-serif;
-      color: black;
-    }
-    .sidebar h1 a,
-    .sidebar nav a,
-    .sidebar .info a {
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .sidebar nav li { margin: 5px 0; }
-
-    /* PDF area: fixed and flush to the top, starts immediately right of the sidebar */
-    .pdf-wrapper {
-      position: fixed;
-      top: 0;                  /* flush to the very top of viewport */
-      left: 350px;             /* align to the right edge of the sidebar */
-      right: 0;
-      bottom: 0;
-      background: #ffffff;
-      box-sizing: border-box;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      z-index: 10;
-      overflow: hidden;        /* embed will fill area */
-    }
-
-    /* Ensure the embed fills the wrapper exactly and does not produce gaps */
+    /* make the embedded PDF fill the wrapper exactly */
     .pdf-wrapper embed {
-      flex: 1 1 auto;
+      display: block;
       width: 100%;
       height: 100%;
       min-width: 0;
       min-height: 0;
-      display: block;
-      border: none;
       margin: 0;
       padding: 0;
+      border: none;
       background: #ffffff;
+      box-sizing: border-box;
     }
 
-    /* small responsive tweak: on very small screens stack the PDF below the sidebar */
+    /* small screen fallback: allow normal stacking */
     @media (max-width: 700px) {
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-      }
-      .pdf-wrapper {
-        position: relative;
-        left: 0;
-        top: 0;
-        height: auto;
-        min-height: 600px;
-      }
-      .pdf-wrapper embed {
-        height: 1000px; /* fallback fixed height for small screens */
-      }
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; position: relative; }
+      .pdf-wrapper { height: 800px; } /* or whatever you prefer for mobile */
+      .pdf-wrapper embed { height: 100%; }
     }
   </style>
 </head>
 <body>
-  <aside class="sidebar">
-    <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
-    <nav>
-      <div class="menu-group">
-        <ul>
-          <li><a href="archive.html">Archive</a></li>
-          <li><a href="index1.html">Index</a></li>
-        </ul>
+  <div class="container">
+    <aside class="sidebar">
+      <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
+      <nav>
+        <div class="menu-group">
+          <ul>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="index1.html">Index</a></li>
+          </ul>
+        </div>
+        <div class="menu-info">
+          <ul>
+            <li><a href="info.html">Info</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="info">
+         <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
-      <div class="menu-info">
-        <ul>
-          <li><a href="info.html">Info</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="info">
-      <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
-      <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
-    </div>
-  </aside>
+    </aside>
 
-  <!-- PDF area: fixed so it is flush to the top and fills the rest of the viewport -->
-  <div class="pdf-wrapper" aria-label="PDF viewer">
-    <embed
-      src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/55c08ee917a22aedcfb1e839a34b19ad6873dd3c/touch_strategies_sample1.pdf"
-      type="application/pdf" />
+    <!-- main changed only to add a page-scoped class; sidebar HTML untouched above -->
+    <main class="pdf-main">
+      <div class="pdf-wrapper">
+        <embed 
+          src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/55c08ee917a22aedcfb1e839a34b19ad6873dd3c/touch_strategies_sample1.pdf" 
+          type="application/pdf" />
+      </div>
+    </main>
   </div>
 </body>
 </html>
+
