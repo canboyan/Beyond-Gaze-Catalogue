@@ -153,13 +153,16 @@ body {
   text-decoration: none !important;
   cursor: pointer;
 }
-/* -------------------------------
-   PDF Wrapper Overrides
--------------------------------- */
+/* Remove padding only for PDF content page */
+.content.pdf-content {
+  padding: 0 !important;   /* overrides .content padding:20px */
+}
+
+/* PDF wrapper to ensure no extra spacing */
 .pdf-wrapper {
-  padding: 0 !important;   /* remove padding inherited from .content */
-  margin: 0;               /* remove any margin */
-  line-height: 0;          /* remove tiny inline spacing above embed */
+  margin: 0;
+  padding: 0;
+  line-height: 0;
   background-color: #ffffff;
 }
 
