@@ -158,19 +158,53 @@ body {
   padding: 0 !important;   /* overrides .content padding:20px */
 }
 
-/* PDF wrapper to ensure no extra spacing */
-.pdf-wrapper {
+/* Page-specific PDF container */
+main.pdf-content {
+  flex: 1 1 auto;         /* allow main area to grow */
+  margin: 0;
+  padding-top: 0;         /* remove top padding that caused gap */
+  padding-left: 20px;     /* keep horizontal padding if desired */
+  padding-right: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  overflow: hidden;       /* PDF fills the space, scroll inside embed if needed */
+}
+
+/* PDF wrapper: prevents collapsing / dwarfing */
+.pdf-content .pdf-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  line-height: 0;
+  line-height: 0;         /* removes inline-replaced element gap */
+  box-sizing: border-box;
+  height: calc(100vh);    /* fill viewport height (adjust if you have a header) */
+  min-height: 600px;      /* fallback so it never becomes too small */
+  overflow: hidden;
   background-color: #ffffff;
 }
 
-.pdf-wrapper embed {
+/* Make the embed fill the wrapper exactly */
+.pdf-content .pdf-wrapper embed,
+.pdf-content .pdf-wrapper iframe {
   display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
   margin: 0;
   padding: 0;
   border: none;
   background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Optional: responsive adjustments for small screens */
+@media (max-width: 760px) {
+  .pdf-content .pdf-wrapper {
+    height: 800px;
+    min-height: 600px;
+  }
 }
 
