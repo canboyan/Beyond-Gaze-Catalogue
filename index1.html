@@ -4,66 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Index - Beyond Gaze Catalogue</title>
-
-  <!-- Page-scoped CSS: only for this page; won't change your global index.css -->
-  <style>
-    /* ensure no browser default margins interfere */
-    html, body { margin: 0; padding: 0; height: 100%; }
-
-    /* Keep the existing sidebar markup and look exactly the same.
-       No changes to sidebar styles other than ensuring it sits above the fixed PDF (z-index). */
-    .sidebar {
-      width: 350px;
-      padding: 20px;
-      background-color: white;
-      box-sizing: border-box;
-      z-index: 50; /* keeps links clickable on top of the PDF if overlap occurs */
-    }
-
-    /* === THE ONLY PART THAT CHANGES THE PDF BEHAVIOR ===
-       A fixed, full-height area pinned to the top-right of the viewport,
-       starting exactly after the sidebar width (350px). */
-    .pdf-fixed {
-      position: fixed;
-      top: 0;
-      left: 350px;                       /* same value as your sidebar width */
-      width: calc(100vw - 350px);        /* occupy the rest of the viewport */
-      height: 100vh;                     /* full viewport height */
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
-      box-sizing: border-box;
-      z-index: 10;
-      overflow: hidden;                  /* embed will fill this area */
-    }
-
-    /* Make the embed fill the wrapper exactly (no gaps, no shrink) */
-    .pdf-fixed embed {
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: #ffffff;
-      box-sizing: border-box;
-    }
-
-    /* Responsive fallback: on very small screens stack below the sidebar */
-    @media (max-width: 760px) {
-      .pdf-fixed {
-        position: relative;
-        left: 0;
-        width: 100%;
-        height: auto;
-        min-height: 800px; /* adjust as needed for mobile */
-      }
-    }
-  </style>
+  
+  <!-- Link to the correct CSS file -->
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
   <div class="container">
-    <!-- SIDEBAR: left completely unchanged (copy/paste your original markup) -->
     <aside class="sidebar">
       <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
       <nav>
@@ -84,6 +30,7 @@
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
     </aside>
+
 
     <!-- PDF AREA: fixed, flush to the top, fills the right-hand area -->
     <div class="pdf-fixed" aria-label="PDF viewer">
