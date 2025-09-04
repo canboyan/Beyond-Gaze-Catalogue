@@ -9,81 +9,87 @@
     /* page reset */
     html, body { height: 100%; margin: 0; padding: 0; }
 
-    /* basic layout kept as before */
-    .container { position: relative; min-height: 100vh; width: 100vw; display: block; }
-
-    /* sidebar unchanged visually; keep same width used elsewhere */
+    /* Sidebar: keep visually unchanged and fixed */
     .sidebar {
-      position: fixed;           /* pin the sidebar */
+      position: fixed;
       top: 0;
       left: 0;
-      width: 350px;
+      width: 350px;           /* keep your sidebar width */
       height: 100vh;
       padding: 20px;
       background: #ffffff;
       box-sizing: border-box;
       overflow: auto;
-      z-index: 10;
+      z-index: 20;
     }
 
-    /* main column now sits to the right of the sidebar and we won't rely on .content padding */
+    /* PDF area: fixed, pinned to top/left/right/bottom */
     .pdf-wrapper {
-      position: absolute;
-      top: 0;                    /* flush to the very top */
-      left: 350px;               /* start after the sidebar width */
+      position: fixed;
+      top: 0;
+      left: 350px;            /* start right after the sidebar */
       right: 0;
-      bottom: 0;                 /* fill to bottom */
+      bottom: 0;
       background: #ffffff;
       box-sizing: border-box;
-      overflow: auto;            /* allow scrolling inside the PDF area */
-      z-index: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      z-index: 10;
+      overflow: hidden;       /* the embed will fill and the wrapper won't add scrollbars */
     }
 
-    /* ensure the embed fills the wrapper exactly */
+    /* Make the embed fill the wrapper fully */
     .pdf-wrapper embed {
-      display: block;
+      flex: 1 1 auto;
       width: 100%;
-      height: 100vh;             /* fill viewport height */
+      height: 100%;
+      min-width: 0;    /* important to prevent flex shrink in some browsers */
+      min-height: 0;
+      display: block;
       border: none;
       margin: 0;
       padding: 0;
       background: #ffffff;
-      box-sizing: border-box;
     }
 
-    /* keep the rest of the page typography as you like (minimal) */
-    .sidebar h1, .sidebar nav, .sidebar .info { font-family: 'Arial Black', Arial, sans-serif; color: black; }
+    /* keep sidebar typography minimal so it looks like your original */
+    .sidebar h1, .sidebar nav, .sidebar .info {
+      font-family: 'Arial Black', Arial, sans-serif;
+      color: black;
+    }
+
+    /* If you want the rest of the page content below the sidebar on small screens,
+       you can add media queries later. */
   </style>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
-      <nav>
-        <div class="menu-group">
-          <ul>
-            <li><a href="archive.html">Archive</a></li>
-            <li><a href="index1.html">Index</a></li>
-          </ul>
-        </div>
-        <div class="menu-info">
-          <ul>
-            <li><a href="info.html">Info</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="info">
-         <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
-        <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
+  <aside class="sidebar">
+    <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
+    <nav>
+      <div class="menu-group">
+        <ul>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="index1.html">Index</a></li>
+        </ul>
       </div>
-    </aside>
-
-    <!-- PDF area absolutely positioned so it is flush at the top -->
-    <div class="pdf-wrapper" aria-label="PDF viewer">
-      <embed 
-        src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/55c08ee917a22aedcfb1e839a34b19ad6873dd3c/touch_strategies_sample1.pdf" 
-        type="application/pdf" />
+      <div class="menu-info">
+        <ul>
+          <li><a href="info.html">Info</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="info">
+      <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
+      <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
     </div>
+  </aside>
+
+  <!-- PDF area: fixed so it is flush to the top and fills the rest of the viewport -->
+  <div class="pdf-wrapper" aria-label="PDF viewer">
+    <embed 
+      src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/55c08ee917a22aedcfb1e839a34b19ad6873dd3c/touch_strategies_sample1.pdf" 
+      type="application/pdf" />
   </div>
 </body>
 </html>
