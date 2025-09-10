@@ -78,6 +78,23 @@ audio::-webkit-media-controls-volume-slider:focus {
   background-color: red !important;
   border-radius: 6px;
 }
+  /* Reset spacing between media and text to match archive.html */
+.content > div[style*="font-family"] {
+  margin-top: 20px !important;  /* space from media to text */
+  margin-bottom: 0 !important;
+}
+
+/* Optional: spacing between paragraphs inside text blocks */
+.content > div[style*="font-family"] p + p {
+  margin-top: 12px;
+}
+
+/* Space between bundles */
+.content > .video-wrapper + .video-wrapper,
+.content > .video-wrapper + audio {
+  margin-top: 50px !important;
+}
+
 </style>
 
 
