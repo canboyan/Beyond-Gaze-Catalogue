@@ -153,8 +153,8 @@ Examining everything from the insights of adapting work for diverse audiences to
 <p>
 </p>
  
-<audio controls style="width: 530px; border-radius: 12px;">
-  <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mpeg">
+<audio controls style="width: 540px; border-radius: 12px;">
+  <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mp4">
 </audio>
 
 <style>
@@ -163,14 +163,30 @@ audio::-webkit-media-controls-panel {
   background-color: #111; /* dark gray/black */
   border-radius: 12px;
 }
+
+/* Make icons/text lighter */
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display,
 audio::-webkit-media-controls-timeline,
 audio::-webkit-media-controls-volume-slider {
-  filter: invert(1); /* makes icons/text lighter */
+  filter: invert(1);
+}
+
+/* Force hover/focus highlight to red */
+audio::-webkit-media-controls-play-button:hover,
+audio::-webkit-media-controls-play-button:focus,
+audio::-webkit-media-controls-mute-button:hover,
+audio::-webkit-media-controls-mute-button:focus,
+audio::-webkit-media-controls-timeline:hover,
+audio::-webkit-media-controls-timeline:focus,
+audio::-webkit-media-controls-volume-slider:hover,
+audio::-webkit-media-controls-volume-slider:focus {
+  background-color: red !important;
+  border-radius: 6px;
 }
 </style>
+
 
  <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color:#000000; margin-top: 10px; width: 480px; font-weight: normal;">
  <p>
