@@ -126,8 +126,9 @@ audio::-webkit-media-controls-volume-slider:focus {
    SPECIFIC SPACING ADJUSTMENTS
    Extra space between Video 2 text and Audio 2
 ------------------------*/
-#yt-player-2 + div[style*="font-family"] {
-  margin-bottom: 50px !important; /* tweak this number to increase/decrease space */
+/* Target the audio-wrapper that follows Video 2 bundle */
+.bundle:nth-of-type(2) + .bundle .media-wrapper {
+  margin-top: 50px !important;  /* adjust this number to increase/decrease space */
 }
 
 /* Optional: Adjust the following if you want text closer/farther from media */
@@ -135,9 +136,6 @@ audio::-webkit-media-controls-volume-slider:focus {
 /* .bundle audio + div[style*="font-family"] { margin-top: XXpx; } */
 </style>
 
-
-
-  </style>
 </head>
 <body>
   <div class="container">
