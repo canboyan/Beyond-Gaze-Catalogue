@@ -26,8 +26,10 @@
       box-sizing: border-box;
     }
 
-/* add gap before videos that are not the first, regardless of previous element type */
-.content > * + .video-wrapper {
+    
+/* add gap before all media blocks except the first one */
+.content > .video-wrapper:not(:first-child),
+.content > .media-wrapper:not(:first-child) {
   margin-top: 100px !important; /* adjust the gap as needed */
 }
 
