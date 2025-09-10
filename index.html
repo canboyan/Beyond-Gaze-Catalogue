@@ -206,8 +206,8 @@
         const id = div.id;
         const videoId = div.getAttribute('data-video-id');
         players[id] = new YT.Player(id, {
-          height: '304',
-          width: '540',
+          height: '315',
+          width: '560',
           videoId: videoId,
           playerVars: { controls: 1, modestbranding: 1, rel: 0, autoplay: 0, iv_load_policy: 3, fs: 1 },
           events: { 'onReady': e => e.target.setPlaybackQuality('hd1080') }
