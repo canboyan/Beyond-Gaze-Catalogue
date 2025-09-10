@@ -7,41 +7,58 @@
   <link rel="stylesheet" href="index.css" />
 
 <style>
-/* Stack all content vertically */
+/* Main content stacking */
 .content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 25px; /* space between bundles */
+  gap: 25px;
 }
 
-/* Each video or audio behaves as a block */
-.video-wrapper,
+/* Video wrapper */
+.video-wrapper {
+  display: block;
+  width: 544px;
+  height: 306px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  clear: both;
+  box-sizing: border-box;
+}
+
+/* Audio wrapper */
 .media-wrapper {
   display: block;
-  width: 544px; /* adjust per media if needed */
-  box-sizing: border-box;
-  margin-bottom: 15px; /* space between media and its text */
+  width: 544px;
+  margin-bottom: 15px;
 }
 
-/* Each bundle text spacing */
+/* Text under videos/audio */
 .bundle div[style*="font-family"] {
-  margin-top: 20px; /* space from media to text */
-  margin-bottom: 0;  /* let paragraphs inside text have their own spacing */
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
-/* Optional: spacing between paragraphs inside text blocks */
 .bundle div[style*="font-family"] p + p {
   margin-top: 12px;
 }
 
-/* Darken the audio control bar */
+/* Audio player style */
+audio {
+  display: block;
+  margin-top: 10px;
+}
+
+.bundle audio + div[style*="font-family"] {
+  margin-top: 20px;
+}
+
+/* You can keep your darkened audio controls and hover styles as before */
 audio::-webkit-media-controls-panel {
   background-color: #111;
   border-radius: 12px;
 }
 
-/* Make icons/text lighter */
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display,
@@ -50,7 +67,6 @@ audio::-webkit-media-controls-volume-slider {
   filter: invert(1);
 }
 
-/* Force hover/focus highlight to red */
 audio::-webkit-media-controls-play-button:hover,
 audio::-webkit-media-controls-play-button:focus,
 audio::-webkit-media-controls-mute-button:hover,
@@ -61,12 +77,6 @@ audio::-webkit-media-controls-volume-slider:hover,
 audio::-webkit-media-controls-volume-slider:focus {
   background-color: red !important;
   border-radius: 6px;
-}
-
-/* Ensure audio has consistent margin */
-audio {
-  margin-top: 10px;
-  display: block;
 }
 </style>
 
