@@ -7,53 +7,73 @@
   <link rel="stylesheet" href="index.css" />
 
 <style>
-/* Main content stacking */
+/* ----------------------
+   MAIN CONTENT STACKING
+   Controls how all bundles (videos, audio, text) are stacked
+------------------------*/
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 25px;
+  flex-direction: column;  /* stack vertically */
+  align-items: flex-start; /* left-align everything */
+  gap: 25px;               /* space between separate bundles (videos/audio blocks) */
 }
 
-/* Video wrapper */
+/* ----------------------
+   VIDEO WRAPPER
+   Controls individual video blocks
+------------------------*/
 .video-wrapper {
-  display: block;
-  width: 544px;
-  height: 306px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  clear: both;
+  display: block;          /* behave as block */
+  width: 544px;            /* video width (adjust if needed) */
+  height: 306px;           /* video height (adjust if needed) */
+  margin-top: 0;           /* remove extra top margin */
+  margin-bottom: 15px;     /* space between video and its text below */
+  clear: both;             
   box-sizing: border-box;
 }
 
-/* Audio wrapper */
+/* ----------------------
+   AUDIO WRAPPER
+   Controls individual audio blocks
+------------------------*/
 .media-wrapper {
   display: block;
-  width: 544px;
-  margin-bottom: 15px;
+  width: 544px;           /* audio width */
+  margin-bottom: 15px;    /* space between audio and its text below */
 }
 
-/* Text under videos/audio */
+/* ----------------------
+   TEXT UNDER VIDEOS / AUDIO
+   Controls text blocks below media
+------------------------*/
 .bundle div[style*="font-family"] {
-  margin-top: 20px;
-  margin-bottom: 0;
+  margin-top: 20px;        /* space from media to text */
+  margin-bottom: 0;        /* text block bottom margin, paragraphs inside control spacing */
 }
 
+/* Paragraph spacing inside text blocks */
 .bundle div[style*="font-family"] p + p {
-  margin-top: 12px;
+  margin-top: 12px;        /* space between paragraphs in text */
 }
 
-/* Audio player style */
+/* ----------------------
+   AUDIO PLAYER STYLING
+   Controls spacing and look of <audio> element
+------------------------*/
 audio {
   display: block;
-  margin-top: 10px;
+  margin-top: 10px;        /* space above audio if needed */
 }
 
+/* Space between audio and its text block */
 .bundle audio + div[style*="font-family"] {
-  margin-top: 20px;
+  margin-top: 20px;        /* adjust this to increase/decrease gap under audio */
 }
 
-/* You can keep your darkened audio controls and hover styles as before */
+/* ----------------------
+   AUDIO CONTROLS STYLING
+   Darken panel, invert icons, hover effects
+------------------------*/
 audio::-webkit-media-controls-panel {
   background-color: #111;
   border-radius: 12px;
@@ -64,7 +84,7 @@ audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display,
 audio::-webkit-media-controls-timeline,
 audio::-webkit-media-controls-volume-slider {
-  filter: invert(1);
+  filter: invert(1);      /* make controls light */
 }
 
 audio::-webkit-media-controls-play-button:hover,
@@ -75,27 +95,34 @@ audio::-webkit-media-controls-timeline:hover,
 audio::-webkit-media-controls-timeline:focus,
 audio::-webkit-media-controls-volume-slider:hover,
 audio::-webkit-media-controls-volume-slider:focus {
-  background-color: red !important;
+  background-color: red !important;  /* highlight on hover/focus */
   border-radius: 6px;
 }
-  /* Reset spacing between media and text to match archive.html */
+
+/* ----------------------
+   RESET TEXT SPACING
+   Ensure spacing between media and text matches archive.html
+------------------------*/
 .content > div[style*="font-family"] {
-  margin-top: 20px !important;  /* space from media to text */
+  margin-top: 20px !important;  /* distance from media to text */
   margin-bottom: 0 !important;
 }
 
-/* Optional: spacing between paragraphs inside text blocks */
+/* Paragraph spacing inside text blocks */
 .content > div[style*="font-family"] p + p {
-  margin-top: 12px;
+  margin-top: 12px;  /* space between paragraphs */
 }
 
-/* Space between bundles */
+/* ----------------------
+   GAP BETWEEN BUNDLES
+   Controls space between consecutive video/audio blocks
+------------------------*/
 .content > .video-wrapper + .video-wrapper,
 .content > .video-wrapper + audio {
-  margin-top: 50px !important;
+  margin-top: 50px !important; /* distance between bundles */
 }
-
 </style>
+
 
 
   </style>
