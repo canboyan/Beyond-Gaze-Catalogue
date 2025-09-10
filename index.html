@@ -25,29 +25,19 @@
       clear: both;
       box-sizing: border-box;
     }
-/* spacing between video/audio + text bundles */
-:root {
-  --bundle-gap: 100px;    /* gap between video-text/audio-text bundles */
-  --audio-text-gap: 30px; /* gap between audio and its text */
+    
+/* spacing between each video/audio + its text bundle */
+.content > div[style*="font-family"] + .video-wrapper,
+.content > div[style*="font-family"] + .media-wrapper {
+  margin-top: 100px; /* gap between bundles */
 }
 
-/* add top margin to all video/audio blocks except the first one */
-.content > .video-wrapper:first-of-type,
-.content > .media-wrapper:first-of-type {
-  margin-top: 0;
-}
-
-.content > .video-wrapper,
-.content > .media-wrapper {
-  margin-top: var(--bundle-gap);
-}
-
-/* gap between audio and its text */
+/* gap between audio player and its text */
 .content > audio + div[style*="font-family"] {
-  margin-top: var(--audio-text-gap);
+  margin-top: 30px;
 }
 
-/* optional: preserve spacing between paragraphs inside text blocks */
+/* optional: spacing between paragraphs inside text blocks */
 .content > div[style*="font-family"] p + p {
   margin-top: 12px;
 }
