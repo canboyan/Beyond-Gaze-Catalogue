@@ -77,7 +77,11 @@
       background-color: red !important;
       border-radius: 6px;
     }
-
+    
+/* Target text blocks that immediately follow audio */
+.content > audio + div[style*="font-family"] {
+  margin-top: 30px; /* adjust gap */
+}
     /* consistent margin above audio */
     audio {
       margin-top: 10px;
