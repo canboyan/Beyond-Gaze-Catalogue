@@ -155,6 +155,21 @@ Examining everything from the insights of adapting work for diverse audiences to
   <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mpeg">
 </audio>
 
+<style>
+/* Darken the audio control bar */
+audio::-webkit-media-controls-panel {
+  background-color: #111; /* dark gray/black */
+  border-radius: 12px;
+}
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider {
+  filter: invert(1); /* makes icons/text lighter */
+}
+</style>
+
  <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color:#000000; margin-top: 10px; width: 480px; font-weight: normal;">
  <p>
 With  <strong>Fayen d'Evie</strong> and  <strong>Katie West</strong>, we explored questions around touch as method, examining how tactile engagement becomes a form of relational knowledge that connects us to ancestral memory, community making, and institutional intervention. Touching on everything from weaving as kinship practice to the politics of touch within institutional spaces. </p>
