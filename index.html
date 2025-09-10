@@ -21,6 +21,13 @@
   display: block;
   width: 544px; /* adjust per media if needed */
   box-sizing: border-box;
+  margin-bottom: 15px; /* space between media and its text */
+}
+
+/* Each bundle text spacing */
+.bundle div[style*="font-family"] {
+  margin-top: 15px; /* space from media to text */
+  margin-bottom: 0;  /* let paragraphs inside text have their own spacing */
 }
 
 /* Optional: spacing between paragraphs inside text blocks */
@@ -62,6 +69,7 @@ audio {
   display: block;
 }
 </style>
+
 
   </style>
 </head>
