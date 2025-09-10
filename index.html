@@ -27,11 +27,12 @@
     }
 
     
-/* add gap before all media blocks except the first one */
-.content > .video-wrapper:not(:first-child),
-.content > .media-wrapper:not(:first-child) {
-  margin-top: 50px !important; /* adjust the gap as needed */
+/* Add gap between all media+text bundles except the first one */
+.content > .video-wrapper:first-of-type ~ *,
+.content > .media-wrapper:first-of-type ~ * {
+  margin-top: 100px; /* adjust as needed */
 }
+
 
     /* reset top margin on text blocks under videos */
     .content > div[style*="font-family"] {
