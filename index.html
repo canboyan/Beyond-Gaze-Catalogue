@@ -41,7 +41,12 @@
     .content > div[style*="font-family"] {
       margin-bottom: 10px !important;
     }
-
+    
+/* add gap before all media blocks except the first one */
+.content > .video-wrapper:not(:first-child),
+.content > .media-wrapper:not(:first-child) {
+  margin-top: 50px !important; /* adjust the gap as needed */
+}
 
     /* Darken the audio control bar */
     audio::-webkit-media-controls-panel {
@@ -178,10 +183,12 @@
   </div>
 
   <!-- Audio -->
+ <div class="media-wrapper">
   <audio controls style="width: 540px; border-radius: 12px;">
     <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mp4">
   </audio>
-
+</div>
+  
   <!-- Text Under Audio -->
   <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color:#000000; width: 480px; font-weight: normal; margin-top: 17px;">
     <p>
