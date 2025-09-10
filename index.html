@@ -25,10 +25,14 @@
       clear: both;
       box-sizing: border-box;
     }
-
+    
+/* only add top margin to videos that are not the first */
+.content .video-wrapper:not(:first-child) {
+  margin-top: 20px; /* adjust this value to control the gap between bundles */
+}
     /* reset top margin on text blocks under videos */
     .content > div[style*="font-family"] {
-      margin-top: 10px !important;
+      margin-top: 0px !important;
     }
 
     
