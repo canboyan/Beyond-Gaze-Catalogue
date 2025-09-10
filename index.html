@@ -26,9 +26,9 @@
       box-sizing: border-box;
     }
 
-/* add space only between video-text bundles */
-.content > div[style*="font-family"] + .video-wrapper {
-  margin-top: 50px !important; /* gap between bundles */
+/* add gap before videos that are not the first, regardless of previous element type */
+.content > * + .video-wrapper {
+  margin-top: 50px !important; /* adjust the gap as needed */
 }
 
     /* reset top margin on text blocks under videos */
