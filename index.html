@@ -25,71 +25,33 @@
       clear: both;
       box-sizing: border-box;
     }
-
-    /* ---------- spacing / bundle control (replace existing spacing rules) ---------- */
-
-/* turn off flex gap so we control spacing explicitly */
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0; /* no automatic gap */
-}
-
-/* neutralise video wrapper margins (size still set below) */
-.video-wrapper {
-  display: block;
-  width: 544px !important;
-  height: 306px !important;
-  margin: 0 !important; /* rely on bundle spacing only */
-  clear: both;
-  box-sizing: border-box;
-}
-
-/* neutralise media-wrapper (audio) */
-.media-wrapper {
-  margin: 0 !important;
-  box-sizing: border-box;
-}
-
-/* make sure bare audio doesn't add unexpected spacing */
-.content > audio {
-  margin: 0 !important;
-  display: block;
-}
-
-/* reset paragraph margins inside descriptive text blocks so internal <p> doesn't push layout */
-.content > div[style*="font-family"] p {
-  margin: 0 0 0 0 !important;
-  padding: 0;
-}
-
-/* SINGLE source of truth: gap between (media + text) bundles.
-   Change --bundle-gap to whatever you want between bundles. */
+/* spacing between video/audio + text bundles */
 :root {
-  --bundle-gap: 60px;      /* <-- set this to control bundle-to-bundle spacing */
-  --audio-text-gap: 28px;  /* <-- set this to control audio->text internal gap */
+  --bundle-gap: 100px;    /* gap between video-text/audio-text bundles */
+  --audio-text-gap: 30px; /* gap between audio and its text */
 }
 
-/* descriptive text block is the bundle controller */
-.content > div[style*="font-family"] {
-  margin-top: 0 !important;
-  margin-bottom: var(--bundle-gap) !important;
+/* add top margin to all video/audio blocks except the first one */
+.content > .video-wrapper:first-of-type,
+.content > .media-wrapper:first-of-type {
+  margin-top: 0;
 }
 
-/* internal rule: when audio (or media-wrapper) is followed by text block, give extra internal gap */
-.content > .media-wrapper + div[style*="font-family"],
+.content > .video-wrapper,
+.content > .media-wrapper {
+  margin-top: var(--bundle-gap);
+}
+
+/* gap between audio and its text */
 .content > audio + div[style*="font-family"] {
-  margin-top: var(--audio-text-gap) !important;
+  margin-top: var(--audio-text-gap);
 }
 
-/* If you prefer the gap applied before the next media (instead of after the text),
-   you can instead use (comment out the above margin-bottom and use this):
-   .content > .video-wrapper:not(:first-child),
-   .content > .media-wrapper:not(:first-child) { margin-top: var(--bundle-gap) !important; }
-*/
+/* optional: preserve spacing between paragraphs inside text blocks */
+.content > div[style*="font-family"] p + p {
+  margin-top: 12px;
+}
 
-/* ---------- end spacing rules ---------- */
 
     /* reset top margin on text blocks under videos */
     .content > div[style*="font-family"] {
