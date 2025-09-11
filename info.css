@@ -1,41 +1,95 @@
-/* Sidebar: base font in rems for consistent scaling */
+/* ----------------------
+   GLOBAL FIXES
+------------------------*/
+
+/* Prevent automatic text scaling on mobile */
+html {
+  -webkit-text-size-adjust: 100%; /* Safari / iOS */
+  -ms-text-size-adjust: 100%;     /* IE */
+  text-size-adjust: 100%;         /* Modern browsers */
+}
+
+/* ----------------------
+   HOVER TEXT INSIDE CONTENT
+------------------------*/
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+.hover-text:hover {
+  color: red;
+}
+
+/* ----------------------
+   CONTAINER / LAYOUT
+------------------------*/
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-wrap: nowrap; /* keep sidebar + content side by side */
+}
+
 .sidebar {
-  font-size: 0.875rem; /* 14px equivalent */
+  width: 350px; /* match index.css */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  flex-shrink: 0;
+  font-size: 14px; /* enforce font size */
 }
 
-.sidebar h1 a {
-  font-size: 1.125rem; /* 18px equivalent */
+.sidebar h1 {
+  font-size: 18px; /* keep BEYOND GAZE CATALOGUE bigger */
 }
 
-.sidebar nav li a,
-.sidebar .info p {
-  font-size: 0.875rem; /* 14px equivalent */
+.sidebar nav a,
+.sidebar .info p,
+.sidebar .info a {
+  font-size: 14px; /* enforce consistent font size, prevents scaling */
 }
 
-/* Mobile portrait */
+/* ----------------------
+   CONTENT AREA
+------------------------*/
+.content {
+  flex: 1;
+  margin-left: 0; /* will rely on flex for positioning */
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: calc(100% - 350px);
+  background-color: transparent;
+  word-wrap: break-word;
+}
+
+.content p {
+  margin-bottom: 15px;
+}
+
+/* ----------------------
+   RESPONSIVE: MOBILE DEVICES
+------------------------*/
 @media screen and (max-width: 768px) {
-  .sidebar {
-    font-size: 0.875rem;
+  .container {
+    flex-direction: column; /* stack sidebar on top */
   }
-  .sidebar h1 a {
-    font-size: 1.125rem;
-  }
-  .sidebar nav li a,
-  .sidebar .info p {
-    font-size: 0.875rem;
-  }
-}
 
-/* Mobile landscape */
-@media screen and (max-width: 1024px) and (orientation: landscape) {
   .sidebar {
-    font-size: 0.875rem; /* keep the same size, no enlargement */
+    width: 100%;
+    font-size: 14px; /* consistent mobile font */
+    padding: 15px;
   }
-  .sidebar h1 a {
-    font-size: 1.125rem;
+
+  .sidebar h1 {
+    font-size: 18px;
   }
-  .sidebar nav li a,
-  .sidebar .info p {
-    font-size: 0.875rem;
+
+  .content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 15px;
   }
 }
