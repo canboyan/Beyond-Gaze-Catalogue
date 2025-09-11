@@ -12,14 +12,14 @@
     .hover-text {
       color: black;
       transition: color 0.3s ease;
-      font-family: Arial Black, Arial, sans-serif; /* match original style */
+      font-family: 'Arial Black', Arial, sans-serif; /* match original style */
     }
     .hover-text:hover {
       color: red;
     }
 
     /* ----------------------
-       BASE LAYOUT
+       PAGE LAYOUT FIX
     ------------------------*/
     body {
       margin: 0;
@@ -29,38 +29,40 @@
 
     .container {
       display: flex;
-      flex-wrap: wrap; /* allow wrapping on small screens */
+      flex-wrap: nowrap;      /* no wrapping by default */
       min-height: 100vh;
     }
 
     .sidebar {
-      flex: 0 0 220px; /* fixed width */
+      flex: 0 0 350px;        /* fixed width matches index.css sidebar */
       padding: 20px;
       box-sizing: border-box;
       background-color: #fff;
     }
 
     .content {
-      flex: 1 1 auto; /* take remaining space */
+      flex: 1;                /* take remaining space */
+      margin-left: 0;         /* content will start right next to sidebar */
       padding: 20px;
       box-sizing: border-box;
-      max-width: 100%;
+      max-width: calc(100% - 350px); /* prevent overlap with sidebar */
+      background-color: transparent;
       word-wrap: break-word;
-      background-color: transparent; /* make sure it doesn’t block sidebar */
     }
 
     /* ----------------------
-       RESPONSIVE
+       RESPONSIVE FIX
     ------------------------*/
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column;
+        flex-direction: column;  /* stack sidebar on top */
       }
       .sidebar {
         width: 100%;
       }
       .content {
         width: 100%;
+        max-width: 100%;
         padding: 15px;
       }
     }
@@ -109,3 +111,4 @@
   </div>
 </body>
 </html>
+
