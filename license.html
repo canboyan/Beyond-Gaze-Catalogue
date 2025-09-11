@@ -10,67 +10,80 @@
 
 
   <style>
-    /* Hover text */
-    .hover-text {
-      color: black;
-      transition: color 0.3s ease;
-      font-family: 'Arial Black', Arial, sans-serif; /* match original style */
-    }
-    .hover-text:hover {
-      color: red;
-    }
+/* Hover text */
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+.hover-text:hover {
+  color: red;
+}
 
-    /* ----------------------
-       PAGE LAYOUT FIX
-    ------------------------*/
-    body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
-    }
+/* ----------------------
+   PAGE LAYOUT FIX
+------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
 
-    .container {
-      display: flex;
-      flex-wrap: nowrap;      /* no wrapping by default */
-      min-height: 100vh;
-    }
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+}
 
-    .sidebar {
-      flex: 0 0 350px;        /* fixed width matches index.css sidebar */
-      padding: 20px;
-      box-sizing: border-box;
-      background-color: #fff;
-    }
+.sidebar {
+  flex: 0 0 350px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
 
-    .content {
-      flex: 1;                /* take remaining space */
-      margin-left: 0;         /* content will start right next to sidebar */
-      padding: 20px;
-      box-sizing: border-box;
-      max-width: calc(100% - 350px); /* prevent overlap with sidebar */
-      background-color: transparent;
-      word-wrap: break-word;
-    }
+.content {
+  flex: 1;
+  margin-left: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: calc(100% - 350px);
+  background-color: transparent;
+  word-wrap: break-word;
+}
 
-
-    /* Mobile landscape: show content next to sidebar */
-@media screen and (max-width: 768px) and (orientation: landscape) {
+/* Portrait mobile: stack sidebar on top */
+@media screen and (max-width: 768px) and (orientation: portrait) {
   .container {
-    flex-direction: row;   /* sidebar + content side by side */
+    flex-direction: column;
   }
-
   .sidebar {
-    width: 40%;           /* adjust sidebar width */
+    width: 100%;
   }
-
   .content {
-    width: 60%;           /* adjust content width */
+    width: 100%;
+    max-width: 100%;
     margin-left: 0;
     padding: 15px;
   }
 }
 
-  </style>
+/* Landscape mobile: show content next to sidebar */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+  }
+  .sidebar {
+    width: 40%; /* adjust as needed */
+  }
+  .content {
+    width: 60%; /* adjust as needed */
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="container">
