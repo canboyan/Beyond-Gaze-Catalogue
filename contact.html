@@ -68,6 +68,23 @@
         padding: 15px;
       }
     }
+    /* Mobile landscape: show content next to sidebar */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;   /* sidebar + content side by side */
+  }
+
+  .sidebar {
+    width: 40%;           /* adjust sidebar width */
+  }
+
+  .content {
+    width: 60%;           /* adjust content width */
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
   </style>
 </head>
 <body>
