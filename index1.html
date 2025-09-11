@@ -5,20 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Index - Beyond Gaze Catalogue</title>
   
-  <!-- Link to your main CSS -->
+  <!-- Link to main CSS -->
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* Make iframe responsive */
-    .doc-frame {
+    /* Make iframe take all available width in content and scale properly */
+    .doc-container {
       width: 100%;
-      border: none;
-      height: 100vh; /* you can adjust the height if needed */
+      min-height: 100vh; /* lets it expand vertically */
     }
 
+    .doc-frame {
+      width: 100%;
+      min-height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Sidebar + content layout is preserved */
+    .container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .content {
+      flex: 1;
+      padding: 0; /* remove extra padding so iframe uses full width */
+      box-sizing: border-box;
+    }
+
+    /* Responsive: sidebar stacked on top on small screens */
     @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 15px;
+      }
+
+      .content {
+        width: 100%;
+      }
+
       .doc-frame {
-        height: 1500px; /* adjust for mobile scrolling */
+        width: 100%;
       }
     }
   </style>
@@ -47,13 +79,13 @@
     </aside>
 
     <main class="content">
-      <!-- Responsive Google Doc iframe -->
-      <iframe 
-        src="https://docs.google.com/document/d/e/2PACX-1vTpzuDNNCYEMku9VBQIh0i1z2Gi9QPDmKpI9K9twX1ioXSK8-yqZHwey7SZaMLsxH0WAw0vzwPOUetw/pub?embedded=true"
-        class="doc-frame"
-      ></iframe>
+      <div class="doc-container">
+        <iframe 
+          src="https://docs.google.com/document/d/e/2PACX-1vTpzuDNNCYEMku9VBQIh0i1z2Gi9QPDmKpI9K9twX1ioXSK8-yqZHwey7SZaMLsxH0WAw0vzwPOUetw/pub?embedded=true"
+          class="doc-frame"
+        ></iframe>
+      </div>
     </main>
   </div>
 </body>
 </html>
-
