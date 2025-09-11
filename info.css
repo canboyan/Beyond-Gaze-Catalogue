@@ -29,6 +29,7 @@
   background-color: white;
   box-sizing: border-box;
   flex-shrink: 0;
+  font-size: 14px; /* default font-size */
 }
 
 /* Content: start at the right edge of sidebar */
@@ -46,7 +47,11 @@
   margin-bottom: 15px;
 }
 
-/* Responsive: stack sidebar on top for smaller screens */
+/* ----------------------
+   RESPONSIVE
+------------------------*/
+
+/* Portrait mobile: stack sidebar on top */
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -62,5 +67,12 @@
     margin-left: 0; /* remove offset on small screens */
     width: 100%;
     padding: 15px;
+  }
+}
+
+/* Landscape mobile: reduce sidebar font slightly */
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .sidebar {
+    font-size: 12px; /* smaller font on landscape mobile */
   }
 }
