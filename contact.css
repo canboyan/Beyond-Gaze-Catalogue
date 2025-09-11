@@ -1,1 +1,67 @@
+/* ----------------------
+   INFO PAGE SPECIFIC STYLES
+   Works with existing index.css
+------------------------*/
+
+/* Hover text inside content */
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+.hover-text:hover {
+  color: red;
+}
+
+/* Ensure container remains flex and responsive */
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-wrap: nowrap; /* keep sidebar + content side by side on desktop */
+}
+
+/* Sidebar: keep existing styling from index.css */
+.sidebar {
+  width: 350px; /* match index.css sidebar width */
+  padding: 20px;
+  background-color: white;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Content: start at the right edge of sidebar */
+.content {
+  flex: 1;
+  margin-left: 350px; /* push content right next to sidebar */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: transparent; /* ensure nothing covers sidebar */
+  word-wrap: break-word;
+}
+
+/* Add spacing between paragraphs */
+.content p {
+  margin-bottom: 15px;
+}
+
+/* Responsive: stack sidebar on top for smaller screens */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+
+  .content {
+    margin-left: 0; /* remove offset on small screens */
+    width: 100%;
+    padding: 15px;
+  }
+}
 
