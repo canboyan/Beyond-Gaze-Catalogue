@@ -1,123 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Info - Beyond Gaze Catalogue</title>
-  
-  <link rel="stylesheet" href="index.css" />
+<style>
+/* ----------------------
+   BASE LAYOUT
+------------------------*/
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff;
+}
 
-  <style>
-    /* Hover effect for text */
-    .hover-text {
-      color: black;
-      transition: color 0.3s ease;
-    }
-    .hover-text:hover {
-      color: red;
-    }
+.container {
+  display: flex;
+  flex-direction: row;  /* sidebar + content side by side on desktop */
+  min-height: 100vh;
+}
 
-    /* ----------------------
-       BASE LAYOUT
-    ------------------------*/
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #fff;
-    }
+/* Sidebar */
+.sidebar {
+  width: 220px;          /* fixed sidebar width */
+  flex-shrink: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 10;
+}
 
-    .container {
-      display: flex;
-      flex-direction: row; /* sidebar + content side by side */
-      min-height: 100vh;
-    }
+/* Main content */
+.content {
+  flex: 1;
+  margin-left: 220px;    /* ensures content doesn’t cover sidebar */
+  padding: 40px 30px;
+  max-width: 800px;
+  box-sizing: border-box;
+  background: #fff;
+  word-wrap: break-word;
+}
 
-    /* Sidebar */
-    .sidebar {
-      width: 220px;
-      flex-shrink: 0;
-      padding: 20px;
-      background: #fff;
-      box-sizing: border-box;
-      position: relative; /* ensures title stays on top */
-      z-index: 10;
-    }
+/* Text styling */
+.content p {
+  margin-bottom: 1.5em;
+  line-height: 1.6;
+}
 
-    /* Main content */
-    .content {
-      flex: 1;
-      padding: 40px 30px;
-      max-width: 800px;  /* limits text width for readability */
-      box-sizing: border-box;
-      margin-left: 0;    /* ensure no overlap with sidebar */
-      background: #fff;
-    }
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+}
 
-    /* Paragraph spacing */
-    .content p {
-      margin-bottom: 1.5em;
-      line-height: 1.6;
-    }
+.hover-text:hover {
+  color: red;
+}
 
-    /* ----------------------
-       RESPONSIVE
-    ------------------------*/
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        padding: 20px;
-      }
-      .content {
-        width: 100%;
-        padding: 20px;
-        max-width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
-      <nav>
-        <div class="menu-group">
-          <ul>
-            <li><a href="archive.html">Archive</a></li>
-            <li><a href="index1.html">Index</a></li>
-          </ul>
-        </div>
-        <div class="menu-info">
-          <ul>
-            <li><a href="info.html">Info</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="info">
-        <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
-        <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
-      </div>
-    </aside>
-
-    <main class="content">
-      <p class="hover-text">
-        Touch is the first sense we get to experience in life. It is the sense which is fundamental for our contact with the world. In the last couple of years, we have found ourselves living amidst the times of abstract distance and sensory impoverishment. This research investigates touch as an artistic medium and proposes that when combined creatively, touch-led strategies and dramatic inquiry methods hold a great potential in joining differences productively, empower individuals of different abilities to learn from one another through a shared sense modality.
-      </p>
-
-      <p class="hover-text">
-        Beyond Gaze aims to work towards developing a touch-led dramatic inquiry framework to be used among children both able-bodied and with sensory impairments. The research project will ask:
-      </p>
-
-      <p class="hover-text">
-        How can creating a touch-led dramatic inquiry framework as an educational medium be useful in heightening the skills of artistic collaboration, sense-making skills and sense of community among children both able-bodied and with sensory impairments? What role can a touch-led dramatic inquiry framework play in working towards forms of process drama that are inclusive and full bodied? How can a touch-led dramatic inquiry framework be used in (art) educational settings?
-      </p>
-
-      <p class="hover-text">
-        Beyond gaze will bring together a presentation series and a three-year workshop series. Presentation series will form the basis for indexing touch-led artistic strategies. Workshops will utilize activities designed in tandem with the participants which in turn model the scaffolding for the touch-led dramatic inquiry framework.
-      </p>
-    </main>
-  </div>
-</body>
-</html>
+/* ----------------------
+   RESPONSIVE
+------------------------*/
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;  /* stack sidebar on top of content */
+  }
+  .sidebar {
+    width: 100%;
+    padding: 20px;
+  }
+  .content {
+    margin-left: 0;         /* remove sidebar clearance on mobile */
+    width: 100%;
+    padding: 20px;
+    max-width: 100%;
+  }
+}
+</style>
