@@ -9,7 +9,7 @@
 
   <style>
     /* ----------------------
-       HOVER EFFECT
+       HOVER TEXT
     ------------------------*/
     .hover-text {
       color: black;
@@ -23,24 +23,36 @@
     /* ----------------------
        BASE LAYOUT
     ------------------------*/
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     .container {
       display: flex;
       min-height: 100vh;
     }
 
-    /* Sidebar stays fixed width */
+    /* Sidebar stays fixed width, on top of all content */
     .sidebar {
       width: 220px;
       flex-shrink: 0;
       padding: 20px;
       box-sizing: border-box;
+      background-color: #fff; /* ensures title is not hidden */
+      z-index: 2; /* sits above content */
+      position: relative; /* important so z-index works */
     }
 
-    /* Main content starts after sidebar */
+    /* Content placed entirely to the right of sidebar */
     .content {
-      margin-left: 220px; /* key fix to prevent overlapping sidebar */
+      flex: 1;
       padding: 20px;
       box-sizing: border-box;
+      margin-left: 220px; /* key: start after sidebar */
+      background-color: transparent; /* no gray blocking title */
+      position: relative;
+      z-index: 1;
       max-width: calc(100% - 220px);
       word-wrap: break-word;
     }
@@ -53,7 +65,7 @@
         flex-direction: column;
       }
       .content {
-        margin-left: 0;  /* remove left margin on mobile */
+        margin-left: 0;
         width: 100%;
         padding: 15px;
       }
