@@ -1,1 +1,33 @@
+/* ----------------------
+   INFO PAGE LAYOUT FIX
+   Ensures text content starts after the sidebar
+------------------------*/
 
+/* Desktop: content to the right of sidebar */
+.content {
+  margin-left: 350px;            /* matches sidebar width in index.css */
+  padding: 20px;
+  overflow-x: visible;           /* allow horizontal content if needed */
+  max-width: calc(100% - 350px); /* prevent overflow */
+}
+
+/* Mobile: stack sidebar on top, content full width */
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 0;              /* remove left margin */
+    max-width: 100%;             /* full width */
+    padding: 15px;
+  }
+}
+
+/* ----------------------
+   HOVER TEXT (keep existing behavior)
+------------------------*/
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.hover-text:hover {
+  color: red;
+}
