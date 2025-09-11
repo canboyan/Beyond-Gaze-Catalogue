@@ -1,33 +1,21 @@
-/* ----------------------
-   INFO PAGE LAYOUT FIX
-   Ensures text content starts after the sidebar
-------------------------*/
+.container {
+  display: flex;
+  flex-direction: row;  /* sidebar + content side by side */
+  flex-wrap: nowrap;    /* prevent wrapping under sidebar */
+  min-height: 100vh;
+}
 
-/* Desktop: content to the right of sidebar */
-.content {
-  margin-left: 350px;            /* matches sidebar width in index.css */
+.sidebar {
+  flex: 0 0 350px;     /* fixed width */
   padding: 20px;
-  overflow-x: visible;           /* allow horizontal content if needed */
-  max-width: calc(100% - 350px); /* prevent overflow */
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
-/* Mobile: stack sidebar on top, content full width */
-@media screen and (max-width: 768px) {
-  .content {
-    margin-left: 0;              /* remove left margin */
-    max-width: 100%;             /* full width */
-    padding: 15px;
-  }
-}
-
-/* ----------------------
-   HOVER TEXT (keep existing behavior)
-------------------------*/
-.hover-text {
-  color: black;
-  transition: color 0.3s ease;
-}
-
-.hover-text:hover {
-  color: red;
+.content {
+  flex: 1 1 auto;       /* take remaining space */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: transparent;
+  word-wrap: break-word;
 }
