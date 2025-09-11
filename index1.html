@@ -5,8 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Index - Beyond Gaze Catalogue</title>
   
-  <!-- Link to the correct CSS file -->
+  <!-- Link to existing CSS -->
   <link rel="stylesheet" href="index.css" />
+
+  <style>
+    /* Responsive iframe wrapper */
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 75%; /* Aspect ratio, adjust if needed */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Optional: taller aspect ratio on small screens */
+    @media screen and (max-width: 768px) {
+      .iframe-wrapper {
+        padding-bottom: 120%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -26,17 +53,18 @@
         </div>
       </nav>
       <div class="info">
-         <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
     </aside>
-    <iframe 
-  src="https://docs.google.com/document/d/e/2PACX-1vTpzuDNNCYEMku9VBQIh0i1z2Gi9QPDmKpI9K9twX1ioXSK8-yqZHwey7SZaMLsxH0WAw0vzwPOUetw/pub?embedded=true"
-  width="100%" 
-  height="1400px" 
-  >
-</iframe>
+
+    <!-- Responsive iframe wrapper -->
+    <div class="iframe-wrapper">
+      <iframe 
+        src="https://docs.google.com/document/d/e/2PACX-1vTpzuDNNCYEMku9VBQIh0i1z2Gi9QPDmKpI9K9twX1ioXSK8-yqZHwey7SZaMLsxH0WAw0vzwPOUetw/pub?embedded=true">
+      </iframe>
+    </div>
+
   </div>
 </body>
 </html>
-
