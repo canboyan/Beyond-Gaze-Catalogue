@@ -37,7 +37,8 @@
       flex: 1;
       padding: 20px;
       box-sizing: border-box;
-      max-width: 100%;     /* prevent overflow on small screens */
+      max-width: calc(100% - 220px); /* ensure no overlap with sidebar */
+      margin-left: 220px;            /* push content clear of sidebar */
       word-wrap: break-word;
     }
 
@@ -53,8 +54,10 @@
         padding: 15px;
       }
       .content {
-        width: 100%;  /* full width for text */
+        width: 100%;      /* full width for text */
+        margin-left: 0;   /* reset offset */
         padding: 15px;
+        max-width: 100%;  /* prevent cut-off */
       }
     }
   </style>
