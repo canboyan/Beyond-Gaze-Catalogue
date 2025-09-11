@@ -19,7 +19,6 @@
 
     .container {
       display: flex;
-      flex-direction: row; /* sidebar + content side by side */
       min-height: 100vh;
     }
 
@@ -36,9 +35,10 @@
     /* Main content */
     .content {
       flex: 1;
-      padding: 20px;        /* preserves spacing */
+      padding: 20px;
+      margin-left: 220px;    /* make content start after sidebar */
       box-sizing: border-box;
-      max-width: calc(100% - 220px); /* prevents content overlapping sidebar */
+      max-width: calc(100% - 220px);
       word-wrap: break-word;
     }
 
@@ -70,6 +70,7 @@
         padding: 15px;
       }
       .content {
+        margin-left: 0;       /* reset margin for mobile */
         max-width: 100%;
         padding: 15px;
       }
@@ -119,3 +120,4 @@
   </div>
 </body>
 </html>
+
