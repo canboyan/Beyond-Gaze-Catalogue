@@ -1,21 +1,53 @@
+/* ----------------------
+   INFO PAGE LAYOUT OVERRIDES
+------------------------*/
+
+/* Hover text styling */
+.hover-text {
+  color: black;
+  transition: color 0.3s ease;
+  font-family: 'Arial Black', Arial, sans-serif; /* match original */
+}
+.hover-text:hover {
+  color: red;
+}
+
+/* Container layout: sidebar + content side by side */
 .container {
   display: flex;
-  flex-direction: row;  /* sidebar + content side by side */
-  flex-wrap: nowrap;    /* prevent wrapping under sidebar */
+  flex-direction: row;
+  flex-wrap: nowrap;
   min-height: 100vh;
+  width: 100%;
 }
 
+/* Sidebar: keep existing index.css styles, do not override font/colors */
 .sidebar {
-  flex: 0 0 350px;     /* fixed width */
-  padding: 20px;
+  flex: 0 0 350px; /* same as index.css sidebar width */
   box-sizing: border-box;
-  background-color: #fff;
 }
 
+/* Main content: starts right after sidebar */
 .content {
-  flex: 1 1 auto;       /* take remaining space */
+  flex: 1 1 auto; /* take remaining space */
   padding: 20px;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: transparent; /* ensure no overlay on sidebar */
   word-wrap: break-word;
+}
+
+/* ----------------------
+   RESPONSIVE FIXES
+------------------------*/
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* stack sidebar on top for mobile */
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+    padding: 15px;
+  }
 }
