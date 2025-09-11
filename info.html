@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* Hover effect for text */
+    /* Hover effect */
     .hover-text {
       color: black;
       transition: color 0.3s ease;
@@ -18,7 +18,9 @@
       color: red;
     }
 
-    /* BASE LAYOUT */
+    /* ----------------------
+       BASE LAYOUT
+    ------------------------*/
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -26,19 +28,16 @@
 
     .container {
       display: flex;
+      flex-direction: row; /* Sidebar + content side by side on desktop */
       min-height: 100vh;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 220px;
-      flex-shrink: 0;
+      width: 220px;        /* Fixed sidebar width */
       padding: 20px;
       box-sizing: border-box;
       background: #fff;
-      position: sticky;
-      top: 0;
-      height: 100vh;
     }
 
     .sidebar h1 {
@@ -51,33 +50,33 @@
       flex: 1;
       padding: 20px;
       box-sizing: border-box;
-      max-width: 100%;
+      max-width: calc(100% - 220px); /* Make content start exactly after sidebar */
     }
 
     .content p {
-      margin-top: 20px;  /* spacing from previous block */
+      margin-top: 20px;
       margin-bottom: 0;
       line-height: 1.5;
     }
 
-    /* Spacing between paragraphs inside a block */
     .content p + p {
       margin-top: 12px;
     }
 
-    /* RESPONSIVE */
+    /* ----------------------
+       RESPONSIVE
+    ------------------------*/
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column;
+        flex-direction: column; /* stack sidebar on top */
       }
       .sidebar {
         width: 100%;
-        height: auto;
-        position: relative;
         padding: 15px;
       }
       .content {
         width: 100%;
+        max-width: 100%;
         padding: 15px;
       }
     }
@@ -126,3 +125,4 @@
   </div>
 </body>
 </html>
+
