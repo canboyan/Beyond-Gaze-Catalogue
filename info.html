@@ -28,16 +28,20 @@
 
     .sidebar {
       width: 220px;          /* fixed sidebar width */
-      flex-shrink: 0;        /* don’t shrink sidebar */
+      flex-shrink: 0;
       padding: 20px;
       box-sizing: border-box;
+      background: #fff;      /* keep it solid so text never gets covered */
+      z-index: 2;            /* make sure it stays on top */
     }
 
     .content {
-      flex: 1;               /* take remaining space */
+      flex: 1;
       padding: 20px;
       box-sizing: border-box;
       word-wrap: break-word;
+      background: #f9f9f9;   /* light background to distinguish from sidebar */
+      z-index: 1;
     }
 
     /* ----------------------
