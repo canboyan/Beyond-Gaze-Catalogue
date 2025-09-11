@@ -154,4 +154,36 @@ body {
   cursor: pointer;
 }
 
+/* ---------------------------------
+   MOBILE FIXES ONLY
+   This ensures content adapts on screens <=768px
+----------------------------------*/
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* sidebar on top, content below */
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* Make videos and audio responsive */
+  .video-wrapper,
+  .media-wrapper {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Make text under videos/audio full width */
+  .bundle div[style*="font-family"] {
+    width: 100% !important;
+  }
+}
+
 
