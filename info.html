@@ -4,85 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Info - Beyond Gaze Catalogue</title>
-
+  
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Container: sidebar + content */
-    .container {
-      display: flex;
-      min-height: 100vh;
-      background: #fff;
-    }
-
-    /* Sidebar styling */
-    .sidebar {
-      width: 220px;       /* fixed width */
-      flex-shrink: 0;
-      padding: 20px;
-      box-sizing: border-box;
-      background: #fff;
-    }
-
-    .sidebar h1 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-size: 20px;
-    }
-
-    .sidebar nav ul {
-      padding-left: 0;
-      list-style: none;
-      margin: 0;
-    }
-
-    .sidebar a {
-      text-decoration: none;
-      color: black;
-    }
-
-    /* Content styling */
-    .content {
-      flex: 1;
-      padding: 20px;
-      box-sizing: border-box;
-      margin-left: 0; /* no overlapping needed because flex handles it */
-      max-width: 100%;
-    }
-
+    /* ----------------------
+       HOVER EFFECT
+    ------------------------*/
     .hover-text {
       color: black;
-      font-family: Arial Black, Arial, sans-serif;
-      line-height: 1.5;
-      margin-top: 20px;
-      margin-bottom: 0;
       transition: color 0.3s ease;
+      font-family: Arial Black, Arial, sans-serif;
     }
     .hover-text:hover {
       color: red;
     }
 
-    .hover-text + .hover-text {
-      margin-top: 12px;
+    /* ----------------------
+       BASE LAYOUT
+    ------------------------*/
+    .container {
+      display: flex;
+      min-height: 100vh;
     }
 
-    /* Responsive */
+    /* Sidebar stays fixed width */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Main content starts after sidebar */
+    .content {
+      margin-left: 220px; /* key fix to prevent overlapping sidebar */
+      padding: 20px;
+      box-sizing: border-box;
+      max-width: calc(100% - 220px);
+      word-wrap: break-word;
+    }
+
+    /* ----------------------
+       RESPONSIVE FIX
+    ------------------------*/
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column; /* sidebar on top */
+        flex-direction: column;
       }
-
-      .sidebar {
-        width: 100%;
-        padding: 15px;
-      }
-
       .content {
+        margin-left: 0;  /* remove left margin on mobile */
         width: 100%;
         padding: 15px;
       }
