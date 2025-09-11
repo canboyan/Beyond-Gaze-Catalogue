@@ -12,7 +12,7 @@
     .hover-text {
       color: black;
       transition: color 0.3s ease;
-      font-family: Arial Black, Arial, sans-serif; /* Match archive.html */
+      font-family: Arial Black, Arial, sans-serif;
     }
     .hover-text:hover {
       color: red;
@@ -28,16 +28,16 @@
 
     .container {
       display: flex;
-      flex-direction: row; /* Sidebar + content side by side on desktop */
       min-height: 100vh;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 220px;        /* Fixed sidebar width */
+      width: 220px;        /* fixed sidebar width */
       padding: 20px;
       box-sizing: border-box;
       background: #fff;
+      flex-shrink: 0;
     }
 
     .sidebar h1 {
@@ -45,12 +45,18 @@
       font-size: 18px;
     }
 
+    .sidebar nav ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
     /* Content */
     .content {
-      flex: 1;
+      margin-left: 220px;   /* ensures content starts to the right of sidebar */
       padding: 20px;
       box-sizing: border-box;
-      max-width: calc(100% - 220px); /* Make content start exactly after sidebar */
+      flex: 1;
+      max-width: calc(100% - 220px);
     }
 
     .content p {
@@ -75,6 +81,7 @@
         padding: 15px;
       }
       .content {
+        margin-left: 0;
         width: 100%;
         max-width: 100%;
         padding: 15px;
@@ -125,4 +132,3 @@
   </div>
 </body>
 </html>
-
