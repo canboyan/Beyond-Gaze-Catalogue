@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* Hover effect */
+    /* Hover effect for text */
     .hover-text {
       color: black;
       transition: color 0.3s ease;
@@ -20,44 +20,60 @@
     /* ----------------------
        BASE LAYOUT
     ------------------------*/
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #fff;
+    }
+
     .container {
       display: flex;
       flex-direction: row; /* sidebar + content side by side */
       min-height: 100vh;
-      background: #fff;     /* full page background stays white */
     }
 
+    /* Sidebar */
     .sidebar {
-      width: 220px;        /* fixed sidebar width */
+      width: 220px;
       flex-shrink: 0;
       padding: 20px;
+      background: #fff;
       box-sizing: border-box;
-      background: #fff;    /* sidebar background solid white */
+      position: relative; /* ensures title stays on top */
+      z-index: 10;
     }
 
+    /* Main content */
     .content {
-      flex: 1;             /* take remaining horizontal space */
-      padding: 20px;
+      flex: 1;
+      padding: 40px 30px;
+      max-width: 800px;  /* limits text width for readability */
       box-sizing: border-box;
-      max-width: 100%;
-      word-wrap: break-word;
-      background: #fff;    /* ensure text area also has white bg */
+      margin-left: 0;    /* ensure no overlap with sidebar */
+      background: #fff;
+    }
+
+    /* Paragraph spacing */
+    .content p {
+      margin-bottom: 1.5em;
+      line-height: 1.6;
     }
 
     /* ----------------------
-       RESPONSIVE FIX
+       RESPONSIVE
     ------------------------*/
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column; /* stack sidebar on top */
+        flex-direction: column;
       }
       .sidebar {
         width: 100%;
-        padding: 15px;
+        padding: 20px;
       }
       .content {
         width: 100%;
-        padding: 15px;
+        padding: 20px;
+        max-width: 100%;
       }
     }
   </style>
