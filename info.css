@@ -32,6 +32,10 @@
   font-size: 14px; /* default font-size */
 }
 
+.sidebar h1 a {
+  font-size: 18px; /* desktop font for title */
+}
+
 /* Content: start at the right edge of sidebar */
 .content {
   flex: 1;
@@ -61,6 +65,16 @@
     width: 100%;
     margin: 0;
     padding: 15px;
+    font-size: 14px; /* maintain sidebar font */
+  }
+
+  .sidebar h1 a {
+    font-size: 18px; /* keep title consistent */
+  }
+
+  .sidebar nav li a,
+  .sidebar .info p {
+    font-size: 14px; /* explicitly set links and info */
   }
 
   .content {
@@ -73,6 +87,15 @@
 /* Landscape mobile: reduce sidebar font slightly */
 @media screen and (max-width: 1024px) and (orientation: landscape) {
   .sidebar {
-    font-size: 12px; /* smaller font on landscape mobile */
+    font-size: 12px; /* smaller sidebar base font */
+  }
+
+  .sidebar h1 a {
+    font-size: 16px; /* slightly smaller title in landscape */
+  }
+
+  .sidebar nav li a,
+  .sidebar .info p {
+    font-size: 12px; /* reduce link/info text */
   }
 }
