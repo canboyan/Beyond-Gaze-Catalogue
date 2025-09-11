@@ -1,101 +1,41 @@
-/* ----------------------
-   INFO PAGE SPECIFIC STYLES
-   Works with existing index.css
-------------------------*/
-
-/* Hover text inside content */
-.hover-text {
-  color: black;
-  transition: color 0.3s ease;
-  font-family: 'Arial Black', Arial, sans-serif;
-}
-
-.hover-text:hover {
-  color: red;
-}
-
-/* Ensure container remains flex and responsive */
-.container {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  flex-wrap: nowrap; /* keep sidebar + content side by side on desktop */
-}
-
-/* Sidebar: keep existing styling from index.css */
+/* Sidebar: base font in rems for consistent scaling */
 .sidebar {
-  width: 350px; /* match index.css sidebar width */
-  padding: 20px;
-  background-color: white;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  font-size: 14px; /* default font-size */
+  font-size: 0.875rem; /* 14px equivalent */
 }
 
 .sidebar h1 a {
-  font-size: 18px; /* desktop font for title */
+  font-size: 1.125rem; /* 18px equivalent */
 }
 
-/* Content: start at the right edge of sidebar */
-.content {
-  flex: 1;
-  margin-left: 350px; /* push content right next to sidebar */
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: transparent; /* ensure nothing covers sidebar */
-  word-wrap: break-word;
+.sidebar nav li a,
+.sidebar .info p {
+  font-size: 0.875rem; /* 14px equivalent */
 }
 
-/* Add spacing between paragraphs */
-.content p {
-  margin-bottom: 15px;
-}
-
-/* ----------------------
-   RESPONSIVE
-------------------------*/
-
-/* Portrait mobile: stack sidebar on top */
+/* Mobile portrait */
 @media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
   .sidebar {
-    width: 100%;
-    margin: 0;
-    padding: 15px;
-    font-size: 14px; /* maintain sidebar font */
+    font-size: 0.875rem;
   }
-
   .sidebar h1 a {
-    font-size: 18px; /* keep title consistent */
+    font-size: 1.125rem;
   }
-
   .sidebar nav li a,
   .sidebar .info p {
-    font-size: 14px; /* explicitly set links and info */
-  }
-
-  .content {
-    margin-left: 0; /* remove offset on small screens */
-    width: 100%;
-    padding: 15px;
+    font-size: 0.875rem;
   }
 }
 
-/* Landscape mobile: reduce sidebar font slightly */
+/* Mobile landscape */
 @media screen and (max-width: 1024px) and (orientation: landscape) {
   .sidebar {
-    font-size: 12px; /* smaller sidebar base font */
+    font-size: 0.875rem; /* keep the same size, no enlargement */
   }
-
   .sidebar h1 a {
-    font-size: 16px; /* slightly smaller title in landscape */
+    font-size: 1.125rem;
   }
-
   .sidebar nav li a,
   .sidebar .info p {
-    font-size: 12px; /* reduce link/info text */
+    font-size: 0.875rem;
   }
 }
