@@ -7,6 +7,49 @@
   
   <!-- Link to the same CSS file as info.html for consistent styling -->
   <link rel="stylesheet" href="index.css" />
+
+  <style>
+    /* ----------------------
+       BASE LAYOUT
+    ------------------------*/
+    .container {
+      display: flex;
+      flex-direction: row; /* Sidebar + content side by side on desktop */
+      min-height: 100vh;   /* stretch full height */
+    }
+
+    .sidebar {
+      width: 220px;        /* fixed sidebar width */
+      flex-shrink: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      max-width: 100%;     /* prevent overflow on small screens */
+      word-wrap: break-word;
+    }
+
+    /* ----------------------
+       RESPONSIVE FIX
+    ------------------------*/
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column; /* stack sidebar on top */
+      }
+      .sidebar {
+        width: 100%;  /* full width */
+        padding: 15px;
+      }
+      .content {
+        width: 100%;  /* full width for text */
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -26,16 +69,16 @@
         </div>
       </nav>
       <div class="info">
-          <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong>Last edited Tue Aug 27<br>16:43:30 2025<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
     </aside>
 
     <main class="content">
-<p>
-  For suggestions of other touch-led practices informed by performance studies, sensory studies, and for comments or questions, contact: 
-  <a href="mailto:beyondgaze@proton.me" style="color: red !important;">info at beyondgaze dot work</a>.
-</p>
+      <p>
+        For suggestions of other touch-led practices informed by performance studies, sensory studies, and for comments or questions, contact: 
+        <a href="mailto:beyondgaze@proton.me" style="color: red !important;">info at beyondgaze dot work</a>.
+      </p>
     </main>
   </div>
 </body>
