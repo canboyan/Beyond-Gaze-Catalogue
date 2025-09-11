@@ -3,33 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact - Beyond Gaze Catalogue</title>
+  <title>Info - Beyond Gaze Catalogue</title>
   
-  <!-- Link to the same CSS file as info.html for consistent styling -->
-  <link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="info.css" />
+
 
   <style>
+    /* Hover text */
+    .hover-text {
+      color: black;
+      transition: color 0.3s ease;
+      font-family: 'Arial Black', Arial, sans-serif; /* match original style */
+    }
+    .hover-text:hover {
+      color: red;
+    }
+
     /* ----------------------
-       BASE LAYOUT
+       PAGE LAYOUT FIX
     ------------------------*/
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
     .container {
       display: flex;
-      flex-direction: row; /* Sidebar + content side by side on desktop */
-      min-height: 100vh;   /* stretch full height */
+      flex-wrap: nowrap;      /* no wrapping by default */
+      min-height: 100vh;
     }
 
     .sidebar {
-      width: 220px;        /* fixed sidebar width */
-      flex-shrink: 0;
+      flex: 0 0 350px;        /* fixed width matches index.css sidebar */
       padding: 20px;
       box-sizing: border-box;
+      background-color: #fff;
     }
 
     .content {
-      flex: 1;
+      flex: 1;                /* take remaining space */
+      margin-left: 0;         /* content will start right next to sidebar */
       padding: 20px;
       box-sizing: border-box;
-      max-width: 100%;     /* prevent overflow on small screens */
+      max-width: calc(100% - 350px); /* prevent overlap with sidebar */
+      background-color: transparent;
       word-wrap: break-word;
     }
 
@@ -38,14 +57,14 @@
     ------------------------*/
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column; /* stack sidebar on top */
+        flex-direction: column;  /* stack sidebar on top */
       }
       .sidebar {
-        width: 100%;  /* full width */
-        padding: 15px;
+        width: 100%;
       }
       .content {
-        width: 100%;  /* full width for text */
+        width: 100%;
+        max-width: 100%;
         padding: 15px;
       }
     }
@@ -74,7 +93,7 @@
       </div>
     </aside>
 
-    <main class="content">
+      <main class="content">
       <p>
         For suggestions of other touch-led practices informed by performance studies, sensory studies, and for comments or questions, contact: 
         <a href="mailto:beyondgaze@proton.me" style="color: red !important;">info at beyondgaze dot work</a>.
@@ -83,3 +102,4 @@
   </div>
 </body>
 </html>
+
