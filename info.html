@@ -4,86 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Info - Beyond Gaze Catalogue</title>
-  
+
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* Hover effect */
-    .hover-text {
-      color: black;
-      transition: color 0.3s ease;
-      font-family: Arial Black, Arial, sans-serif;
-    }
-    .hover-text:hover {
-      color: red;
-    }
-
-    /* ----------------------
-       BASE LAYOUT
-    ------------------------*/
     body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
 
+    /* Container: sidebar + content */
     .container {
       display: flex;
       min-height: 100vh;
+      background: #fff;
     }
 
-    /* Sidebar */
+    /* Sidebar styling */
     .sidebar {
-      width: 220px;        /* fixed sidebar width */
+      width: 220px;       /* fixed width */
+      flex-shrink: 0;
       padding: 20px;
       box-sizing: border-box;
       background: #fff;
-      flex-shrink: 0;
     }
 
     .sidebar h1 {
       margin-top: 0;
-      font-size: 18px;
+      margin-bottom: 20px;
+      font-size: 20px;
     }
 
     .sidebar nav ul {
       padding-left: 0;
       list-style: none;
+      margin: 0;
     }
 
-    /* Content */
+    .sidebar a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* Content styling */
     .content {
-      margin-left: 220px;   /* ensures content starts to the right of sidebar */
+      flex: 1;
       padding: 20px;
       box-sizing: border-box;
-      flex: 1;
-      max-width: calc(100% - 220px);
+      margin-left: 0; /* no overlapping needed because flex handles it */
+      max-width: 100%;
     }
 
-    .content p {
+    .hover-text {
+      color: black;
+      font-family: Arial Black, Arial, sans-serif;
+      line-height: 1.5;
       margin-top: 20px;
       margin-bottom: 0;
-      line-height: 1.5;
+      transition: color 0.3s ease;
+    }
+    .hover-text:hover {
+      color: red;
     }
 
-    .content p + p {
+    .hover-text + .hover-text {
       margin-top: 12px;
     }
 
-    /* ----------------------
-       RESPONSIVE
-    ------------------------*/
+    /* Responsive */
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column; /* stack sidebar on top */
+        flex-direction: column; /* sidebar on top */
       }
+
       .sidebar {
         width: 100%;
         padding: 15px;
       }
+
       .content {
-        margin-left: 0;
         width: 100%;
-        max-width: 100%;
         padding: 15px;
       }
     }
