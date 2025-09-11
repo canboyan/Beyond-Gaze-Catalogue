@@ -8,13 +8,20 @@
   <link rel="stylesheet" href="index.css" />
 
   <style>
-    /* ----------------------
-       BASE LAYOUT
-    ------------------------*/
+    /* Hover effect for text */
+    .hover-text {
+      color: black;
+      transition: color 0.3s ease;
+      font-family: Arial Black, Arial, sans-serif; /* Match archive.html */
+    }
+    .hover-text:hover {
+      color: red;
+    }
+
+    /* BASE LAYOUT */
     body {
       margin: 0;
-      font-family: sans-serif;
-      background: #fff;
+      font-family: Arial, sans-serif;
     }
 
     .container {
@@ -24,54 +31,53 @@
 
     /* Sidebar */
     .sidebar {
-      width: 220px;          /* fixed sidebar width */
+      width: 220px;
       flex-shrink: 0;
       padding: 20px;
       box-sizing: border-box;
       background: #fff;
-      z-index: 10;
+      position: sticky;
+      top: 0;
+      height: 100vh;
     }
 
-    /* Main content */
+    .sidebar h1 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    /* Content */
     .content {
       flex: 1;
       padding: 20px;
-      margin-left: 220px;    /* make content start after sidebar */
       box-sizing: border-box;
-      max-width: calc(100% - 220px);
-      word-wrap: break-word;
+      max-width: 100%;
     }
 
-    /* Hover effect */
-    .hover-text {
-      color: black;
-      transition: color 0.3s ease;
-    }
-
-    .hover-text:hover {
-      color: red;
-    }
-
-    /* Paragraph spacing */
     .content p {
-      margin-bottom: 1.5em;
-      line-height: 1.6;
+      margin-top: 20px;  /* spacing from previous block */
+      margin-bottom: 0;
+      line-height: 1.5;
     }
 
-    /* ----------------------
-       RESPONSIVE
-    ------------------------*/
+    /* Spacing between paragraphs inside a block */
+    .content p + p {
+      margin-top: 12px;
+    }
+
+    /* RESPONSIVE */
     @media screen and (max-width: 768px) {
       .container {
-        flex-direction: column; /* stack sidebar above content */
+        flex-direction: column;
       }
       .sidebar {
         width: 100%;
+        height: auto;
+        position: relative;
         padding: 15px;
       }
       .content {
-        margin-left: 0;       /* reset margin for mobile */
-        max-width: 100%;
+        width: 100%;
         padding: 15px;
       }
     }
@@ -120,4 +126,3 @@
   </div>
 </body>
 </html>
-
