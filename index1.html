@@ -4,98 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Index - Beyond Gaze Catalogue</title>
-  <!-- Link to the correct CSS file -->
   <link rel="stylesheet" href="index.css" />
+
   <style>
-    .content {
-      font-family: Garamond, serif;
-      font-size: 11px;
-      color: black;
-      line-height: 1.3;
-      padding: 20px 40px 20px 20px;
-      max-width: none;
-      width: 100%;
+    /* ------------------------------
+       Scoped overrides for this page
+    --------------------------------*/
+    .catalogue-page {
+      font-family: "Times New Roman", Georgia, serif !important;
+      font-weight: normal !important;
+      color: black !important;
     }
-    
-    .header {
-      margin-bottom: 20px;
+
+    .catalogue-page .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      align-items: flex-start;
     }
-    
-    .main-title {
-      font-weight: bold;
-      font-size: 11px;
-      margin-bottom: 2px;
+
+    .catalogue-page .sidebar {
+      width: 220px !important;
+      font-family: "Arial Black", Arial, sans-serif !important;
+      font-size: 12px !important;
+      line-height: 1.4 !important;
+      margin-right: 40px;
+      background: white !important;
     }
-    
-    .attribution {
-      font-weight: normal;
-      font-size: 11px;
+
+    .catalogue-page .sidebar h1 {
+      font-size: 14px !important;
+      font-weight: bold !important;
+      margin-bottom: 15px !important;
     }
-    
-    .strategy {
-      margin-bottom: 25px;
+
+    .catalogue-page .content {
+      max-width: 720px;
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+      font-family: "Times New Roman", Georgia, serif !important;
+      font-weight: normal !important;
     }
-    
-    .strategy-title {
-      font-weight: bold;
-      font-size: 11px;
-      margin-bottom: 8px;
+
+    .catalogue-page .strategies-main-title {
+      font-weight: bold !important;
+      font-size: 13px !important;
+      margin-bottom: 5px;
     }
-    
-    .section-label {
-      font-weight: bold;
+
+    .catalogue-page .strategies-attribution {
+      font-size: 12px !important;
+      font-style: italic !important;
     }
-    
-    .strategy p {
-      margin-bottom: 8px;
+
+    .catalogue-page .strategy-section,
+    .catalogue-page .strategy {
+      margin-bottom: 40px !important;
     }
-    
-    .references {
-      font-size: 10px;
-      margin-top: 8px;
-      line-height: 1.2;
+
+    .catalogue-page .strategy-section-title,
+    .catalogue-page .strategy-title {
+      font-weight: bold !important;
+      font-size: 13px !important;
+      margin-bottom: 10px !important;
     }
-    
-    .references a {
-      color: red;
-      text-decoration: underline;
+
+    .catalogue-page .section-label {
+      font-weight: bold !important;
+    }
+
+    .catalogue-page .strategy p {
+      margin-bottom: 12px !important;
+    }
+
+    .catalogue-page .strategy-references,
+    .catalogue-page .references {
+      font-size: 11px !important;
+      margin-top: 12px !important;
+      line-height: 1.3 !important;
+      padding-left: 20px !important;
+      text-indent: -20px !important; /* hanging indent like citations */
+      font-family: "Times New Roman", Georgia, serif !important;
+    }
+
+    .catalogue-page .strategy-references a,
+    .catalogue-page .references a {
+      color: #1155cc !important; /* Google Docs blue */
+      text-decoration: underline !important;
+      font-weight: normal !important;
+      font-family: "Times New Roman", Georgia, serif !important;
     }
   </style>
-    <!-- Meta Description (invisible to visitors) -->
-  <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
- <!-- Structured Data for Google and Google Scholar (invisible) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "Touch-led Dramatic Inquiry: Beyond Gaze Research Catalogue",
-    "author": {
-      "@type": "Person",
-      "name": "Can Boyan",
-      "affiliation": [
-        {
-          "@type": "Organization",
-          "name": "Royal Conservatoire of Antwerp"
-        },
-        {
-          "@type": "Organization",
-          "name": "University of Antwerp ARIA"
-        }
-      ]
-    },
-    "datePublished": "2025-09-11",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Beyond Gaze Catalogue"
-    },
-    "description": "This research investigates touch as an artistic and pedagogical medium, and proposes a touch-led dramatic inquiry framework for inclusive and full-bodied educational experiences among children with and without sensory impairments.",
-    "url": "https://www.beyondgaze.work/info.html"
-  }
-  </script>
-  <!-- Optional: Robots Meta Tag (invisible) -->
-  <meta name="robots" content="index, follow">
 </head>
-<body>
+
+<body class="catalogue-page">
   <div class="container">
     <aside class="sidebar">
       <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
@@ -117,6 +119,7 @@
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
     </aside>
+
     <main class="content strategies-content">
       <div class="strategies-header">
         <div class="strategies-main-title">Touch-led Artistic Strategies: Index</div>
@@ -229,7 +232,7 @@
         Falk & Dierking (2013) <a href="https://doi.org/10.4324/9781315417851">doi:10.4324/9781315417851</a><br>
         Oliveros (2005) ISBN: 0595343651
     </div>
-</div>
-
+</main>
+  </div>
 </body>
 </html>
