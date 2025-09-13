@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.beyondgaze.work/index.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>1.0</priority>
+
+    <!-- Video 1 -->
+    <video:video>
+      <video:title>Fieldworks – Non-Visual Witnessing</video:title>
+      <video:description>Discussion on tactile choreographies, non-visual witnessing, and perception in performance.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/Screenshot%202025-08-26%20at%2022.22.00bw.png</video:thumbnail_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=mZl7oarLLLY</video:content_loc>
+    </video:video>
+
+    <!-- Video 2 -->
+    <video:video>
+      <video:title>Vera Tussing – Tactile Logic in Choreography</video:title>
+      <video:description>Conversation on tactility, consent, and choreography with Vera Tussing.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/VTbw1.png</video:thumbnail_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=Ut1ehX04FP0</video:content_loc>
+    </video:video>
+
+    <!-- Audio -->
+    <video:video>
+      <video:title>Audio Conversation – Katie West & Fayen d’Evie</video:title>
+      <video:description>Exploring touch as relational knowledge, weaving as kinship, and the politics of touch in institutional spaces.</video:description>
+      <video:thumbnail_loc>https://archive.org/download/fk-113/fk-113.thumbs/FK113_0000001.jpg</video:thumbnail_loc>
+      <video:content_loc>https://archive.org/download/fk-113/FK113.m4a</video:content_loc>
+    </video:video>
+
+  </url>
+
+  <!-- Index 1 -->
+  <url>
+    <loc>https://www.beyondgaze.work/index1.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.8</priority>
+
+    <!-- Embedded Google Doc -->
+    <video:video>
+      <video:title>Index 1 – Research Strategies</video:title>
+      <video:description>Embedded Google Doc containing full list of touch-led research strategies, questions, and frameworks for artistic collaboration and inclusive education.</video:description>
+      <video:content_loc>https://docs.google.com/document/d/e/2PACX-1vTpzuDNNCYEMku9VBQIh0i1z2Gi9QPDmKpI9K9twX1ioXSK8-yqZHwey7SZaMLsxH0WAw0vzwPOUetw/pub?embedded=true</video:content_loc>
+    </video:video>
+  </url>
+
+  <!-- Archive -->
+  <url>
+    <loc>https://www.beyondgaze.work/archive.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.8</priority>
+
+    <!-- Video 1 -->
+    <video:video>
+      <video:title>Fieldworks – Non-Visual Witnessing</video:title>
+      <video:description>Discussion on tactile choreographies, non-visual witnessing, and perception in performance.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/Screenshot%202025-08-26%20at%2022.22.00bw.png</video:thumbnail_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=mZl7oarLLLY</video:content_loc>
+    </video:video>
+
+    <!-- Video 2 -->
+    <video:video>
+      <video:title>Vera Tussing – Tactile Logic in Choreography</video:title>
+      <video:description>Conversation on tactility, consent, and choreography with Vera Tussing.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/VTbw1.png</video:thumbnail_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=Ut1ehX04FP0</video:content_loc>
+    </video:video>
+
+    <!-- Audio -->
+    <video:video>
+      <video:title>Audio Conversation – Katie West & Fayen d’Evie</video:title>
+      <video:description>Exploring touch as relational knowledge, weaving as kinship, and the politics of touch in institutional spaces.</video:description>
+      <video:thumbnail_loc>https://archive.org/download/fk-113/fk-113.thumbs/FK113_0000001.jpg</video:thumbnail_loc>
+      <video:content_loc>https://archive.org/download/fk-113/FK113.m4a</video:content_loc>
+    </video:video>
+
+  </url>
+
+  <!-- Info -->
+  <url>
+    <loc>https://www.beyondgaze.work/info.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.6</priority>
+    <video:video>
+      <video:title>About Beyond Gaze – Touch-led Dramatic Inquiry</video:title>
+      <video:description>Touch is the first sense we get to experience in life. This research investigates touch as an artistic medium, proposing touch-led strategies and dramatic inquiry methods to enhance collaboration, learning, and inclusivity.</video:description>
+      <video:content_loc>https://www.beyondgaze.work/info.html</video:content_loc>
+    </video:video>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://www.beyondgaze.work/contact.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.5</priority>
+    <video:video>
+      <video:title>Contact Beyond Gaze</video:title>
+      <video:description>For suggestions of touch-led practices or comments, contact: info at beyondgaze dot work</video:description>
+      <video:content_loc>mailto:beyondgaze@proton.me</video:content_loc>
+    </video:video>
+  </url>
+
+  <!-- License -->
+  <url>
+    <loc>https://www.beyondgaze.work/license.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.5</priority>
+    <video:video>
+      <video:title>Creative Commons License</video:title>
+      <video:description>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</video:description>
+      <video:content_loc>https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en</video:content_loc>
+    </video:video>
+  </url>
+
+</urlset>
