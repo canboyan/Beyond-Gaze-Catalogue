@@ -1,0 +1,88 @@
+/* index1.css
+   Page-specific overrides for index1.html
+   Keeps sidebar/menu layout intact
+*/
+
+.catalogue-page {
+  font-family: "Times New Roman", Georgia, serif !important;
+  font-weight: normal !important;
+  color: black !important;
+}
+
+/* Sidebar adjustments (slimmer text but keep position) */
+.catalogue-page .sidebar {
+  width: 260px !important; /* not too narrow so menu doesn’t wrap */
+  font-family: "Arial", sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* Sidebar header */
+.catalogue-page .sidebar h1 {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  margin-bottom: 15px !important;
+}
+
+/* Main content */
+.catalogue-page .content {
+  max-width: 720px;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  font-family: "Times New Roman", Georgia, serif !important;
+  font-weight: normal !important;
+  margin-left: 40px !important; /* breathing room from sidebar */
+}
+
+/* Titles */
+.catalogue-page .strategies-main-title {
+  font-weight: bold !important;
+  font-size: 13px !important;
+  margin-bottom: 5px;
+}
+
+.catalogue-page .strategies-attribution {
+  font-size: 12px !important;
+  font-style: italic !important;
+}
+
+/* Sections */
+.catalogue-page .strategy-section,
+.catalogue-page .strategy {
+  margin-bottom: 40px !important;
+}
+
+.catalogue-page .strategy-section-title,
+.catalogue-page .strategy-title {
+  font-weight: bold !important;
+  font-size: 13px !important;
+  margin-bottom: 10px !important;
+}
+
+.catalogue-page .section-label {
+  font-weight: bold !important;
+}
+
+.catalogue-page .strategy p {
+  margin-bottom: 12px !important;
+}
+
+/* References */
+.catalogue-page .strategy-references,
+.catalogue-page .references {
+  font-size: 11px !important;
+  margin-top: 12px !important;
+  line-height: 1.3 !important;
+  padding-left: 20px !important;
+  text-indent: -20px !important;
+  font-family: "Times New Roman", Georgia, serif !important;
+}
+
+/* Reference links (Google Docs style) */
+.catalogue-page .strategy-references a,
+.catalogue-page .references a {
+  color: #1155cc !important;
+  text-decoration: underline !important;
+  font-weight: normal !important;
+  font-family: "Times New Roman", Georgia, serif !important;
+}
