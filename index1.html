@@ -481,6 +481,35 @@
 
 })();
 </script>
+<script>
+const legend = document.getElementById('network-legend-box');
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+legend.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  offsetX = e.clientX - legend.getBoundingClientRect().left;
+  offsetY = e.clientY - legend.getBoundingClientRect().top;
+  legend.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  legend.style.right = 'auto'; // reset right positioning
+  legend.style.left = (e.clientX - offsetX) + 'px';
+  legend.style.top = (e.clientY - offsetY) + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  legend.style.cursor = 'grab';
+});
+
+// Optional: set initial cursor style
+legend.style.cursor = 'grab';
+</script>
 
 
 </body>
