@@ -305,13 +305,12 @@
   #network-legend-box {
     position: fixed;
     /* place to the right of the panel: panel right (10px) + panel width (660px) + gap (12px) */
-    right: calc(10px + 660px + -110px);
-    bottom: 20px; /* same baseline as panel */
     background: transparent;
     border: 0px solid rgba(0,0,0,0.9);
     border-radius: 8px;
     padding: 8px 10px;
     font-size: 11px;
+    font-family: Helvetica, sans-serif;
     font-weight: normal !important;
     z-index: 10002;
     min-width: 140px;
@@ -511,6 +510,22 @@ document.addEventListener('mouseup', () => {
 legend.style.cursor = 'grab';
 </script>
 
+<script>
+const panel = document.getElementById('bg-network-panel');
+const legend = document.getElementById('network-legend-box');
+
+function positionLegend() {
+  const rect = panel.getBoundingClientRect();
+  legend.style.left = (rect.right + 10) + 'px'; // 10px gap from panel
+  legend.style.top = rect.top + 'px';           // align top with panel
+}
+
+// Run initially
+positionLegend();
+
+// Recalculate if window resizes
+window.addEventListener('resize', positionLegend);
+</script>
 
 </body>
 </html>
