@@ -496,51 +496,117 @@
 
 <script>
 (function(){
-  // Adjust the panel appearance at runtime: borderless, no shadow, +40px size
-  (function adjustPanel() {
-    const panel = document.getElementById('bg-network-panel');
-    if (!panel) return;
-    // remove border and shadow
-    panel.style.border = 'none';
-    panel.style.boxShadow = 'none';
-    // increase size by 40px (width and height)
-    // original width: 320px -> 360px ; original height: 420px -> 460px
-    panel.style.width = '360px';
-    panel.style.height = '460px';
-    panel.style.maxWidth = '36vw';
-    // keep rounded corners if desired
-    panel.style.borderRadius = '10px';
-    // ensure background stays white so red text is legible
-    panel.style.background = 'rgba(255,255,255,0.98)';
-  })();
+  /* ---------- Inject strong CSS to force red text and remove borders/shadows ---------- */
+  const css = `
+    /* Make all labels and tooltips red and readable */
+    #bg-network-panel,
+    #bg-network,
+    #bg-network * {
+      color: #d10000 !important;
+    }
+    /* Force vis tooltip red */
+    .vis-tooltip {
+      color: #d10000 !important;
+      font-family: "EB Garamond", serif !important;
+      font-size: 13px !important;
+    }
 
-  // Inject small CSS to make any vis tooltip text red (force with !important)
-  (function injectTooltipStyle() {
-    const css = `
-      .vis-tooltip { 
-        font-family: "EB Garamond", serif !important;
-        font-size: 13px !important;
-        color: #d10000 !important;
-      }
-      /* ensure network canvas background remains white */
-      #bg-network { background: #fff !important; }
-    `;
-    const s = document.createElement('style');
-    s.type = 'text/css';
-    s.appendChild(document.createTextNode(css));
-    document.head.appendChild(s);
-  })();
+    /* Remove any border/shadow/outline from the panel and its descendants */
+    #bg-network-panel,
+    #bg-network-panel * {
+      border: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      outline: none !important;
+    }
 
-  // Map node id -> strategy index (0-based index for .strategy NodeList)
-  const strategyMap = {
-    1: 0, // Tactile Storying -> .strategy[0]
-    2: 1, // Object-As-Score -> .strategy[1]
-    3: 2, // Collaborative Weaving -> .strategy[2]
-    4: 3, // Anticipatory Tactility -> .strategy[3]
-    5: 4  // Guided Tactile Circuit -> .strategy[4]
+    /* Ensure container background is white for contrast */
+    #bg-network-panel {
+      background: #fff !important;
+      width: 360px !important;   /* increased by +40px (was 320) */
+      height: 460px !important;  /* increased by +40px (was 420) */
+      max-width: 36vw !important;
+    }
+
+    /* ensure inner vis container has no border */
+    #bg-network {
+      border: none !important;
+      background: #fff !important;
+    }
+
+    /* Some vis-network internal wrappers/canvas might show outlines — remove those */
+    .vis-network, .vis-network * { stroke: none !important; }
+  `;
+  const styleEl = document.createElement('style');
+  styleEl.type = 'text/css';
+  styleEl.appendChild(document.createTextNode(css));
+  document.head.appendChild(styleEl);
+
+  /* ---------- MutationObserver to remove border/shadow if re-applied later ---------- */
+  const cleanup = (node) => {
+    try {
+      node.style.border = 'none';
+      node.style.boxShadow = 'none';
+      node.style.outline = 'none';
+    } catch (e) {}
+    if (node.querySelectorAll) {
+      node.querySelectorAll('*').forEach(el => {
+        try {
+          el.style.border = 'none';
+          el.style.boxShadow = 'none';
+          el.style.outline = 'none';
+        } catch (e) {}
+      });
+    }
   };
 
-  // Nodes - categories: social, sensory, spatial, materiality, temporality
+  const panelCheck = () => {
+    const panel = document.getElementById('bg-network-panel');
+    const inner = document.getElementById('bg-network');
+    if (panel) {
+      // ensure inline sizing (defensive)
+      panel.style.width = '360px';
+      panel.style.height = '460px';
+      panel.style.maxWidth = '36vw';
+      panel.style.background = '#fff';
+      panel.style.border = 'none';
+      panel.style.boxShadow = 'none';
+      cleanup(panel);
+    }
+    if (inner) {
+      inner.style.border = 'none';
+      inner.style.background = '#fff';
+      cleanup(inner);
+    }
+  };
+
+  // Run immediately and a couple times after load
+  panelCheck();
+  window.addEventListener('load', panelCheck);
+  setTimeout(panelCheck, 120);
+  setTimeout(panelCheck, 600);
+
+  // Observe document for any attribute/style changes that might add borders back
+  const mo = new MutationObserver((mutations) => {
+    mutations.forEach(m => {
+      if (m.target && (m.target.id === 'bg-network-panel' || m.target.id === 'bg-network' || (m.target.closest && m.target.closest('#bg-network-panel')))) {
+        panelCheck();
+      }
+    });
+  });
+  mo.observe(document.documentElement || document.body, { attributes: true, subtree: true, childList: true });
+
+  /* ---------- vis-network setup (nodes/edges/options) ---------- */
+  // Map node id -> strategy index (0-based)
+  const strategyMap = {
+    1: 0,
+    2: 1,
+    3: 2,
+    4: 3,
+    5: 4
+  };
+
   const nodes = new vis.DataSet([
     { id: 1, label: "Tactile Storying", group: "social", title: "Sequential tactile narration — token, turn-taking, consent & empathy." },
     { id: 2, label: "Object-As-Score", group: "material", title: "Material-led tracing — texture as choreographic notation." },
@@ -549,7 +615,6 @@
     { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation — haptic circuit and synchrony." }
   ]);
 
-  // Edges to show relationships
   const edges = new vis.DataSet([
     { from: 1, to: 3 },
     { from: 1, to: 5 },
@@ -559,149 +624,134 @@
   ]);
 
   const container = document.getElementById('bg-network');
-  const data = { nodes, edges };
+  if (!container) {
+    // If the container isn't present yet, wait briefly and try again
+    setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
+  } else {
+    initNetwork();
+  }
 
-  // OPTIONS: changed font colors to red (#d10000) for labels; keep group backgrounds as before
-  const options = {
-    nodes: {
-      shape: 'dot',
-      size: 18,
-      font: { size: 12, color: '#d10000', face: 'EB Garamond, serif' }, // 🔴 red node labels
-      borderWidth: 1.5
-    },
-    edges: {
-      color: { color: '#bbb' },
-      width: 1.2,
-      smooth: { enabled: true, type: 'cubicBezier' }
-    },
-    groups: {
-      social: { color: { background: '#000', border: '#000' }, font:{ color: '#d10000' } },
-      sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#d10000' } },
-      material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#d10000' } }
-      // (spatial/temporal not used as separate groups here but can be added)
-    },
-    interaction: {
-      hover: true,
-      tooltipDelay: 100,
-      navigationButtons: false,
-      keyboard: true
-    },
-    physics: {
-      stabilization: true,
-      barnesHut: {
-        gravitationalConstant: -3000,
-        springLength: 140,
-        springConstant: 0.02
-      }
-    },
-    layout: {
-      improvedLayout: true
-    }
-  };
-
-  // create network
-  const network = new vis.Network(container, data, options);
-
-  // Ensure network redraw size inside fixed panel
-  function resizeNetwork() {
-    // After we increased panel size, adjust the canvas accordingly
-    // Make the network use the panel's inner height (subtract header+legend heights if needed)
-    const panel = document.getElementById('bg-network-panel');
+  function initNetwork() {
     const container = document.getElementById('bg-network');
-    if (!panel || !container) return;
-    const computed = window.getComputedStyle(panel);
-    // available inner height for the #bg-network: panel height minus roughly 62px reserved for header+legend
-    // this keeps spacing similar but larger overall due to +40px increase
-    const panelHeight = parseFloat(computed.height) || panel.clientHeight || 460;
-    const reserved = 62; // approximate header+legend padding
-    const networkHeight = Math.max(160, Math.round(panelHeight - reserved));
-    container.style.height = networkHeight + 'px';
-    network.redraw();
-  }
-  // initial resize (after small timeout to allow container paint)
-  setTimeout(resizeNetwork, 80);
-  window.addEventListener('resize', resizeNetwork);
+    const data = { nodes, edges };
 
-  // Click handler: scroll page to corresponding .strategy element
-  network.on('click', function(params) {
-    if (!params.nodes || params.nodes.length === 0) return;
-    const nodeId = params.nodes[0];
-    const idx = strategyMap[nodeId];
-    const strategies = document.querySelectorAll('.strategy');
-    const target = strategies[idx];
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // visually select node in the graph
-      network.selectNodes([nodeId]);
-      // also apply a temporary highlight style by updating node size
-      nodes.update({ id: nodeId, size: 28 });
-      setTimeout(()=> nodes.update({ id: nodeId, size: 18 }), 650);
-    }
-  });
-
-  // Keyboard accessibility for container: Enter/Space selects first node if focused
-  if (container) {
-    container.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        network.selectNodes([1]);
-        e.preventDefault();
+    const options = {
+      nodes: {
+        shape: 'dot',
+        size: 18,
+        // force red label color
+        font: { size: 12, color: '#d10000', face: 'EB Garamond, serif' },
+        borderWidth: 1.2
+      },
+      edges: {
+        color: { color: '#bbb' },
+        width: 1.2,
+        smooth: { enabled: true, type: 'cubicBezier' }
+      },
+      groups: {
+        social: { color: { background: '#000', border: '#000' }, font:{ color: '#d10000' } },
+        sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#d10000' } },
+        material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#d10000' } }
+      },
+      interaction: {
+        hover: true,
+        tooltipDelay: 100,
+        navigationButtons: false,
+        keyboard: true
+      },
+      physics: {
+        stabilization: true,
+        barnesHut: {
+          gravitationalConstant: -3000,
+          springLength: 140,
+          springConstant: 0.02
+        }
+      },
+      layout: {
+        improvedLayout: true
       }
-    });
-  }
+    };
 
-  // IntersectionObserver to highlight the node of the strategy mostly in view
-  const strategies = Array.from(document.querySelectorAll('.strategy'));
-  // guard: if there are fewer strategies than expected, map the available ones
-  const observedMap = {}; // strategyIndex -> nodeId
-  for (const [nodeId, idx] of Object.entries(strategyMap)) {
-    if (strategies[idx]) observedMap[idx] = Number(nodeId);
-  }
+    const network = new vis.Network(container, data, options);
 
-  const opts = { root: null, rootMargin: '0px', threshold: [0.45, 0.6] };
-  const io = new IntersectionObserver((entries) => {
-    // find entry with largest intersectionRatio
-    let best = null;
-    entries.forEach(ent => {
-      if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent;
-    });
-    if (best && best.intersectionRatio > 0.45) {
-      const index = strategies.indexOf(best.target);
-      const nodeId = observedMap[index];
-      if (nodeId) {
+    // Resize network canvas to fit the increased panel height
+    function resizeNetwork() {
+      const panel = document.getElementById('bg-network-panel');
+      const cont = document.getElementById('bg-network');
+      if (!panel || !cont) return;
+      const panelH = panel.clientHeight || 460;
+      const reserved = 62; // header/legend space
+      const netH = Math.max(160, Math.round(panelH - reserved));
+      cont.style.height = netH + 'px';
+      network.redraw();
+      // enforce no border on any generated elements
+      cleanup(panel);
+      cleanup(cont);
+    }
+    setTimeout(resizeNetwork, 80);
+    window.addEventListener('resize', resizeNetwork);
+
+    // Click -> scroll to strategy
+    network.on('click', function(params) {
+      if (!params.nodes || params.nodes.length === 0) return;
+      const nodeId = params.nodes[0];
+      const idx = strategyMap[nodeId];
+      const strategies = document.querySelectorAll('.strategy');
+      const target = strategies[idx];
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         network.selectNodes([nodeId]);
-        // animate node size slightly to indicate active
-        nodes.update({ id: nodeId, size: 26 });
-        // reset previously active nodes
-        Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 18 }); });
+        nodes.update({ id: nodeId, size: 28 });
+        setTimeout(()=> nodes.update({ id: nodeId, size: 18 }), 650);
       }
+    });
+
+    // IntersectionObserver to highlight node for strategy in view
+    const strategies = Array.from(document.querySelectorAll('.strategy'));
+    const observedMap = {};
+    for (const [nodeId, idx] of Object.entries(strategyMap)) {
+      if (strategies[idx]) observedMap[idx] = Number(nodeId);
     }
-  }, opts);
+    const io = new IntersectionObserver((entries) => {
+      let best = null;
+      entries.forEach(ent => {
+        if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent;
+      });
+      if (best && best.intersectionRatio > 0.45) {
+        const index = strategies.indexOf(best.target);
+        const nodeId = observedMap[index];
+        if (nodeId) {
+          network.selectNodes([nodeId]);
+          nodes.update({ id: nodeId, size: 26 });
+          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 18 }); });
+        }
+      }
+    }, { root: null, rootMargin: '0px', threshold: [0.45, 0.6] });
+    strategies.forEach(s => io.observe(s));
 
-  // observe all strategy elements that exist
-  strategies.forEach(s => io.observe(s));
+    // Accessibility live region announce
+    const live = document.createElement('div');
+    live.setAttribute('aria-live', 'polite');
+    live.style.position = 'absolute';
+    live.style.left = '-9999px';
+    live.style.width = '1px';
+    live.style.height = '1px';
+    document.body.appendChild(live);
 
-  // Accessibility: announce active strategy change to screen readers
-  const live = document.createElement('div');
-  live.setAttribute('aria-live', 'polite');
-  live.style.position = 'absolute';
-  live.style.left = '-9999px';
-  live.style.width = '1px';
-  live.style.height = '1px';
-  document.body.appendChild(live);
-
-  // update live whenever network selection changes
-  network.on('selectNode', function(params) {
-    if (!params.nodes || params.nodes.length === 0) return;
-    const id = params.nodes[0];
-    const n = nodes.get(id);
-    const idx = strategyMap[id];
-    const title = n && n.title ? n.title : n && n.label ? n.label : 'Strategy selected';
-    const elementLabel = (strategies[idx] && strategies[idx].querySelector('.strategy-title')) ? strategies[idx].querySelector('.strategy-title').innerText : '';
-    live.textContent = elementLabel ? (elementLabel + ' selected') : title;
-  });
+    network.on('selectNode', function(params) {
+      if (!params.nodes || params.nodes.length === 0) return;
+      const id = params.nodes[0];
+      const n = nodes.get(id);
+      const idx = strategyMap[id];
+      const title = n && n.title ? n.title : n && n.label ? n.label : 'Strategy selected';
+      const elementLabel = (strategies[idx] && strategies[idx].querySelector('.strategy-title')) ? strategies[idx].querySelector('.strategy-title').innerText : '';
+      live.textContent = elementLabel ? (elementLabel + ' selected') : title;
+    });
+  } // end initNetwork()
 
 })();
 </script>
+
 
 </body>
 </html>
