@@ -303,7 +303,7 @@
 
   /* Legend box placed directly to the right of the panel (fixed) */
   #network-legend-box {
-    position: fixed;
+    position: absolute;
     /* place to the right of the panel: panel right (10px) + panel width (660px) + gap (12px) */
     background: transparent;
     border: 0px solid rgba(0,0,0,0.9);
@@ -484,12 +484,21 @@
 const panel = document.getElementById('bg-network-panel');
 const legend = document.getElementById('network-legend-box');
 
-// Initial placement next to panel
-const rect = panel.getBoundingClientRect();
-legend.style.left = (rect.right + 10) + 'px';
-legend.style.top = rect.top + 'px';
+// Place legend initially next to the panel
+function positionLegend() {
+  const rect = panel.getBoundingClientRect();
+  legend.style.left = (rect.right + 10 + window.scrollX) + 'px';
+  legend.style.top = (rect.top + window.scrollY) + 'px';
+}
 
-// Draggable logic
+// Run initially
+positionLegend();
+
+// Update on scroll & resize
+window.addEventListener('resize', positionLegend);
+window.addEventListener('scroll', positionLegend);
+
+// Make draggable
 let isDragging = false, offsetX = 0, offsetY = 0;
 
 legend.addEventListener('mousedown', (e) => {
@@ -497,22 +506,21 @@ legend.addEventListener('mousedown', (e) => {
   offsetX = e.clientX - legend.getBoundingClientRect().left;
   offsetY = e.clientY - legend.getBoundingClientRect().top;
   legend.style.cursor = 'grabbing';
+  e.preventDefault();
 });
 
 document.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
-  legend.style.left = (e.clientX - offsetX) + 'px';
-  legend.style.top = (e.clientY - offsetY) + 'px';
+  legend.style.left = (e.clientX - offsetX + window.scrollX) + 'px';
+  legend.style.top = (e.clientY - offsetY + window.scrollY) + 'px';
 });
 
 document.addEventListener('mouseup', () => {
+  if (isDragging) legend.style.cursor = 'grab';
   isDragging = false;
-  legend.style.cursor = 'grab';
 });
-
-// Initial cursor
-legend.style.cursor = 'grab';
 </script>
+
 
 </body>
 </html>
