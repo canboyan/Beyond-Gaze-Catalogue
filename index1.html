@@ -354,7 +354,7 @@
 
     const options = {
       nodes: {
-        shape: 'dot',
+        shape: 'dot', // keeps your original interactive shape
         size: 13,
         font: { size: 13, color: '#000000', face: 'Arial, sans-serif', vadjust: 0, align: 'center' },
         color: {
@@ -394,7 +394,6 @@
 
     const network = new vis.Network(container, data, options);
 
-    // Mobile-friendly resize
     function resizeNetwork(){
       const panel = document.getElementById('bg-network-panel');
       if(!panel) return;
@@ -408,8 +407,8 @@
     }
     window.addEventListener('resize', resizeNetwork);
 
-    // Click -> scroll to strategy
     const strategies = document.querySelectorAll('.strategy');
+
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
@@ -423,7 +422,6 @@
       }
     });
 
-    // Highlight node based on scroll
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) {
       if (strategies[idx]) observedMap[idx] = Number(nodeId);
@@ -444,7 +442,6 @@
     }, { root: null, rootMargin: '0px', threshold: [0.3, 0.6] });
     strategies.forEach(s => io.observe(s));
 
-    // Accessibility live region
     const live = document.createElement('div');
     live.setAttribute('aria-live', 'polite');
     live.style.position = 'absolute';
@@ -467,6 +464,7 @@
 
 })();
 </script>
+
 
 
 </body>
