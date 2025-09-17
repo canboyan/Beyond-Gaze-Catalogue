@@ -25,7 +25,7 @@
 .video-wrapper {
   display: block;          /* behave as block */
   width: 544px;            /* video width (adjust if needed) */
-  height: 306px;           /* video height (adjust if needed) */
+   height: auto;             /* video height (adjust if needed) */
   margin-top: 0;           /* remove extra top margin */
   margin-bottom: 15px;     /* space between video and its text below */
   clear: both;             
@@ -39,6 +39,7 @@
 .media-wrapper {
   display: block;
   width: 544px;           /* audio width */
+   height: auto;  
   margin-bottom: 15px;    /* space between audio and its text below */
 }
 
@@ -276,38 +277,48 @@ audio::-webkit-media-controls-volume-slider:focus {
 
 </main>
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    let players = {};
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let players = {};
 
-    function onYouTubeIframeAPIReady() {
-      document.querySelectorAll('.yt-player').forEach(div => {
-        const id = div.id;
-        const videoId = div.getAttribute('data-video-id');
-        players[id] = new YT.Player(id, {
-          height: '315',
-          width: '560',
-          videoId: videoId,
-          playerVars: { controls: 1, modestbranding: 1, rel: 0, autoplay: 0, iv_load_policy: 3, fs: 1 },
-          events: { 'onReady': e => e.target.setPlaybackQuality('hd1080') }
-        });
+  function onYouTubeIframeAPIReady() {
+    document.querySelectorAll('.yt-player').forEach(div => {
+      const id = div.id;
+      const videoId = div.getAttribute('data-video-id');
+
+      // Create player without fixed width/height
+      players[id] = new YT.Player(id, {
+        videoId: videoId,
+        playerVars: { 
+          controls: 1, 
+          modestbranding: 1, 
+          rel: 0, 
+          autoplay: 0, 
+          iv_load_policy: 3, 
+          fs: 1 
+        },
+        events: { 
+          'onReady': e => e.target.setPlaybackQuality('hd1080') 
+        }
       });
-    }
+    });
+  }
 
-    function playVideo(button) {
-      const wrapper = button.closest('.video-wrapper');
-      const img = wrapper.querySelector('img');
-      const playerDiv = wrapper.querySelector('.yt-player');
-      const player = players[playerDiv.id];
+  function playVideo(button) {
+    const wrapper = button.closest('.video-wrapper');
+    const img = wrapper.querySelector('img');
+    const playerDiv = wrapper.querySelector('.yt-player');
+    const player = players[playerDiv.id];
 
-      button.style.display = 'none';
-      img.style.display = 'none';
+    button.style.display = 'none';
+    img.style.display = 'none';
 
-      player.playVideo();
-      player.setPlaybackQuality('hd1080');
-    }
-  </script>
+    player.playVideo();
+    player.setPlaybackQuality('hd1080');
+  }
+</script>
+
 </main>
 </body>
 </html>
