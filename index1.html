@@ -147,7 +147,7 @@
       </div>
 
       <!-- Strategy 1 -->
-      <div class="strategy">
+      <div class="strategy" data-node="1">
         <div class="strategy-title">Tactile Storying <em>(Sequential Tactile Narration)</em></div>
 
         <p><span class="section-label">Description:</span> In a circle or line, participants take turns touching a shared object or person and adding to an ongoing narrative, with touch cues marking the transitions. The haptic transfer of a "talking object" makes the tactile act itself part of the storytelling process (Hutchins 1995; Wegner 1987).</p>
@@ -178,7 +178,7 @@
       </div>
 
       <!-- Strategy 2 -->
-      <div class="strategy">
+      <div class="strategy" data-node="2">
         <div class="strategy-title">Object-As-Score Sculptural Tracing <em>(Material-Led Choreographic Notation)</em></div>
 
         <p><span class="section-label">Description:</span> Participants explore a single sculpture or object by hand and let its shape and texture "score" a movement or narrative response. The object's form inspires gestures or stories that emerge from tactile exploration.</p>
@@ -196,7 +196,7 @@
       </div>
 
       <!-- Strategy 3 -->
-      <div class="strategy">
+      <div class="strategy" data-node="3">
         <div class="strategy-title">Collaborative Tactile Weaving <em>(Material Mnemonics and Storymaking)</em></div>
 
         <p><span class="section-label">Description:</span> A group collectively weaves, knots, or interlaces materials (yarn, strips of cloth, branches) to encode shared stories or memories into the textile pattern. Each strand functions as a narrative token; the emerging fabric records sequential contributions and becomes a tactile archive of communal authorship (Malafouris 2013).</p>
@@ -216,7 +216,7 @@
       </div>
 
       <!-- Strategy 4 -->
-      <div class="strategy">
+      <div class="strategy" data-node="4">
         <div class="strategy-title">Anticipatory Tactility <em>(Imagined Haptic Encounters)</em></div>
 
         <p><span class="section-label">Description:</span> Participants are asked to form a prediction of an object's tactile qualities (e.g., smooth, bumpy, warm, sharp) before touching it, then to confirm or revise that mental haptic image through direct touch and reflective comparison. The method foregrounds pre-touch inference and reconditioning of sensory models via exploratory touch (Lederman & Klatzky 1987; O'Regan & Noë 2001; Barsalou 1999).</p>
@@ -238,7 +238,7 @@
       </div>
 
       <!-- Strategy 5 -->
-      <div class="strategy">
+      <div class="strategy" data-node="5">
         <div class="strategy-title">Guided Tactile Circuit <em>(Sequential Touch Improvisation)</em></div>
 
         <p><span class="section-label">Description:</span> Participants form a physical circuit of touch, passing improvised tactile signals around a circle or chain, creating collective rhythms, patterns, or narratives. Each touch is both a response and a cue, producing distributed composition and heightened haptic attunement (Ingold 2011; Bishop 2012).</p>
@@ -321,13 +321,6 @@
     { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation..." }
   ]);
 
-  const edges = new vis.DataSet([
-    { from: 1, to: 3 },
-    { from: 1, to: 5 },
-    { from: 2, to: 4 },
-    { from: 3, to: 5 },
-    { from: 4, to: 1 }
-  ]);
 
   function initNetwork() {
     const container = document.getElementById('bg-network');
@@ -400,23 +393,21 @@
 }
     window.addEventListener('resize', resizeNetwork);
 
-    // Click -> scroll to strategy
-    network.on('click', function(params) {
-      if (!params.nodes || !params.nodes.length) return;
-      const nodeId = params.nodes[0];
-      const idx = strategyMap[nodeId];
-      const strategies = document.querySelectorAll('.strategy');
-      const target = strategies[idx];
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 20,
-          behavior: 'smooth'
-        });
-        network.selectNodes([nodeId]);
-        nodes.update({ id: nodeId, size: 28 });
-        setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
-      }
+network.on('click', function(params) {
+  if (!params.nodes || !params.nodes.length) return;
+  const nodeId = params.nodes[0];
+  const target = document.querySelector(`.strategy[data-node="${nodeId}"]`);
+  if (target) {
+    window.scrollTo({
+      top: target.offsetTop - 20,
+      behavior: 'smooth'
     });
+    network.selectNodes([nodeId]);
+    nodes.update({ id: nodeId, size: 28 });
+    setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
+  }
+});
+
 
     // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
