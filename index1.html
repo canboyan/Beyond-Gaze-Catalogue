@@ -261,11 +261,11 @@
 <!-- Fixed right-side interactive network -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
+</div>
 
-  <!-- Legend directly under the network -->
-  <div id="network-legend-box">
-    Social | Material | Sensory | Spatial
-  </div>
+<!-- Horizontal legend directly below the panel -->
+<div id="network-legend-box">
+  Social &nbsp; | &nbsp; Material &nbsp; | &nbsp; Sensory &nbsp; | &nbsp; Spatial
 </div>
 
 <style>
@@ -275,8 +275,8 @@
     bottom: 20px;
     right: 10px;
     width: 660px;
-    max-width: 90vw;
     height: 460px;
+    max-width: 90vw;
     max-height: 50vh;
     background: transparent;
     border-radius: 10px;
@@ -298,29 +298,19 @@
     position: relative;
   }
 
-  /* Legend positioned directly under the diagram */
+  /* Legend box under the network panel */
   #network-legend-box {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 660px;
+    max-width: 90vw;
+    text-align: center;
     font-family: 'Garamond', serif;
     font-size: 12px;
     font-weight: normal;
     color: #000;
-    text-align: center;
-    margin-top: 8px; /* spacing from the network diagram */
-    white-space: nowrap;
-  }
-
-  /* Responsive resizing for small screens */
-  @media (max-width: 700px) {
-    #bg-network-panel {
-      width: 90vw;
-      height: 45vh;
-    }
-  }
-
-  @media (max-height: 500px) {
-    #bg-network-panel {
-      height: 40vh;
-    }
+    z-index: 10002;
   }
 </style>
 
@@ -354,7 +344,7 @@
 
     const options = {
       nodes: {
-        shape: 'dot', // keeps your original interactive shape
+        shape: 'dot',
         size: 13,
         font: { size: 13, color: '#000000', face: 'Arial, sans-serif', vadjust: 0, align: 'center' },
         color: {
@@ -394,7 +384,7 @@
 
     const network = new vis.Network(container, data, options);
 
-    function resizeNetwork(){
+    function resizeNetwork() {
       const panel = document.getElementById('bg-network-panel');
       if(!panel) return;
       const w = Math.min(560, window.innerWidth - 20);
@@ -407,12 +397,12 @@
     }
     window.addEventListener('resize', resizeNetwork);
 
-    const strategies = document.querySelectorAll('.strategy');
-
+    // Click -> scroll to strategy
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
       const idx = strategyMap[nodeId];
+      const strategies = document.querySelectorAll('.strategy');
       const target = strategies[idx];
       if (target) {
         window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
@@ -422,6 +412,8 @@
       }
     });
 
+    // Highlight node based on scroll
+    const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) {
       if (strategies[idx]) observedMap[idx] = Number(nodeId);
@@ -442,6 +434,7 @@
     }, { root: null, rootMargin: '0px', threshold: [0.3, 0.6] });
     strategies.forEach(s => io.observe(s));
 
+    // Accessibility live region
     const live = document.createElement('div');
     live.setAttribute('aria-live', 'polite');
     live.style.position = 'absolute';
@@ -461,11 +454,7 @@
 
   if (document.getElementById('bg-network')) initNetwork();
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
-
 })();
 </script>
-
-
-
 </body>
 </html>
