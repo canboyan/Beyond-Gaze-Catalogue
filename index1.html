@@ -320,7 +320,13 @@
     { id: 4, label: "Anticipatory Tactility", group: "sensory", title: "Predict → touch → reflect..." },
     { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation..." }
   ]);
-
+const edges = new vis.DataSet([
+  { from: 1, to: 3 },
+  { from: 1, to: 5 },
+  { from: 2, to: 4 },
+  { from: 3, to: 5 },
+  { from: 4, to: 1 }
+]);
 
   function initNetwork() {
     const container = document.getElementById('bg-network');
