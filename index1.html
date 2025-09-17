@@ -261,16 +261,12 @@
 <!-- Fixed right-side interactive network -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
-</div>
-  
-<!-- Horizontal legend below the panel -->
-<div id="network-legend-box">
-  <span class="legend-item"><span class="legend-color" style="background:#d10000;"></span> Social</span>
-  <span class="legend-item"><span class="legend-color" style="background:#000000;"></span> Material</span>
-  <span class="legend-item"><span class="legend-color" style="background:#800000;"></span> Sensory</span>
-  <span class="legend-item"><span class="legend-color" style="background:#ffcccc;"></span> Spatial</span>
-</div>
 
+  <!-- Legend directly under the network -->
+  <div id="network-legend-box">
+    Social | Material | Sensory | Spatial
+  </div>
+</div>
 
 <style>
   /* Right-side panel */
@@ -279,8 +275,8 @@
     bottom: 20px;
     right: 10px;
     width: 660px;
-    height: 460px;
     max-width: 90vw;
+    height: 460px;
     max-height: 50vh;
     background: transparent;
     border-radius: 10px;
@@ -302,31 +298,36 @@
     position: relative;
   }
 
-  /* Legend box placed directly to the right of the panel (fixed) */
-/* Horizontal legend below the network panel */
-#network-legend-box {
-  position: fixed;
-  top: auto;
-  bottom: 0; /* or 10px for spacing */
-  left: auto;
-  right: 10px; /* match the panel's right position */
-  width: 100%; /* optional if you want it to match panel width */
-  text-align: center; /* center text under the panel */
-  font-family: 'Garamond', serif;
-  font-size: 12px;
-  font-weight: normal;
-  color: #000;
-  z-index: 10002;
-  white-space: nowrap;
-}
+  /* Legend positioned directly under the diagram */
+  #network-legend-box {
+    font-family: 'Garamond', serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    text-align: center;
+    margin-top: 8px; /* spacing from the network diagram */
+    white-space: nowrap;
+  }
 
+  /* Responsive resizing for small screens */
+  @media (max-width: 700px) {
+    #bg-network-panel {
+      width: 90vw;
+      height: 45vh;
+    }
+  }
+
+  @media (max-height: 500px) {
+    #bg-network-panel {
+      height: 40vh;
+    }
+  }
 </style>
 
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
 <script>
 (function() {
-  // Mapping node id -> strategy index (keeps your DOM-index scheme)
   const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4 };
 
   const nodes = new vis.DataSet([
@@ -355,7 +356,6 @@
       nodes: {
         shape: 'dot',
         size: 13,
-        /* Labels will be placed under the nodes using vadjust */
         font: { size: 13, color: '#000000', face: 'Arial, sans-serif', vadjust: 0, align: 'center' },
         color: {
           border: '#000',
@@ -371,11 +371,11 @@
         smooth: { enabled: true, type: 'cubicBezier' },
         dashes: [5, 5]
       },
-     groups: {
-  social:  { color: { background: '#d10000', border: '#b30000' }, font: { color: '#000000' } },
-  material:{ color: { background: '#000000', border: '#000000' }, font: { color: '#000000' } },
-  sensory: { color: { background: '#800000', border: '#5a0000' }, font: { color: '#000000' } },
-  spatial: { color: { background: '#ffcccc', border: '#ffbebe' }, font: { color: '#000000' } }
+      groups: {
+        social:  { color: { background: '#d10000', border: '#b30000' }, font: { color: '#000000' } },
+        material:{ color: { background: '#000000', border: '#000000' }, font: { color: '#000000' } },
+        sensory: { color: { background: '#800000', border: '#5a0000' }, font: { color: '#000000' } },
+        spatial: { color: { background: '#ffcccc', border: '#ffbebe' }, font: { color: '#000000' } }
       },
       interaction: {
         hover: true,
@@ -409,11 +409,11 @@
     window.addEventListener('resize', resizeNetwork);
 
     // Click -> scroll to strategy
+    const strategies = document.querySelectorAll('.strategy');
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
       const idx = strategyMap[nodeId];
-      const strategies = document.querySelectorAll('.strategy');
       const target = strategies[idx];
       if (target) {
         window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
@@ -424,7 +424,6 @@
     });
 
     // Highlight node based on scroll
-    const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) {
       if (strategies[idx]) observedMap[idx] = Number(nodeId);
@@ -463,7 +462,6 @@
     });
   }
 
-  // Initialize network
   if (document.getElementById('bg-network')) initNetwork();
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
 
