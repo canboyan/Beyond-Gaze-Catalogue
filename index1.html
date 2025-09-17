@@ -266,9 +266,10 @@
 <style>
   /* Right-side panel */
   #bg-network-panel {
-    position: absolute; /* changed from fixed to absolute */
-    top: 10px;          /* initial position from top */
-    right: 10px;        /* initial position from right */
+    position: absolute; /* allows free movement */
+    top: 10px;
+    left: auto;
+    right: 10px;        /* initial position */
     width: 660px;
     height: 460px;
     max-width: 90vw;
@@ -282,6 +283,7 @@
     flex-direction: column;
     border: none;
     box-shadow: none;
+    cursor: move; /* indicate draggable */
   }
 
   #bg-network {
@@ -329,6 +331,7 @@
   ]);
 
   function initNetwork() {
+    const panel = document.getElementById('bg-network-panel');
     const container = document.getElementById('bg-network');
     if (!container) return;
 
@@ -361,8 +364,8 @@
       interaction: {
         hover: true,
         tooltipDelay: 100,
-        dragView: true,   // allows dragging the network by grabbing the background or nodes
-        dragNodes: true,  // allows dragging nodes individually
+        dragView: true,
+        dragNodes: true,
         multiselect: true
       },
       physics: {
@@ -374,10 +377,32 @@
 
     const network = new vis.Network(container, data, options);
 
-    // Mobile-friendly resize
+    // Drag the entire panel by holding anywhere in the network
+    let isDragging = false;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    container.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      const rect = panel.getBoundingClientRect();
+      dragOffsetX = e.clientX - rect.left;
+      dragOffsetY = e.clientY - rect.top;
+      document.body.style.userSelect = 'none';
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      panel.style.left = (e.clientX - dragOffsetX) + 'px';
+      panel.style.top  = (e.clientY - dragOffsetY) + 'px';
+    });
+
+    window.addEventListener('mouseup', function(e) {
+      isDragging = false;
+      document.body.style.userSelect = '';
+    });
+
+    // Optional: mobile-friendly resize
     function resizeNetwork() {
-      const panel = document.getElementById('bg-network-panel');
-      if(!panel) return;
       const w = Math.min(560, window.innerWidth - 20);
       const h = Math.min(460, window.innerHeight - 20);
       panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
@@ -388,7 +413,7 @@
     }
     window.addEventListener('resize', resizeNetwork);
 
-    // Scroll to strategy on click
+    // Click -> scroll to strategy
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
@@ -445,10 +470,6 @@
 
 })();
 </script>
-
-
-
-
 
 </body>
 </html>
