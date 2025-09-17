@@ -258,16 +258,16 @@
     </div>
   </div>
 
-<!-- Draggable interactive network panel -->
+<!-- Interactive draggable network -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
 </div>
 
 <style>
-  /* Right-side panel */
+  /* Network panel */
   #bg-network-panel {
-    position: absolute;
-    top: 10px;   
+    position: absolute;  /* allows moving with page scroll */
+    top: 10px;
     right: 10px;
     width: 660px;
     height: 460px;
@@ -282,11 +282,7 @@
     flex-direction: column;
     border: none;
     box-shadow: none;
-    cursor: grab; /* indicate draggable */
-  }
-
-  #bg-network-panel.dragging {
-    cursor: grabbing;
+    cursor: grab; /* indicate draggable background */
   }
 
   #bg-network {
@@ -297,7 +293,7 @@
     border-radius: 6px;
   }
 
-  /* Vis tooltip styling */
+  /* Tooltip styling */
   .vis-tooltip {
     font-family: 'Arial, sans-serif';
     font-size: 11px;
@@ -305,9 +301,7 @@
   }
 
   @media (max-width: 820px) {
-    #bg-network-panel {
-      display: flex !important;
-    }
+    #bg-network-panel { display: flex !important; }
   }
 </style>
 
@@ -334,19 +328,20 @@
   ]);
 
   function initNetwork() {
-    const panel = document.getElementById('bg-network-panel');
     const container = document.getElementById('bg-network');
-    if (!container) return;
+    const panel = document.getElementById('bg-network-panel');
+    if (!container || !panel) return;
 
     const data = { nodes, edges };
+
     const options = {
       nodes: {
         shape: 'dot',
         size: 18,
         font: { size: 11, color: '#000000', face: 'Arial bold, sans-serif' },
         color: {
-          background: '#fff',
-          border: '#000',
+          background: '#fff', // default fill
+          border: '#000',     // default border
           highlight: { background: '#d10000', border: '#d10000' },
           hover: { background: '#d10000', border: '#d10000' }
         },
@@ -360,9 +355,10 @@
       },
       interaction: {
         hover: true,
-        dragView: true,   // allows moving nodes freely inside network
-        dragNodes: true,
-        multiselect: true
+        dragView: true,   // drag the whole network
+        dragNodes: true,  // drag individual nodes
+        multiselect: true,
+        tooltipDelay: 100
       },
       physics: {
         stabilization: true,
@@ -373,100 +369,49 @@
 
     const network = new vis.Network(container, data, options);
 
-    // --------------------------
-    // Make panel draggable
-    // --------------------------
-    let isDragging = false;
-    let startX, startY, startTop, startLeft;
+    // --- Scroll responsiveness ---
+    function updatePanelPosition() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
+      panel.style.top = (10 + scrollY) + 'px';
+      panel.style.left = (window.innerWidth - panel.offsetWidth - 10 + scrollX) + 'px';
+    }
+    window.addEventListener('scroll', updatePanelPosition);
+    updatePanelPosition();
+
+    // --- Make panel draggable by background ---
+    let isDragging = false, startX, startY, origX, origY;
 
     panel.addEventListener('mousedown', (e) => {
-      // Only drag if mouse is NOT over a node (let nodes handle drag)
-      const canvas = container.getElementsByTagName('canvas')[0];
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const nodeAtPointer = network.getNodeAt({x, y});
-      if (nodeAtPointer) return; // skip panel drag
-
+      if (e.target !== container) return; // only drag when clicking background
       isDragging = true;
       startX = e.clientX;
       startY = e.clientY;
-      startTop = parseInt(panel.style.top);
-      startLeft = parseInt(panel.style.left || (window.innerWidth - panel.offsetWidth - 10));
-      panel.classList.add('dragging');
-      e.preventDefault();
+      origX = panel.offsetLeft;
+      origY = panel.offsetTop;
+      panel.style.cursor = 'grabbing';
     });
 
-    document.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-      let dx = e.clientX - startX;
-      let dy = e.clientY - startY;
-      panel.style.top = (startTop + dy) + 'px';
-      panel.style.left = (startLeft + dx) + 'px';
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      panel.style.left = (origX + dx) + 'px';
+      panel.style.top = (origY + dy) + 'px';
     });
 
-    document.addEventListener('mouseup', (e) => {
-      if (isDragging) {
-        isDragging = false;
-        panel.classList.remove('dragging');
-      }
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      panel.style.cursor = 'grab';
     });
-
-    // --------------------------
-    // Resize network with panel
-    // --------------------------
-    function resizeNetwork() {
-      container.style.width = '100%';
-      container.style.height = '100%';
-      network.redraw();
-    }
-    window.addEventListener('resize', resizeNetwork);
-    resizeNetwork();
-
-    // --------------------------
-    // Scroll to strategy on click
-    // --------------------------
-    network.on('click', function(params) {
-      if (!params.nodes || !params.nodes.length) return;
-      const nodeId = params.nodes[0];
-      const idx = strategyMap[nodeId];
-      const strategies = document.querySelectorAll('.strategy');
-      const target = strategies[idx];
-      if (target) {
-        window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
-        network.selectNodes([nodeId]);
-        nodes.update({ id: nodeId, size: 28 });
-        setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
-      }
-    });
-
-    // --------------------------
-    // Highlight node based on scroll
-    // --------------------------
-    const strategies = Array.from(document.querySelectorAll('.strategy'));
-    const observedMap = {};
-    for (const [nodeId, idx] of Object.entries(strategyMap)) if (strategies[idx]) observedMap[idx] = Number(nodeId);
-    const io = new IntersectionObserver(entries => {
-      let best = null;
-      entries.forEach(ent => { if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent; });
-      if (best && best.intersectionRatio > 0.45) {
-        const index = strategies.indexOf(best.target);
-        const nodeId = observedMap[index];
-        if (nodeId) {
-          network.selectNodes([nodeId]);
-          nodes.update({ id: nodeId, size: 26 });
-          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 18 }); });
-        }
-      }
-    }, { root: null, rootMargin: '0px', threshold: [0.45, 0.6] });
-    strategies.forEach(s => io.observe(s));
-
   }
 
   if (document.getElementById('bg-network')) initNetwork();
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
+
 })();
 </script>
+
 
 </body>
 </html>
