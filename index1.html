@@ -258,7 +258,7 @@
     </div>
   </div>
 
-<!-- Fixed right-side interactive network -->
+<!-- Draggable interactive network panel -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
 </div>
@@ -266,10 +266,9 @@
 <style>
   /* Right-side panel */
   #bg-network-panel {
-    position: absolute; /* allows free movement */
-    top: 10px;
-    left: auto;
-    right: 10px;        /* initial position */
+    position: absolute;
+    top: 10px;   
+    right: 10px;
     width: 660px;
     height: 460px;
     max-width: 90vw;
@@ -283,7 +282,11 @@
     flex-direction: column;
     border: none;
     box-shadow: none;
-    cursor: move; /* indicate draggable */
+    cursor: grab; /* indicate draggable */
+  }
+
+  #bg-network-panel.dragging {
+    cursor: grabbing;
   }
 
   #bg-network {
@@ -336,7 +339,6 @@
     if (!container) return;
 
     const data = { nodes, edges };
-
     const options = {
       nodes: {
         shape: 'dot',
@@ -356,15 +358,9 @@
         smooth: { enabled: true, type: 'cubicBezier' },
         dashes: [5,5]
       },
-      groups: {
-        social: { color: { background: '#fff', border: '#000' }, font: { color: '#000000' }, bold: true },
-        sensory: { color: { background: '#000', border: '#000' }, font: { color: '#000000' }, bold: true },
-        material: { color: { background: '#fff', border: '#000' }, font: { color: '#000000' }, bold: true }
-      },
       interaction: {
         hover: true,
-        tooltipDelay: 100,
-        dragView: true,
+        dragView: true,   // allows moving nodes freely inside network
         dragNodes: true,
         multiselect: true
       },
@@ -377,43 +373,59 @@
 
     const network = new vis.Network(container, data, options);
 
-    // Drag the entire panel by holding anywhere in the network
+    // --------------------------
+    // Make panel draggable
+    // --------------------------
     let isDragging = false;
-    let dragOffsetX = 0;
-    let dragOffsetY = 0;
+    let startX, startY, startTop, startLeft;
 
-    container.addEventListener('mousedown', function(e) {
+    panel.addEventListener('mousedown', (e) => {
+      // Only drag if mouse is NOT over a node (let nodes handle drag)
+      const canvas = container.getElementsByTagName('canvas')[0];
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const nodeAtPointer = network.getNodeAt({x, y});
+      if (nodeAtPointer) return; // skip panel drag
+
       isDragging = true;
-      const rect = panel.getBoundingClientRect();
-      dragOffsetX = e.clientX - rect.left;
-      dragOffsetY = e.clientY - rect.top;
-      document.body.style.userSelect = 'none';
+      startX = e.clientX;
+      startY = e.clientY;
+      startTop = parseInt(panel.style.top);
+      startLeft = parseInt(panel.style.left || (window.innerWidth - panel.offsetWidth - 10));
+      panel.classList.add('dragging');
+      e.preventDefault();
     });
 
-    window.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-      panel.style.left = (e.clientX - dragOffsetX) + 'px';
-      panel.style.top  = (e.clientY - dragOffsetY) + 'px';
+      let dx = e.clientX - startX;
+      let dy = e.clientY - startY;
+      panel.style.top = (startTop + dy) + 'px';
+      panel.style.left = (startLeft + dx) + 'px';
     });
 
-    window.addEventListener('mouseup', function(e) {
-      isDragging = false;
-      document.body.style.userSelect = '';
+    document.addEventListener('mouseup', (e) => {
+      if (isDragging) {
+        isDragging = false;
+        panel.classList.remove('dragging');
+      }
     });
 
-    // Optional: mobile-friendly resize
+    // --------------------------
+    // Resize network with panel
+    // --------------------------
     function resizeNetwork() {
-      const w = Math.min(560, window.innerWidth - 20);
-      const h = Math.min(460, window.innerHeight - 20);
-      panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
-      panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
       container.style.width = '100%';
       container.style.height = '100%';
       network.redraw();
     }
     window.addEventListener('resize', resizeNetwork);
+    resizeNetwork();
 
-    // Click -> scroll to strategy
+    // --------------------------
+    // Scroll to strategy on click
+    // --------------------------
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
@@ -428,7 +440,9 @@
       }
     });
 
-    // IntersectionObserver -> highlight node based on scroll
+    // --------------------------
+    // Highlight node based on scroll
+    // --------------------------
     const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) if (strategies[idx]) observedMap[idx] = Number(nodeId);
@@ -447,27 +461,10 @@
     }, { root: null, rootMargin: '0px', threshold: [0.45, 0.6] });
     strategies.forEach(s => io.observe(s));
 
-    // Accessibility live region
-    const live = document.createElement('div');
-    live.setAttribute('aria-live', 'polite');
-    live.style.position = 'absolute';
-    live.style.left = '-9999px';
-    live.style.width = '1px';
-    live.style.height = '1px';
-    document.body.appendChild(live);
-
-    network.on('selectNode', function(params) {
-      if (!params.nodes || !params.nodes.length) return;
-      const id = params.nodes[0];
-      const idx = strategyMap[id];
-      const label = strategies[idx]?.querySelector('.strategy-title')?.innerText || nodes.get(id).label;
-      live.textContent = label + ' selected';
-    });
   }
 
   if (document.getElementById('bg-network')) initNetwork();
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
-
 })();
 </script>
 
