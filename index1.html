@@ -382,19 +382,22 @@
     const network = new vis.Network(container, data, options);
 
     // Mobile-friendly resize
-    function resizeNetwork() {
-      const panel = document.getElementById('bg-network-panel');
-      if (!panel) return;
-      const w = Math.min(560, window.innerWidth - 20);
-      const h = Math.min(460, window.innerHeight - 20);
-      panel.style.width = w + 'px';
-      panel.style.height = h + 'px';
-      container.style.width = '100%';
-      container.style.height = '100%';
-      network.redraw();
-    }
+   function resizeNetwork(){
+  const panel = document.getElementById('bg-network-panel');
+  if(!panel) return;
+
+  // Only shrink if screen is smaller than 560x460
+  const w = Math.min(560, window.innerWidth - 20);
+  const h = Math.min(460, window.innerHeight - 20);
+
+  panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
+  panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
+  
+  container.style.width = '100%';
+  container.style.height = '100%';
+  network.redraw();
+}
     window.addEventListener('resize', resizeNetwork);
-    setTimeout(resizeNetwork, 100);
 
     // Click -> scroll to strategy
     network.on('click', function(params) {
