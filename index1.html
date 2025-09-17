@@ -496,7 +496,42 @@
 
 <script>
 (function(){
-  // Map node id -> strategy index (1-based as in the page)
+  // Adjust the panel appearance at runtime: borderless, no shadow, +40px size
+  (function adjustPanel() {
+    const panel = document.getElementById('bg-network-panel');
+    if (!panel) return;
+    // remove border and shadow
+    panel.style.border = 'none';
+    panel.style.boxShadow = 'none';
+    // increase size by 40px (width and height)
+    // original width: 320px -> 360px ; original height: 420px -> 460px
+    panel.style.width = '360px';
+    panel.style.height = '460px';
+    panel.style.maxWidth = '36vw';
+    // keep rounded corners if desired
+    panel.style.borderRadius = '10px';
+    // ensure background stays white so red text is legible
+    panel.style.background = 'rgba(255,255,255,0.98)';
+  })();
+
+  // Inject small CSS to make any vis tooltip text red (force with !important)
+  (function injectTooltipStyle() {
+    const css = `
+      .vis-tooltip { 
+        font-family: "EB Garamond", serif !important;
+        font-size: 13px !important;
+        color: #d10000 !important;
+      }
+      /* ensure network canvas background remains white */
+      #bg-network { background: #fff !important; }
+    `;
+    const s = document.createElement('style');
+    s.type = 'text/css';
+    s.appendChild(document.createTextNode(css));
+    document.head.appendChild(s);
+  })();
+
+  // Map node id -> strategy index (0-based index for .strategy NodeList)
   const strategyMap = {
     1: 0, // Tactile Storying -> .strategy[0]
     2: 1, // Object-As-Score -> .strategy[1]
@@ -526,11 +561,12 @@
   const container = document.getElementById('bg-network');
   const data = { nodes, edges };
 
+  // OPTIONS: changed font colors to red (#d10000) for labels; keep group backgrounds as before
   const options = {
     nodes: {
       shape: 'dot',
       size: 18,
-      font: { size: 12, color: '#fff', face: 'EB Garamond, serif' },
+      font: { size: 12, color: '#d10000', face: 'EB Garamond, serif' }, // 🔴 red node labels
       borderWidth: 1.5
     },
     edges: {
@@ -539,9 +575,9 @@
       smooth: { enabled: true, type: 'cubicBezier' }
     },
     groups: {
-      social: { color: { background: '#000', border: '#000' }, font:{ color: '#fff' } },
-      sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#fff' } },
-      material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#fff' } }
+      social: { color: { background: '#000', border: '#000' }, font:{ color: '#d10000' } },
+      sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#d10000' } },
+      material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#d10000' } }
       // (spatial/temporal not used as separate groups here but can be added)
     },
     interaction: {
@@ -568,11 +604,22 @@
 
   // Ensure network redraw size inside fixed panel
   function resizeNetwork() {
-    network.setSize('100%', container.clientHeight + 'px');
+    // After we increased panel size, adjust the canvas accordingly
+    // Make the network use the panel's inner height (subtract header+legend heights if needed)
+    const panel = document.getElementById('bg-network-panel');
+    const container = document.getElementById('bg-network');
+    if (!panel || !container) return;
+    const computed = window.getComputedStyle(panel);
+    // available inner height for the #bg-network: panel height minus roughly 62px reserved for header+legend
+    // this keeps spacing similar but larger overall due to +40px increase
+    const panelHeight = parseFloat(computed.height) || panel.clientHeight || 460;
+    const reserved = 62; // approximate header+legend padding
+    const networkHeight = Math.max(160, Math.round(panelHeight - reserved));
+    container.style.height = networkHeight + 'px';
     network.redraw();
   }
   // initial resize (after small timeout to allow container paint)
-  setTimeout(resizeNetwork, 60);
+  setTimeout(resizeNetwork, 80);
   window.addEventListener('resize', resizeNetwork);
 
   // Click handler: scroll page to corresponding .strategy element
@@ -586,21 +633,21 @@
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       // visually select node in the graph
       network.selectNodes([nodeId]);
-      // also apply a temporary highlight style by updating node
+      // also apply a temporary highlight style by updating node size
       nodes.update({ id: nodeId, size: 28 });
       setTimeout(()=> nodes.update({ id: nodeId, size: 18 }), 650);
     }
   });
 
-  // Keyboard accessibility for container: Enter/Space selects nearest node if focused
-  container.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      // attempt to select currently focused node in network (vis handles focus internally)
-      // fallback: select first node
-      network.selectNodes([1]);
-      e.preventDefault();
-    }
-  });
+  // Keyboard accessibility for container: Enter/Space selects first node if focused
+  if (container) {
+    container.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        network.selectNodes([1]);
+        e.preventDefault();
+      }
+    });
+  }
 
   // IntersectionObserver to highlight the node of the strategy mostly in view
   const strategies = Array.from(document.querySelectorAll('.strategy'));
@@ -655,7 +702,6 @@
 
 })();
 </script>
-<!-- END: BeyondGaze vis-network right-side interactive map -->
 
 </body>
 </html>
