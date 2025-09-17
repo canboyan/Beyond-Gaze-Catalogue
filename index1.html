@@ -333,9 +333,21 @@
     const data = { nodes, edges };
     const options = {
       nodes: {
-        shape: 'dot',
-        size: 18,
-        font: { size: 11, color: '#d10000', face: 'Arial, sans-serif' },
+         shape: 'dot',
+    size: 18,
+    font: { size: 11, color: '#d10000', face: 'Arial, sans-serif' },
+    color: {
+      background: '#fff',   // empty fill
+      border: '#000',       // black outline
+      highlight: {          // fill when selected
+        background: '#d10000',
+        border: '#8b0000'
+      },
+      hover: {              // fill on hover
+        background: '#d10000',
+        border: '#8b0000'
+      }
+    },
         borderWidth: 1.2
       },
       edges: {
@@ -344,9 +356,9 @@
         smooth: { enabled: true, type: 'cubicBezier' }
       },
       groups: {
-        social: { color: { background: '#000', border: '#000' }, font:{ color: '#d10000' } },
-        sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#d10000' } },
-        material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#d10000' } }
+        social: { color: { background: '#fff', border: '#000' }, font:{ color: '#d10000' } },
+        sensory: { color: { background: '#fff', border: '#000' }, font:{ color: '#d10000' } },
+        material: { color: { background: '#fff', border: '#000' }, font:{ color: '#d10000' } }
       },
       interaction: {
         hover: true,
