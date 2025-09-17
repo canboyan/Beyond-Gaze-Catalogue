@@ -262,14 +262,15 @@
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
 </div>
-
-<!-- Floating legend positioned to the RIGHT of the panel -->
-<div id="network-legend-box" aria-hidden="false" title="Category legend">
-  <div class="legend-item"><span class="legend-color" style="background:#d10000;border-color:#d10000;"></span> Social</div>
-  <div class="legend-item"><span class="legend-color" style="background:#000000; border-color:#000;"></span> Material</div>
-  <div class="legend-item"><span class="legend-color" style="background:#800000;"></span> Sensory</div>
-  <div class="legend-item"><span class="legend-color" style="background:#ffcccc; border-color:#ffbebe;"></span> Spatial</div>
+  
+<!-- Horizontal legend below the panel -->
+<div id="network-legend-box">
+  <span class="legend-item"><span class="legend-color" style="background:#d10000;"></span> Social</span>
+  <span class="legend-item"><span class="legend-color" style="background:#000000;"></span> Material</span>
+  <span class="legend-item"><span class="legend-color" style="background:#800000;"></span> Sensory</span>
+  <span class="legend-item"><span class="legend-color" style="background:#ffcccc;"></span> Spatial</span>
 </div>
+
 
 <style>
   /* Right-side panel */
@@ -302,35 +303,36 @@
   }
 
   /* Legend box placed directly to the right of the panel (fixed) */
+/* Horizontal legend below the network panel */
 #network-legend-box {
-  position: absolute; /* absolute so JS controls left/top */
+  position: fixed;
+  bottom: 10px; /* distance from viewport bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px; /* spacing between items */
+  font-size: 12px;
+  font-family: Garamond;
+  font-weight: normal;
   background: transparent;
-  border: 0px solid rgba(0,0,0,0.9);
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 11px;
-  font-family: Helvetica, sans-serif;
-  font-weight: normal !important;
   z-index: 10002;
-  min-width: 140px;
-  cursor: grab;
+  white-space: nowrap;
 }
 
-  #network-legend-box strong { display:block; margin-bottom:6px; font-size:13px; }
-  .legend-item { display:flex; font-weight: normal !important; align-items:center; gap:3px; margin-bottom:6px; color:#000; }
-  .legend-color { width:8px; height:8px; border-radius:50%; border:1px solid rgba(0,0,0,0.6); display:inline-block; flex-shrink:0; }
+#network-legend-box .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #000;
+}
 
-  /* Vis tooltip styling */
-  .vis-tooltip { font-family: sans-serif; font-size: 11px; font-weight: normal; color: #d10000; }
+#network-legend-box .legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
 
-  /* Responsive: when viewport is narrow, move legend under the panel */
-  @media (max-width: 900px) {
-    #network-legend-box {
-      right: 10px;
-      bottom: calc(20px + 460px + 8px); /* place below panel */
-      min-width: 120px;
-    }
-  }
 </style>
 
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -500,7 +502,7 @@ window.addEventListener('scroll', positionLegend);
 
 // Make legend draggable
 legend.addEventListener('mousedown', e => {
-  isDragging = true;
+  isDragging = false, offsetX = 0, offsetY = 0;
   offsetX = e.clientX - legend.getBoundingClientRect().left;
   offsetY = e.clientY - legend.getBoundingClientRect().top;
   legend.style.cursor = 'grabbing';
