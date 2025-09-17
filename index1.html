@@ -306,15 +306,18 @@
 /* Horizontal legend below the network panel */
 #network-legend-box {
   position: fixed;
-  bottom: 10px; /* distance from viewport bottom */
-  left: 50%;
-  transform: translateX(-50%);
+  top: auto;
+  bottom: 0; /* or 10px for spacing */
+  left: auto;
+  right: 10px; /* match the panel's right position */
+  width: 100%; /* optional if you want it to match panel width */
+  text-align: center; /* center text under the panel */
   font-family: 'Garamond', serif;
   font-size: 12px;
   font-weight: normal;
   color: #000;
-  white-space: nowrap;
   z-index: 10002;
+  white-space: nowrap;
 }
 
 </style>
