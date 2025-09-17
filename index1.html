@@ -336,19 +336,17 @@
          shape: 'dot',
     size: 18,
     font: { size: 11, color: '#000000', face: 'Arial, sans-serif' },
-    color: {
-      background: '#fff',   // empty fill
-      border: '#000',       // black outline
-      highlight: {          // fill when selected
-        background: '#d10000',
-        border: '#8b0000'
-      },
-      hover: {              // fill on hover
-        background: '#d10000',
-        border: '#d10000'
-      }
-    },
-        borderWidth: 1.2
+color: {
+  background: '#fff',   // empty fill normally
+  border: '#fff',       // optional, or remove entirely
+  highlight: {
+    background: '#d10000' // red fill when clicked/selected
+  },
+  hover: {
+    background: '#d10000' // red fill on hover
+  }
+},
+borderWidth: 0
       },
       edges: {
         color: { color: '#bbb' },
