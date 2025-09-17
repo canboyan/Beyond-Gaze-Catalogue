@@ -338,17 +338,19 @@
     const options = {
       nodes: {
         shape: 'dot',
-        size: 18,
-        font: { size: 11, color: '#000000', face: 'Arial, sans-serif', bold: true},
-        color: {
-          background: '#fff',       // empty fill
-          border: '#000',           // black outline
-          highlight: {
-            background: '#d10000'   // red fill when selected
-          },
-          hover: {
-            background: '#d10000'   // red fill on hover
-          }
+  size: 18,
+  font: { size: 11, color: '#000000', face: 'Arial bold, sans-serif' }, // bold black text
+  color: {
+    background: '#fff',       // empty fill
+    border: '#000',           // black outline
+    highlight: {
+      background: '#d10000',
+      border: '#d10000'       // override default blue
+    },
+    hover: {
+      background: '#d10000',
+      border: '#d10000'
+    }
         },
         borderWidth: 1.2
       },
