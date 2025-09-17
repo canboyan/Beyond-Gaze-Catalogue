@@ -261,6 +261,14 @@
 <!-- Fixed right-side interactive network -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
+  <!-- Floating legend -->
+  <div id="network-legend">
+    <strong>Legend:</strong>
+    <div class="legend-item"><span class="legend-color" style="background:#d10000;"></span>Social</div>
+    <div class="legend-item"><span class="legend-color" style="background:#000000;"></span>Material</div>
+    <div class="legend-item"><span class="legend-color" style="background:#800000;"></span>Sensory</div>
+    <div class="legend-item"><span class="legend-color" style="background:#ffcccc;"></span>Spatial</div>
+  </div>
 </div>
 
 <style>
@@ -292,6 +300,29 @@
     border-radius: 6px;
   }
 
+  /* Floating legend */
+  #network-legend {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #000;
+  }
+
   /* Vis tooltip styling */
   .vis-tooltip {
     font-family: 'Arial, sans-serif';
@@ -310,7 +341,6 @@
 
 <script>
 (function() {
-  // Mapping node id -> strategy index
   const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4 };
 
   const nodes = new vis.DataSet([
@@ -341,8 +371,6 @@
         size: 18,
         font: { size: 12, color: '#000000', face: 'Arial, sans-serif' },
         color: {
-          background: '#fff',
-          border: '#000',
           highlight: { background: '#d10000', border: '#d10000' },
           hover: { background: '#d10000', border: '#d10000' }
         },
@@ -355,10 +383,10 @@
         dashes: [5, 5]
       },
       groups: {
-        social: { color: { background: '#fff', border: '#000' }, font: { color: '#000' }, shape: 'dot' },
-        material: { color: { background: '#fff', border: '#000' }, font: { color: '#000' }, shape: 'dot' },
-        sensory: { color: { background: '#fff', border: '#000' }, font: { color: '#000' }, shape: 'dot' },
-        spatial: { color: { background: '#fff', border: '#000' }, font: { color: '#000' }, shape: 'dot' }
+        social: { color: { background: '#d10000', border: '#d10000' }, font: { color: '#fff' }, shape: 'dot' },
+        material: { color: { background: '#000000', border: '#000000' }, font: { color: '#fff' }, shape: 'dot' },
+        sensory: { color: { background: '#800000', border: '#800000' }, font: { color: '#fff' }, shape: 'dot' },
+        spatial: { color: { background: '#ffcccc', border: '#ffcccc' }, font: { color: '#000' }, shape: 'dot' }
       },
       interaction: {
         hover: true,
@@ -381,20 +409,16 @@
     function resizeNetwork() {
       const panel = document.getElementById('bg-network-panel');
       if (!panel) return;
-
       const w = Math.min(560, window.innerWidth - 20);
       const h = Math.min(460, window.innerHeight - 20);
-
       panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
       panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
-
       container.style.width = '100%';
       container.style.height = '100%';
       network.redraw();
     }
     window.addEventListener('resize', resizeNetwork);
 
-    // Click -> scroll to strategy
     network.on('click', function(params) {
       if (!params.nodes || !params.nodes.length) return;
       const nodeId = params.nodes[0];
@@ -402,17 +426,13 @@
       const strategies = document.querySelectorAll('.strategy');
       const target = strategies[idx];
       if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 20,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
         network.selectNodes([nodeId]);
         nodes.update({ id: nodeId, size: 28 });
         setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
       }
     });
 
-    // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) if (strategies[idx]) observedMap[idx] = Number(nodeId);
@@ -450,13 +470,11 @@
     });
   }
 
-  // Initialize network
   if (document.getElementById('bg-network')) initNetwork();
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
 
 })();
 </script>
-
 
 </body>
 </html>
