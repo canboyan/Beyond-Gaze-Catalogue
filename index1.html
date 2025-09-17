@@ -496,46 +496,32 @@
 
 <script>
 (function(){
-  /* ---------- Inject strong CSS to force red text and remove borders/shadows ---------- */
+  /* ---------- Inject CSS (responsive + mobile-friendly + red text + borderless) ---------- */
   const css = `
-    /* Make all labels and tooltips red and readable */
-    #bg-network-panel,
-    #bg-network,
-    #bg-network * {
-      color: #d10000 !important;
+    /* core panel sizing and look (borderless, red labels) */
+    #bg-network-panel, #bg-network-panel * { color: #d10000 !important; }
+    #bg-network-panel { background: #fff !important; width: 360px !important; height: 460px !important; max-width: 36vw !important; border: none !important; box-shadow: none !important; border-radius: 10px !important; padding: 8px !important; }
+    #bg-network { border: none !important; background: #fff !important; height: calc(100% - 66px) !important; } /* leave space for header+legend */
+    .vis-tooltip { color: #d10000 !important; font-family: "EB Garamond", serif !important; font-size: 13px !important; }
+
+    /* collapse button */
+    #bg-collapse-btn { position: absolute; left: 10px; top: 8px; background: transparent; border: none; color: #d10000; font-size: 20px; cursor: pointer; padding: 6px; line-height:1; }
+    #bg-network-panel.collapsed { width: 48px !important; height: 48px !important; padding: 6px !important; overflow: hidden !important; }
+    #bg-network-panel.collapsed #bg-network, #bg-network-panel.collapsed #bg-network-legend { display: none !important; }
+
+    /* position adjustments for mobile landscape: appear at bottom and use vw/vh */
+    @media (max-width: 820px) {
+      /* default on small portrait: hide to avoid overlap */
+      #bg-network-panel { display: none !important; }
     }
-    /* Force vis tooltip red */
-    .vis-tooltip {
-      color: #d10000 !important;
-      font-family: "EB Garamond", serif !important;
-      font-size: 13px !important;
+    @media (max-width: 820px) and (orientation: landscape) {
+      #bg-network-panel { display: flex !important; right: 10px !important; top: auto !important; bottom: 10px !important; width: 60vw !important; height: 42vh !important; max-width: none !important; }
+      #bg-network { height: calc(42vh - 58px) !important; }
+      #bg-network-panel.collapsed { width: 54px !important; height: 54px !important; bottom: 10px !important; right: 10px !important; }
     }
 
-    /* Remove any border/shadow/outline from the panel and its descendants */
-    #bg-network-panel,
-    #bg-network-panel * {
-      border: none !important;
-      box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      -moz-box-shadow: none !important;
-      outline: none !important;
-    }
-
-    /* Ensure container background is white for contrast */
-    #bg-network-panel {
-      background: #fff !important;
-      width: 360px !important;   /* increased by +40px (was 320) */
-      height: 460px !important;  /* increased by +40px (was 420) */
-      max-width: 36vw !important;
-    }
-
-    /* ensure inner vis container has no border */
-    #bg-network {
-      border: none !important;
-      background: #fff !important;
-    }
-
-    /* Some vis-network internal wrappers/canvas might show outlines — remove those */
+    /* remove stroke or outlines from any nested elements that might look like borders */
+    #bg-network-panel, #bg-network-panel * { border: none !important; box-shadow: none !important; outline: none !important; -webkit-box-shadow: none !important; -moz-box-shadow: none !important; }
     .vis-network, .vis-network * { stroke: none !important; }
   `;
   const styleEl = document.createElement('style');
@@ -543,69 +529,44 @@
   styleEl.appendChild(document.createTextNode(css));
   document.head.appendChild(styleEl);
 
-  /* ---------- MutationObserver to remove border/shadow if re-applied later ---------- */
+  /* ---------- Helper cleanup function to defensively remove borders/shadows ---------- */
   const cleanup = (node) => {
-    try {
-      node.style.border = 'none';
-      node.style.boxShadow = 'none';
-      node.style.outline = 'none';
-    } catch (e) {}
+    if (!node) return;
+    try { node.style.border = 'none'; node.style.boxShadow = 'none'; node.style.outline = 'none'; } catch(e){}
     if (node.querySelectorAll) {
-      node.querySelectorAll('*').forEach(el => {
-        try {
-          el.style.border = 'none';
-          el.style.boxShadow = 'none';
-          el.style.outline = 'none';
-        } catch (e) {}
-      });
+      node.querySelectorAll('*').forEach(el => { try { el.style.border='none'; el.style.boxShadow='none'; el.style.outline='none'; } catch(e){} });
     }
   };
 
-  const panelCheck = () => {
+  /* ---------- Ensure panel sizing & cleanup at runtime ---------- */
+  const applyPanelDefaults = () => {
     const panel = document.getElementById('bg-network-panel');
     const inner = document.getElementById('bg-network');
     if (panel) {
-      // ensure inline sizing (defensive)
-      panel.style.width = '360px';
-      panel.style.height = '460px';
-      panel.style.maxWidth = '36vw';
-      panel.style.background = '#fff';
-      panel.style.border = 'none';
-      panel.style.boxShadow = 'none';
+      panel.style.width = panel.classList.contains('collapsed') ? '48px' : '360px';
+      panel.style.height = panel.classList.contains('collapsed') ? '48px' : '460px';
+      panel.style.border = 'none'; panel.style.boxShadow = 'none';
       cleanup(panel);
     }
-    if (inner) {
-      inner.style.border = 'none';
-      inner.style.background = '#fff';
-      cleanup(inner);
-    }
+    if (inner) { inner.style.border='none'; inner.style.background='#fff'; cleanup(inner); }
   };
+  applyPanelDefaults();
+  window.addEventListener('load', applyPanelDefaults);
+  setTimeout(applyPanelDefaults, 120);
+  setTimeout(applyPanelDefaults, 600);
 
-  // Run immediately and a couple times after load
-  panelCheck();
-  window.addEventListener('load', panelCheck);
-  setTimeout(panelCheck, 120);
-  setTimeout(panelCheck, 600);
-
-  // Observe document for any attribute/style changes that might add borders back
+  /* ---------- Observe DOM mutations that might reintroduce styling ---------- */
   const mo = new MutationObserver((mutations) => {
     mutations.forEach(m => {
       if (m.target && (m.target.id === 'bg-network-panel' || m.target.id === 'bg-network' || (m.target.closest && m.target.closest('#bg-network-panel')))) {
-        panelCheck();
+        applyPanelDefaults();
       }
     });
   });
   mo.observe(document.documentElement || document.body, { attributes: true, subtree: true, childList: true });
 
   /* ---------- vis-network setup (nodes/edges/options) ---------- */
-  // Map node id -> strategy index (0-based)
-  const strategyMap = {
-    1: 0,
-    2: 1,
-    3: 2,
-    4: 3,
-    5: 4
-  };
+  const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4 };
 
   const nodes = new vis.DataSet([
     { id: 1, label: "Tactile Storying", group: "social", title: "Sequential tactile narration — token, turn-taking, consent & empathy." },
@@ -616,83 +577,86 @@
   ]);
 
   const edges = new vis.DataSet([
-    { from: 1, to: 3 },
-    { from: 1, to: 5 },
-    { from: 2, to: 4 },
-    { from: 3, to: 5 },
-    { from: 4, to: 1 }
+    { from: 1, to: 3 }, { from: 1, to: 5 }, { from: 2, to: 4 }, { from: 3, to: 5 }, { from: 4, to: 1 }
   ]);
 
-  const container = document.getElementById('bg-network');
-  if (!container) {
-    // If the container isn't present yet, wait briefly and try again
-    setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
-  } else {
-    initNetwork();
-  }
+  const ensureContainerThenInit = () => {
+    const container = document.getElementById('bg-network');
+    if (!container) {
+      setTimeout(ensureContainerThenInit, 80);
+    } else {
+      initNetwork();
+    }
+  };
+  ensureContainerThenInit();
 
-  function initNetwork() {
+  function initNetwork(){
     const container = document.getElementById('bg-network');
     const data = { nodes, edges };
-
     const options = {
-      nodes: {
-        shape: 'dot',
-        size: 18,
-        // force red label color
-        font: { size: 12, color: '#d10000', face: 'EB Garamond, serif' },
-        borderWidth: 1.2
-      },
-      edges: {
-        color: { color: '#bbb' },
-        width: 1.2,
-        smooth: { enabled: true, type: 'cubicBezier' }
-      },
+      nodes: { shape:'dot', size:20, font:{ size:13, color:'#d10000', face:'EB Garamond, serif' }, borderWidth:1.2 },
+      edges: { color:{ color:'#bbb' }, width:1.2, smooth:{ enabled:true, type:'cubicBezier' } },
       groups: {
-        social: { color: { background: '#000', border: '#000' }, font:{ color: '#d10000' } },
-        sensory: { color: { background: '#d10000', border: '#8b0000' }, font:{ color: '#d10000' } },
-        material: { color: { background: '#6a6a6a', border: '#444' }, font:{ color: '#d10000' } }
+        social: { color:{ background:'#000', border:'#000' }, font:{ color:'#d10000' } },
+        sensory: { color:{ background:'#d10000', border:'#8b0000' }, font:{ color:'#d10000' } },
+        material: { color:{ background:'#6a6a6a', border:'#444' }, font:{ color:'#d10000' } }
       },
-      interaction: {
-        hover: true,
-        tooltipDelay: 100,
-        navigationButtons: false,
-        keyboard: true
-      },
+      interaction: { hover:true, tooltipDelay:100, navigationButtons:false, keyboard:true, multiselect:false },
       physics: {
         stabilization: true,
-        barnesHut: {
-          gravitationalConstant: -3000,
-          springLength: 140,
-          springConstant: 0.02
-        }
+        barnesHut: { gravitationalConstant: -3200, springLength: 160, springConstant: 0.02 }
       },
-      layout: {
-        improvedLayout: true
-      }
+      layout: { improvedLayout: true }
     };
 
     const network = new vis.Network(container, data, options);
 
-    // Resize network canvas to fit the increased panel height
+    /* responsive redraw */
     function resizeNetwork() {
       const panel = document.getElementById('bg-network-panel');
       const cont = document.getElementById('bg-network');
       if (!panel || !cont) return;
+      // compute available height for network canvas (panel height minus header/legend ~ 66px)
       const panelH = panel.clientHeight || 460;
-      const reserved = 62; // header/legend space
-      const netH = Math.max(160, Math.round(panelH - reserved));
+      const reserved = 66;
+      const netH = Math.max(120, Math.round(panelH - reserved));
       cont.style.height = netH + 'px';
       network.redraw();
-      // enforce no border on any generated elements
       cleanup(panel);
       cleanup(cont);
     }
     setTimeout(resizeNetwork, 80);
     window.addEventListener('resize', resizeNetwork);
+    window.addEventListener('orientationchange', () => { setTimeout(resizeNetwork, 140); });
 
-    // Click -> scroll to strategy
-    network.on('click', function(params) {
+    /* Add collapse button (if not present) */
+    const panel = document.getElementById('bg-network-panel');
+    if (panel && !panel.querySelector('#bg-collapse-btn')) {
+      const btn = document.createElement('button');
+      btn.id = 'bg-collapse-btn';
+      btn.innerHTML = '▣'; // square icon, visible in red
+      btn.setAttribute('aria-label','Toggle strategy map');
+      btn.addEventListener('click', () => {
+        panel.classList.toggle('collapsed');
+        applyPanelDefaults();
+        setTimeout(resizeNetwork, 120);
+        // save preference for landscape devices only (optional)
+        try { localStorage.setItem('bg-panel-collapsed', panel.classList.contains('collapsed') ? '1':'0'); } catch(e){}
+      });
+      // touch-friendly: larger hit area
+      btn.style.padding = '6px';
+      btn.style.minWidth = '34px';
+      btn.style.minHeight = '28px';
+      panel.appendChild(btn);
+      // restore saved state for small devices
+      try {
+        const saved = localStorage.getItem('bg-panel-collapsed');
+        if (saved === '1') panel.classList.add('collapsed');
+      } catch(e){}
+    }
+
+    /* Click handler: scroll to strategy block */
+    network.on('click', function(params){
       if (!params.nodes || params.nodes.length === 0) return;
       const nodeId = params.nodes[0];
       const idx = strategyMap[nodeId];
@@ -701,12 +665,12 @@
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         network.selectNodes([nodeId]);
-        nodes.update({ id: nodeId, size: 28 });
-        setTimeout(()=> nodes.update({ id: nodeId, size: 18 }), 650);
+        nodes.update({ id: nodeId, size: 30 });
+        setTimeout(()=> nodes.update({ id: nodeId, size: 20 }), 650);
       }
     });
 
-    // IntersectionObserver to highlight node for strategy in view
+    /* IntersectionObserver: highlight node when its strategy is in view */
     const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
     for (const [nodeId, idx] of Object.entries(strategyMap)) {
@@ -714,31 +678,29 @@
     }
     const io = new IntersectionObserver((entries) => {
       let best = null;
-      entries.forEach(ent => {
-        if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent;
-      });
+      entries.forEach(ent => { if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent; });
       if (best && best.intersectionRatio > 0.45) {
         const index = strategies.indexOf(best.target);
         const nodeId = observedMap[index];
         if (nodeId) {
           network.selectNodes([nodeId]);
           nodes.update({ id: nodeId, size: 26 });
-          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 18 }); });
+          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 20 }); });
         }
       }
     }, { root: null, rootMargin: '0px', threshold: [0.45, 0.6] });
     strategies.forEach(s => io.observe(s));
 
-    // Accessibility live region announce
+    /* Accessibility: live region announce */
     const live = document.createElement('div');
-    live.setAttribute('aria-live', 'polite');
+    live.setAttribute('aria-live','polite');
     live.style.position = 'absolute';
     live.style.left = '-9999px';
     live.style.width = '1px';
     live.style.height = '1px';
     document.body.appendChild(live);
 
-    network.on('selectNode', function(params) {
+    network.on('selectNode', function(params){
       if (!params.nodes || params.nodes.length === 0) return;
       const id = params.nodes[0];
       const n = nodes.get(id);
@@ -747,8 +709,17 @@
       const elementLabel = (strategies[idx] && strategies[idx].querySelector('.strategy-title')) ? strategies[idx].querySelector('.strategy-title').innerText : '';
       live.textContent = elementLabel ? (elementLabel + ' selected') : title;
     });
-  } // end initNetwork()
 
+    /* default collapsed behavior for small landscape devices: collapsed by default */
+    try {
+      if (window.matchMedia && window.matchMedia('(max-width: 820px) and (orientation: landscape)').matches) {
+        panel.classList.add('collapsed');
+        applyPanelDefaults();
+        setTimeout(resizeNetwork, 100);
+      }
+    } catch(e){}
+
+  } // initNetwork end
 })();
 </script>
 
