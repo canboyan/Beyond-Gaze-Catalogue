@@ -263,6 +263,14 @@
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
 </div>
 
+<!-- Floating legend -->
+<div id="network-legend" style="position: fixed; bottom: 20px; right: 680px; background: #fff; padding: 8px; border-radius: 6px; font-size: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+  <div><span style="display:inline-block; width:12px; height:12px; background:#a2d5f2; margin-right:5px;"></span> Spatial</div>
+  <div><span style="display:inline-block; width:12px; height:12px; background:#ffd3b6; margin-right:5px;"></span> Social</div>
+  <div><span style="display:inline-block; width:12px; height:12px; background:#caffbf; margin-right:5px;"></span> Material</div>
+  <div><span style="display:inline-block; width:12px; height:12px; background:#999; margin-right:5px;"></span> Sensory</div>
+</div>
+
 <style>
   /* Right-side panel */
   #bg-network-panel {
@@ -300,9 +308,7 @@
   }
 
   @media (max-width: 820px) {
-    #bg-network-panel {
-       #bg-network-panel { display: flex !important; }
-    }
+    #bg-network-panel { display: flex !important; }
   }
 </style>
 
@@ -320,13 +326,14 @@
     { id: 4, label: "Anticipatory Tactility", group: "sensory", title: "Predict → touch → reflect..." },
     { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation..." }
   ]);
-const edges = new vis.DataSet([
-  { from: 1, to: 3 },
-  { from: 1, to: 5 },
-  { from: 2, to: 4 },
-  { from: 3, to: 5 },
-  { from: 4, to: 1 }
-]);
+
+  const edges = new vis.DataSet([
+    { from: 1, to: 3 },
+    { from: 1, to: 5 },
+    { from: 2, to: 4 },
+    { from: 3, to: 5 },
+    { from: 4, to: 1 }
+  ]);
 
   function initNetwork() {
     const container = document.getElementById('bg-network');
@@ -337,32 +344,27 @@ const edges = new vis.DataSet([
     const options = {
       nodes: {
         shape: 'dot',
-  size: 18,
-  font: { size: 11, color: '#000000', face: 'Arial bold, sans-serif' }, // bold black text
-  color: {
-    background: '#fff',       // empty fill
-    border: '#000',           // black outline
-    highlight: {
-      background: '#d10000',
-      border: '#d10000'       // override default blue
-    },
-    hover: {
-      background: '#d10000',
-      border: '#d10000'
-    }
+        size: 18,
+        font: { size: 11, color: '#000000', face: 'Arial bold, sans-serif' },
+        color: {
+          background: '#fff',
+          border: '#000',
+          highlight: { background: '#d10000', border: '#d10000' },
+          hover: { background: '#d10000', border: '#d10000' }
         },
         borderWidth: 1.2
       },
       edges: {
         color: { color: '#bbb' },
-  width: 1.2,
-  smooth: { enabled: true, type: 'cubicBezier' },
-  dashes: [5, 5]  // 5px dash, 5px gap
-},
+        width: 1.2,
+        smooth: { enabled: true, type: 'cubicBezier' },
+        dashes: [5, 5]
+      },
       groups: {
-        social: { color: { background: '#fff', border: '#000' }, font: { color: '#000000' }, bold: true },
-        sensory: { color: { background: '#000', border: '#000' }, font: { color: '#000000' }, bold: true },
-        material: { color: { background: '#fff', border: '#000' }, font: { color: '#000000' }, bold: true }
+        spatial:  { color: { background: '#a2d5f2', border: '#333' }, font: { color: '#000000' }, bold: true },
+        social:   { color: { background: '#ffd3b6', border: '#333' }, font: { color: '#000000' }, bold: true },
+        material: { color: { background: '#caffbf', border: '#333' }, font: { color: '#000000' }, bold: true },
+        sensory:  { color: { background: '#999', border: '#000' }, font: { color: '#fff' }, bold: true }
       },
       interaction: {
         hover: true,
@@ -382,38 +384,35 @@ const edges = new vis.DataSet([
     const network = new vis.Network(container, data, options);
 
     // Mobile-friendly resize
-   function resizeNetwork(){
-  const panel = document.getElementById('bg-network-panel');
-  if(!panel) return;
-
-  // Only shrink if screen is smaller than 560x460
-  const w = Math.min(560, window.innerWidth - 20);
-  const h = Math.min(460, window.innerHeight - 20);
-
-  panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
-  panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
-  
-  container.style.width = '100%';
-  container.style.height = '100%';
-  network.redraw();
-}
+    function resizeNetwork(){
+      const panel = document.getElementById('bg-network-panel');
+      if(!panel) return;
+      const w = Math.min(560, window.innerWidth - 20);
+      const h = Math.min(460, window.innerHeight - 20);
+      panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
+      panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      network.redraw();
+    }
     window.addEventListener('resize', resizeNetwork);
 
-network.on('click', function(params) {
-  if (!params.nodes || !params.nodes.length) return;
-  const nodeId = params.nodes[0];
-  const target = document.querySelector(`.strategy[data-node="${nodeId}"]`);
-  if (target) {
-    window.scrollTo({
-      top: target.offsetTop - 20,
-      behavior: 'smooth'
+    // Click -> scroll to strategy
+    network.on('click', function(params) {
+      if (!params.nodes || !params.nodes.length) return;
+      const nodeId = params.nodes[0];
+      const strategies = document.querySelectorAll('.strategy');
+      const target = strategies[strategyMap[nodeId]];
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 20,
+          behavior: 'smooth'
+        });
+        network.selectNodes([nodeId]);
+        nodes.update({ id: nodeId, size: 28 });
+        setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
+      }
     });
-    network.selectNodes([nodeId]);
-    nodes.update({ id: nodeId, size: 28 });
-    setTimeout(() => nodes.update({ id: nodeId, size: 18 }), 650);
-  }
-});
-
 
     // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
@@ -459,8 +458,6 @@ network.on('click', function(params) {
 
 })();
 </script>
-
-
 
 </body>
 </html>
