@@ -466,45 +466,6 @@
 
 })();
 </script>
-<script>
-const panel = document.getElementById('bg-network-panel');
-const legend = document.getElementById('network-legend-box');
-
-let isDragging = false, offsetX = 0, offsetY = 0;
-
-// Place legend initially next to panel
-function positionLegend() {
-  const rect = panel.getBoundingClientRect();
-  legend.style.left = (rect.right + 10 + window.scrollX) + 'px';
-  legend.style.top = (rect.top + window.scrollY) + 'px';
-}
-positionLegend();
-
-// Update placement when scrolling/resizing
-window.addEventListener('resize', positionLegend);
-window.addEventListener('scroll', positionLegend);
-
-// Make legend draggable
-legend.addEventListener('mousedown', e => {
-  isDragging = false, offsetX = 0, offsetY = 0;
-  offsetX = e.clientX - legend.getBoundingClientRect().left;
-  offsetY = e.clientY - legend.getBoundingClientRect().top;
-  legend.style.cursor = 'grabbing';
-  e.preventDefault();
-});
-
-document.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  legend.style.left = (e.clientX - offsetX + window.scrollX) + 'px';
-  legend.style.top = (e.clientY - offsetY + window.scrollY) + 'px';
-});
-
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-  legend.style.cursor = 'grab';
-});
-</script>
-
 
 
 </body>
