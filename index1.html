@@ -302,19 +302,19 @@
   }
 
   /* Legend box placed directly to the right of the panel (fixed) */
-  #network-legend-box {
-    position: absolute;
-    /* place to the right of the panel: panel right (10px) + panel width (660px) + gap (12px) */
-    background: transparent;
-    border: 0px solid rgba(0,0,0,0.9);
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 11px;
-    font-family: Helvetica, sans-serif;
-    font-weight: normal !important;
-    z-index: 10002;
-    min-width: 140px;
-  }
+#network-legend-box {
+  position: absolute; /* absolute so JS controls left/top */
+  background: transparent;
+  border: 0px solid rgba(0,0,0,0.9);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: normal !important;
+  z-index: 10002;
+  min-width: 140px;
+  cursor: grab;
+}
 
   #network-legend-box strong { display:block; margin-bottom:6px; font-size:13px; }
   .legend-item { display:flex; font-weight: normal !important; align-items:center; gap:3px; margin-bottom:6px; color:#000; }
@@ -484,24 +484,22 @@
 const panel = document.getElementById('bg-network-panel');
 const legend = document.getElementById('network-legend-box');
 
-// Place legend initially next to the panel
+let isDragging = false, offsetX = 0, offsetY = 0;
+
+// Place legend initially next to panel
 function positionLegend() {
   const rect = panel.getBoundingClientRect();
   legend.style.left = (rect.right + 10 + window.scrollX) + 'px';
   legend.style.top = (rect.top + window.scrollY) + 'px';
 }
-
-// Run initially
 positionLegend();
 
-// Update on scroll & resize
+// Update placement when scrolling/resizing
 window.addEventListener('resize', positionLegend);
 window.addEventListener('scroll', positionLegend);
 
-// Make draggable
-let isDragging = false, offsetX = 0, offsetY = 0;
-
-legend.addEventListener('mousedown', (e) => {
+// Make legend draggable
+legend.addEventListener('mousedown', e => {
   isDragging = true;
   offsetX = e.clientX - legend.getBoundingClientRect().left;
   offsetY = e.clientY - legend.getBoundingClientRect().top;
@@ -509,17 +507,18 @@ legend.addEventListener('mousedown', (e) => {
   e.preventDefault();
 });
 
-document.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', e => {
   if (!isDragging) return;
   legend.style.left = (e.clientX - offsetX + window.scrollX) + 'px';
   legend.style.top = (e.clientY - offsetY + window.scrollY) + 'px';
 });
 
 document.addEventListener('mouseup', () => {
-  if (isDragging) legend.style.cursor = 'grab';
   isDragging = false;
+  legend.style.cursor = 'grab';
 });
 </script>
+
 
 
 </body>
