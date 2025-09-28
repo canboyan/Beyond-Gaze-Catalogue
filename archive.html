@@ -5,7 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Archive - Beyond Gaze Catalogue</title>
   <link rel="stylesheet" href="index.css" />
+<style>
+.tts-controls {
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  align-items: flex-start; /* align left */
+  gap: 1px; /* space between buttons */
+  margin: 0;
+  padding: 0;
+}
 
+.tts-controls button {
+  background: none !important;  /* remove gray background immediately */
+  border: none !important;      
+  padding: 0 !important;       
+  cursor: pointer;
+  font-family: 'Arial Black', sans-serif !important; 
+  color: red !important;       
+  font-size: 14px !important;
+}
+
+.tts-controls button:hover {
+  color: black; /* hover color */
+}
+
+</style>
 <style>
 /* ----------------------
    MAIN CONTENT STACKING
@@ -346,33 +370,6 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 });
 </script>
-    
-<style>
-.tts-controls {
-  display: flex;
-  flex-direction: column; /* stack buttons vertically */
-  align-items: flex-start; /* align left */
-  gap: 1px; /* space between buttons */
-  margin: 0;
-  padding: 0;
-}
-
-.tts-controls button {
-  background: none !important;  /* remove gray background immediately */
-  border: none !important;      
-  padding: 0 !important;       
-  cursor: pointer;
-  font-family: 'Arial Black', sans-serif !important; 
-  color: red !important;       
-  font-size: 14px !important;
-}
-
-.tts-controls button:hover {
-  color: black; /* hover color */
-}
-
-</style>
-
 </main>
 </body>
 </html>
