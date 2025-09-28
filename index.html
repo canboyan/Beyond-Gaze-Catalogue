@@ -5,7 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Archive - Beyond Gaze Catalogue</title>
   <link rel="stylesheet" href="index.css" />
+<style>
+.tts-controls {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: flex-start; /* align left */
+    gap: 1px; /* small space between buttons */
+    margin: 0; /* remove any default margin */
+}
 
+.tts-controls button {
+  background: none !important;  /* remove gray background immediately */
+  border: none !important;      
+  padding: 0 !important;       
+  cursor: pointer;
+  font-family: 'Arial Black', sans-serif !important; 
+  color: red !important;       
+  font-size: 14px !important;
+}
+
+.tts-controls button:hover {
+    color: black;
+}
+
+</style>
 <style>
 /* ----------------------
    MAIN CONTENT STACKING
@@ -311,31 +334,6 @@ audio::-webkit-media-controls-volume-slider:focus {
       player.setPlaybackQuality('hd1080');
     }
   </script>
-<style>
-.tts-controls {
-    display: flex;
-    flex-direction: column; /* stack buttons vertically */
-    align-items: flex-start; /* align left */
-    gap: 1px; /* small space between buttons */
-    margin: 0; /* remove any default margin */
-}
-
-.tts-controls button {
-  background: none !important;  /* remove gray background immediately */
-  border: none !important;      
-  padding: 0 !important;       
-  cursor: pointer;
-  font-family: 'Arial Black', sans-serif !important; 
-  color: red !important;       
-  font-size: 14px !important;
-}
-
-.tts-controls button:hover {
-    color: black;
-}
-
-</style>
-
 </main>
 <script>
   const synth = window.speechSynthesis;
