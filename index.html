@@ -311,27 +311,6 @@ audio::-webkit-media-controls-volume-slider:focus {
       player.setPlaybackQuality('hd1080');
     }
   </script>
-    <script>
-  const synth = window.speechSynthesis;
-
-  function readPage() {
-    synth.cancel();
-    const text = document.querySelector('.main-content').innerText;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    synth.speak(utterance);
-  }
-
-  function stopReading() {
-    synth.cancel();
-  }
-
-  document.getElementById("readTextBtn").addEventListener("click", readPage);
-  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
-</script>
-
 <style>
   .tts-controls {
     margin: 15px 0;
@@ -353,5 +332,26 @@ audio::-webkit-media-controls-volume-slider:focus {
 </style>
 
 </main>
+<script>
+  const synth = window.speechSynthesis;
+
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
+
+  function stopReading() {
+    synth.cancel();
+  }
+
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+
 </body>
 </html>
