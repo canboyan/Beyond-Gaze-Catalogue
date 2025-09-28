@@ -199,7 +199,7 @@ audio::-webkit-media-controls-volume-slider:focus {
         <p><strong>Last edited Tue Sep 10<br>21:37:30 2025<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
-         <div class="tts-controls">
+  <div class="tts-controls">
   <button id="readTextBtn"> Read Page</button>
   <button id="stopTextBtn"> Stop</button>
 </div>
@@ -325,27 +325,28 @@ audio::-webkit-media-controls-volume-slider:focus {
   }
 </script>
 <script>
-const synth = window.speechSynthesis;
+document.addEventListener("DOMContentLoaded", function() {
+  const synth = window.speechSynthesis;
 
-function readPage() {
-  synth.cancel();
-  const text = document.querySelector('.content').innerText; // use correct selector
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 1;
-  utterance.pitch = 1;
-  synth.speak(utterance);
-}
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
 
-function stopReading() {
-  synth.cancel();
-}
+  function stopReading() {
+    synth.cancel();
+  }
 
-document.getElementById("readTextBtn").addEventListener("click", readPage);
-document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+});
 </script>
-
-
+    
 <style>
 .tts-controls {
   display: flex;
