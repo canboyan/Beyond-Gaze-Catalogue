@@ -155,5 +155,50 @@ body {
       </p>
     </main>
   </div>
+    <script>
+  const synth = window.speechSynthesis;
+
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.main-content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
+
+  function stopReading() {
+    synth.cancel();
+  }
+
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+
+<style>
+.tts-controls {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: flex-start; /* align left */
+    gap: 4px; /* small space between buttons */
+    margin: 0; /* remove any default margin */
+}
+
+.tts-controls button {
+    background: none; /* remove button background */
+    border: none;     /* remove button border */
+    padding: 0;       /* remove padding */
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif; /* your chosen font */
+    color: red;       /* red text */
+    font-size: 14px;
+}
+
+.tts-controls button:hover {
+    color: black;       /* red text */
+}
+</style>
+
 </body>
 </html>
