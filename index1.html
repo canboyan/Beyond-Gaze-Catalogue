@@ -145,6 +145,11 @@
         <div class="main-title">Touch-led Artistic Strategies: Index</div>
       <p style="font-size: 13px; margin-top: 2px; margin-bottom: 0;">Boyan, C. (2025). Beyond Gaze Research Catalogue.</p>
       </div>
+      <div class="tts-controls">
+  <button id="readTextBtn"> Read Page</button>
+  <button id="stopTextBtn"> Stop</button>
+</div>
+
 
       <!-- Strategy 1 -->
       <div class="strategy" data-node="1">
@@ -458,5 +463,46 @@
   else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
 })();
 </script>
+  <script>
+  const synth = window.speechSynthesis;
+
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.main-content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
+
+  function stopReading() {
+    synth.cancel();
+  }
+
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+
+<style>
+  .tts-controls {
+    margin: 15px 0;
+  }
+  .tts-controls button {
+    padding: 6px 12px;
+    margin-right: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: #fff;
+    font-family: 'EB Garamond', serif;
+  }
+  .tts-controls button:hover {
+    background: #444;
+  }
+</style>
+
 </body>
 </html>
