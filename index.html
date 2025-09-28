@@ -312,21 +312,25 @@ audio::-webkit-media-controls-volume-slider:focus {
     }
   </script>
 <style>
-  .tts-controls {
-    margin: 15px 0;
-  }
-.tts-controls button {
-    background: none;      /* remove button background */
-    border: none;          /* remove button border */
-    padding: 0;            /* remove button padding */
-    cursor: pointer;       /* keep pointer cursor */
-    font-family: 'Arial Black', sans-serif; /* your chosen font */
-    color: red;            /* font color */
-    font-size: 14px;       /* adjust size if needed */
+.tts-controls {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    gap: 6px;               /* space between buttons */
+    margin: 0;              /* remove extra margin if needed */
 }
 
-  .tts-controls button:hover {
-    background: #444;
+.tts-controls button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif;
+    color: red;
+    font-size: 14px;
+}
+
+.tts-controls button:hover {
+    text-decoration: underline; /* optional hover effect */
 }
 </style>
 
