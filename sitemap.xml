@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.beyondgaze.work/index.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>1.0</priority>
+
+    <!-- Video 1 -->
+    <video:video>
+      <video:title>Fieldworks – Non-Visual Witnessing</video:title>
+      <video:description>Discussion on tactile choreographies, non-visual witnessing, and perception in performance.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/Screenshot%202025-08-26%20at%2022.22.00bw.png</video:thumbnail_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/mZl7oarLLLY</video:player_loc>
+    </video:video>
+
+    <!-- Video 2 -->
+    <video:video>
+      <video:title>Vera Tussing – Tactile Logic in Choreography</video:title>
+      <video:description>Conversation on tactility, consent, and choreography with Vera Tussing.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/VTbw1.png</video:thumbnail_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/Ut1ehX04FP0</video:player_loc>
+    </video:video>
+  </url>
+
+  <!-- Index 1 (removed invalid Google Doc embed, no real video) -->
+
+  <!-- Archive -->
+  <url>
+    <loc>https://www.beyondgaze.work/archive.html</loc>
+    <lastmod>2025-09-11</lastmod>
+    <priority>0.8</priority>
+
+    <!-- Video 1 -->
+    <video:video>
+      <video:title>Fieldworks – Non-Visual Witnessing</video:title>
+      <video:description>Discussion on tactile choreographies, non-visual witnessing, and perception in performance.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/Screenshot%202025-08-26%20at%2022.22.00bw.png</video:thumbnail_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/mZl7oarLLLY</video:player_loc>
+    </video:video>
+
+    <!-- Video 2 -->
+    <video:video>
+      <video:title>Vera Tussing – Tactile Logic in Choreography</video:title>
+      <video:description>Conversation on tactility, consent, and choreography with Vera Tussing.</video:description>
+      <video:thumbnail_loc>https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/main/VTbw1.png</video:thumbnail_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/Ut1ehX04FP0</video:player_loc>
+    </video:video>
+  </url>
+
+  <!-- Info (removed invalid video reference) -->
+
+  <!-- Contact (removed invalid video reference) -->
+
+  <!-- License (removed invalid video reference) -->
+
+</urlset>
