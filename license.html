@@ -81,12 +81,32 @@ body {
     padding: 15px;
   }
 }
+
+/* ----------------------
+   TTS BUTTONS
+------------------------*/
+.tts-controls button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tts-controls button:hover {
+  background-color: black;
+  color: white;
+}
   </style>
 
-  <!-- Meta Description (invisible to visitors) -->
+  <!-- Meta Description -->
   <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
 
-  <!-- Structured Data for Google and Google Scholar (invisible) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -96,30 +116,21 @@ body {
       "@type": "Person",
       "name": "Can Boyan",
       "affiliation": [
-        {
-          "@type": "Organization",
-          "name": "Royal Conservatoire of Antwerp"
-        },
-        {
-          "@type": "Organization",
-          "name": "University of Antwerp ARIA"
-        }
+        { "@type": "Organization", "name": "Royal Conservatoire of Antwerp" },
+        { "@type": "Organization", "name": "University of Antwerp ARIA" }
       ]
     },
     "datePublished": "2025-09-11",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Beyond Gaze Catalogue"
-    },
+    "publisher": { "@type": "Organization", "name": "Beyond Gaze Catalogue" },
     "description": "This research investigates touch as an artistic and pedagogical medium, and proposes a touch-led dramatic inquiry framework for inclusive and full-bodied educational experiences among children with and without sensory impairments.",
     "url": "https://www.beyondgaze.work/info.html"
   }
   </script>
 
-  <!-- Optional: Robots Meta Tag (invisible) -->
+  <!-- Robots -->
   <meta name="robots" content="index, follow">
-
 </head>
+
 <body>
   <div class="container">
     <aside class="sidebar">
@@ -142,8 +153,8 @@ body {
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
       <div class="tts-controls">
-        <button id="readTextBtn"> Read Page</button>
-        <button id="stopTextBtn"> Stop</button>
+        <button id="readTextBtn">Read Page</button>
+        <button id="stopTextBtn">Stop</button>
       </div>
     </aside>
 
@@ -157,4 +168,5 @@ body {
   </div>
 </body>
 </html>
+
 
