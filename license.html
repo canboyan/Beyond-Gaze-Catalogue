@@ -170,6 +170,27 @@ body {
       </p>
     </main>
   </div>
+  <script>
+const synth = window.speechSynthesis;
+
+function readPage() {
+  synth.cancel();
+  const text = document.querySelector('.content').innerText;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  synth.speak(utterance);
+}
+
+function stopReading() {
+  synth.cancel();
+}
+
+document.getElementById("readTextBtn").addEventListener("click", readPage);
+document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+
 </body>
 </html>
 
