@@ -82,26 +82,30 @@ body {
   }
 }
 
-/* ----------------------
-   TTS BUTTONS
-------------------------*/
+.tts-controls {
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  align-items: flex-start; /* align left */
+  gap: 1px; /* space between buttons */
+  margin: 0;
+  padding: 0;
+}
+
 .tts-controls button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  margin: 5px 0;
-  font-size: 14px;
-  font-weight: bold;
+  background: none; /* remove button box */
+  border: none;     /* remove border */
+  padding: 0;       /* remove padding */
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Arial Black', Arial, sans-serif; /* ensure Arial Black font */
+  color: red;       /* red text */
+  font-size: 14px;
+  font-weight: bold;  
 }
 
 .tts-controls button:hover {
-  background-color: black;
-  color: white;
+  color: black; /* hover color */
 }
-  </style>
+</style>
 
   <!-- Meta Description -->
   <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
