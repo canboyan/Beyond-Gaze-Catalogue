@@ -198,7 +198,7 @@
        <div class="menu-group">
 
 <div class="glide-menu">
-  <button class="main-glide-btn">Practice</button>
+  <button class="main-glide-btn">Practice</a>
 
   <div class="glide-options">
     <a href="SpecialEd.html">Special Education</a>
@@ -678,8 +678,9 @@
 document.addEventListener("DOMContentLoaded", function() {
   // Toggle the Practice menu
   document.querySelectorAll('.main-glide-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      const glideMenu = button.closest('.glide-menu'); // <-- this is safer
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+  const glideMenu = button.closest('.glide-menu'); // <-- this is safer
       if (glideMenu) glideMenu.classList.toggle('active');
     });
   });
