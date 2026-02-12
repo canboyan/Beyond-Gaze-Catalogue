@@ -679,7 +679,19 @@
   document.getElementById("readTextBtn").addEventListener("click", readPage);
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 </script>
-  
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const glideBtn = document.querySelector(".main-glide-btn");
+  const glideMenu = document.querySelector(".glide-menu");
+
+  if (glideBtn && glideMenu) {
+    glideBtn.addEventListener("click", function() {
+      glideMenu.classList.toggle("active");
+    });
+  }
+});
+</script>
+
 
 </body>
 </html>
