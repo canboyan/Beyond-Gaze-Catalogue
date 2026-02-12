@@ -32,6 +32,55 @@
 }
 </style>
   <style>
+    <style>
+.glide-menu {
+  position: relative;
+  margin-top: 10px;
+}
+
+.main-glide-btn {
+  background: none;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.main-glide-btn:hover {
+  color: red;
+}
+
+.glide-options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 12px;
+}
+
+.glide-btn {
+  text-decoration: none;
+  font-size: 13px;
+  color: black;
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 0.4s ease;
+}
+
+.glide-menu.active .glide-btn:nth-child(1) {
+  transform: translateX(90px);
+  opacity: 1;
+}
+
+.glide-menu.active .glide-btn:nth-child(2) {
+  transform: translateX(180px);
+  opacity: 1;
+}
+
+.glide-btn:hover {
+  color: red;
+}
     /* index1.css styles for main content only */
     .main-content {
       font-family: 'EB Garamond', serif;
