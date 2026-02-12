@@ -674,30 +674,32 @@
   document.getElementById("readTextBtn").addEventListener("click", readPage);
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 </script>
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const glideBtn = document.querySelector(".main-glide-btn");
-  const glideMenu = document.querySelector(".glide-menu");
-
-  if (glideBtn && glideMenu) {
-    glideBtn.addEventListener("click", function() {
-      glideMenu.classList.toggle("active");
-    });
-  }
-});
-</script>
-<script>
-  const readBtn = document.getElementById('readTextBtn');
-  const stopBtn = document.getElementById('stopTextBtn');
-  // ...existing TTS code...
-
-  // Add this for Practice menu toggle
+  // Toggle the Practice menu
   document.querySelectorAll('.main-glide-btn').forEach(button => {
     button.addEventListener('click', () => {
-      const menu = button.parentElement; 
+      const menu = button.parentElement; // the .glide-menu container
       menu.classList.toggle('active');
     });
   });
+
+  // Text-to-speech buttons
+  const readBtn = document.getElementById('readTextBtn');
+  const stopBtn = document.getElementById('stopTextBtn');
+  const synth = window.speechSynthesis;
+
+  readBtn.addEventListener('click', () => {
+    const text = document.querySelector('.main-content').innerText;
+    if (synth.speaking) synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    synth.speak(utter);
+  });
+
+  stopBtn.addEventListener('click', () => {
+    if (synth.speaking) synth.cancel();
+  });
+});
 </script>
 </body>
 </html>
