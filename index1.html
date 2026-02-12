@@ -34,8 +34,7 @@
   <style>
     <style>
 .glide-menu {
-  position: relative;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .main-glide-btn {
@@ -45,6 +44,7 @@
   font-size: 14px;
   cursor: pointer;
   padding: 4px 0;
+  text-align: left;
 }
 
 .main-glide-btn:hover {
@@ -52,33 +52,28 @@
 }
 
 .glide-options {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
 }
 
-.glide-btn {
+.glide-menu.active .glide-options {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.glide-options a {
   text-decoration: none;
   font-size: 13px;
+  margin: 4px 0;
+  padding-left: 12px;
   color: black;
-  opacity: 0;
-  transform: translateX(0);
-  transition: all 0.4s ease;
 }
 
-.glide-menu.active .glide-btn:nth-child(1) {
-  transform: translateX(90px);
-  opacity: 1;
-}
-
-.glide-menu.active .glide-btn:nth-child(2) {
-  transform: translateX(180px);
-  opacity: 1;
-}
-
-.glide-btn:hover {
+.glide-options a:hover {
   color: red;
 }
     /* index1.css styles for main content only */
