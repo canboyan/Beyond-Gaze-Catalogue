@@ -201,8 +201,8 @@
     <button class="main-glide-btn">Practice</button>
 
     <div class="glide-options">
-<a href="SpecialEd.html" class="main-glide-btn">Special Education</a>
-      <a href="TactileScores.html" class="main-glide-btn">Tactile Scores</a>
+<a href="SpecialEd.html">Special Education</a>
+      <a href="TactileScores.html">Tactile Scores</a>
     </div>
   </div>
 </div>
@@ -686,7 +686,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<script>
+  const mainButton = document.querySelector('.main-glide-btn'); // the top button
+  const glideMenu = mainButton.parentElement; // its parent .glide-menu
 
+  mainButton.addEventListener('click', () => {
+    glideMenu.classList.toggle('active');
+  });
+</script>
 
 </body>
 </html>
