@@ -565,58 +565,7 @@
         setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
       }
     });
-.glide-menu {
-  position: relative;
-  display: inline-block;
-}
 
-.main-glide-btn {
-  background: none;
-  border: none;
-  font-family: 'EB Garamond', serif;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 4px 0;
-}
-
-.main-glide-btn:hover {
-  color: red;
-}
-
-.glide-options {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.glide-btn {
-  text-decoration: none;
-  font-size: 13px;
-  color: black;
-  opacity: 0;
-  transform: translateX(0);
-  transition: all 0.4s ease;
-}
-
-/* When active */
-.glide-menu.active .glide-btn:nth-child(1) {
-  transform: translateX(90px);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.glide-menu.active .glide-btn:nth-child(2) {
-  transform: translateX(180px);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.glide-btn:hover {
-  color: red;
-}
     // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
     const observedMap = {};
