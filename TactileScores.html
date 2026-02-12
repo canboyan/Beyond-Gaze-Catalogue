@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tactile Scores - Beyond Gaze Catalogue</title>
+  <link rel="stylesheet" href="index.css">
+ <link rel="icon" href="/favicon.ico?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+.tts-controls {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: flex-start; /* align left */
+    gap: 1px; /* small space between buttons */
+    margin: 0; /* remove any default margin */
+}
+
+.tts-controls button {
+    background: none; /* remove button background */
+    border: none;     /* remove button border */
+    padding: 0;       /* remove padding */
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif; /* your chosen font */
+    color: red;       /* red text */
+    font-size: 14px;
+  font-weight: bold;  
+}
+
+.tts-controls button:hover {
+    color: black;       /* red text */
+}
+</style>
+    <style>
+.glide-menu {
+  margin-top: 8px;
+}
+
+.main-glide-btn {
+  background: none;
+  border: none;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.main-glide-btn:hover {
+  color: red;
+}
+
+.glide-options {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.glide-menu.active .glide-options {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.glide-options a {
+  text-decoration: none;
+  font-size: 13px;
+  margin: 4px 0;
+  padding-left: 12px;
+  color: black;
+}
+
+.glide-options a:hover {
+  color: red;
+}
+    /* index1.css styles for main content only */
+    .main-content {
+      font-family: 'EB Garamond', serif;
+      font-weight: normal !important;
+      color: black !important;
+      max-width: 650px;
+      font-weight: 400;  
+      font-size: 15px !important;
+      line-height: 1.25 !important;
+      margin-left: 40px !important;
+    }
+
+    .main-content .header {
+      margin-bottom: 30px;
+    }
+
+    .main-content .strategies-main-title,
+    .main-content .main-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-top: 15px; /* adjust as needed */
+      margin-bottom: 5px;
+    }
+
+    .main-content .strategies-attribution,
+    .main-content .attribution {
+      font-size: 12px !important;
+      font-style: italic !important;
+    }
+
+    .main-content .strategy-section,
+    .main-content .strategy {
+      margin-bottom: 40px !important;
+    }
+
+    .main-content .strategy-section-title,
+    .main-content .strategy-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-bottom: 10px !important;
+      
+    }
+    .main-content .strategy-title em {
+  font-weight: normal !important;
+}
+
+    .main-content .section-label {
+      font-weight: bold !important;
+    }
+
+    .main-content .strategy p,
+    .main-content p {
+      margin-bottom: 12px !important;
+    }
+
+    .main-content .strategy-references,
+    .main-content .references {
+      font-size: 12px !important;
+      margin-top: 15px !important;
+      line-height: 1.3 !important;
+      padding-left: 0px !important;
+      text-indent: 0px !important;
+      font-family: "Times New Roman", Georgia, serif !important;
+    }
+
+    .main-content .strategy-references a,
+    .main-content .references a {
+      color: red !important;
+      text-decoration: underline !important;
+      font-weight: normal !important;
+    font-family: "Times New Roman", Georgia, serif !important;
+    }
+  </style>
+     <!-- Meta Description (invisible to visitors) -->
+  <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
+
+ <!-- Structured Data for Google and Google Scholar (invisible) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Touch-led Dramatic Inquiry: Beyond Gaze Research Catalogue",
+    "author": {
+      "@type": "Person",
+      "name": "Can Boyan",
+      "affiliation": [
+        {
+          "@type": "Organization",
+          "name": "Royal Conservatoire of Antwerp"
+        },
+        {
+          "@type": "Organization",
+          "name": "University of Antwerp ARIA"
+        }
+      ]
+    },
+    "datePublished": "2025-09-11",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Beyond Gaze Catalogue"
+    },
+    "description": "This research investigates touch as an artistic and pedagogical medium, and proposes a touch-led dramatic inquiry framework for inclusive and full-bodied educational experiences among children with and without sensory impairments.",
+    "url": "https://www.beyondgaze.work/info.html"
+  }
+  </script>
+
+  <!-- Optional: Robots Meta Tag (invisible) -->
+  <meta name="robots" content="index, follow">
+
+</head>
+<body class="catalogue-page">
+  <div class="container">
+    <aside class="sidebar">
+      <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
+      <nav>
+        <div class="menu-group">
+          <ul>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="index1.html">Index</a></li>
+          </ul>
+        </div>
+       <div class="menu-group">
+  <div class="glide-menu">
+    <button class="main-glide-btn">Practice</button>
+
+    <div class="glide-options">
+      <a href="theory.html">Special Education</a>
+      <a href="methods.html">Tactile Scores</a>
+    </div>
+  </div>
+</div>
+        <div class="menu-info">
+          <ul>
+            <li><a href="info.html">Info</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="info">
+        <p><strong>Last edited Tue Sep 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
+      </div>
+        <div class="tts-controls">
+  <button id="readTextBtn"> Read Page</button>
+  <button id="stopTextBtn"> Stop</button>
+</div>
+    </aside>
+
+    <div class="main-content">
+      <div class="header">
+        <div class="main-title">SOON</div>
+<p style="font-size: 80px; margin-top: 2px; margin-bottom: 0;">
+  </a>
+</p>
+      </div>
+
+  
+<!-- Fixed right-side interactive network -->
+<div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
+  <div id="bg-network" aria-hidden="false" tabindex="0"></div>
+</div>
+
+<!-- Horizontal legend directly below the panel -->
+<div id="network-legend-box">
+  <em>Social</em> &nbsp; Red &nbsp; &nbsp; <em>Material</em> &nbsp; Black &nbsp; &nbsp; <em>Sensory</em> &nbsp; Dark Red &nbsp; &nbsp; <em>Spatial</em> &nbsp; Beige
+
+</div>
+
+<style>
+  /* Right-side panel */
+  #bg-network-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 660px;
+    height: 460px;
+    max-width: 90vw;
+    max-height: 50vh;
+    background: transparent;
+    border-radius: 10px;
+    z-index: 9999;
+    padding: 12px;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: none;
+  }
+
+  #bg-network {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  /* Legend box under the network panel */
+  #network-legend-box {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 660px;
+    max-width: 90vw;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    z-index: 10002;
+    margin-bottom: 13px;
+  }
+</style>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+<script>
+(function() {
+ const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4, 6:5, 7:6 };
+
+  const nodes = new vis.DataSet([
+    { id: 1, label: "Tactile Storying", group: "social", title: "Sequential tactile narration." },
+    { id: 2, label: "Object-As-Score", group: "material", title: "Material-led tracing" },
+    { id: 3, label: "Collaborative Weaving", group: "material", title: "Collective weaving" },
+    { id: 4, label: "Anticipatory Tactility", group: "sensory", title: "Predict → touch → reflect" },
+    { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation" },
+    { id: 6, label: "Mirrored Haptic Exploration", group: "social", title: "Kinesthetic Pairing" },
+    { id: 7, label: "Touch-led Spatial Exploration", group: "spatial", title: "Haptic Cartography" }
+
+  ]);
+
+   const edges = new vis.DataSet([
+    { from: 1, to: 3 },
+    { from: 1, to: 5 },
+    { from: 2, to: 4 },
+    { from: 3, to: 5 },
+    { from: 4, to: 7 },
+    { from: 2, to: 6 },
+    { from: 6, to: 7 },
+    { from: 4, to: 5 },  // NEW bridge: sensory ↔ social
+    { from: 7, to: 3 }   // NEW bridge: spatial ↔ material
+  ]);
+
+  function initNetwork() {
+    const container = document.getElementById('bg-network');
+    if (!container) return;
+
+    const data = { nodes, edges };
+
+    const options = {
+      nodes: {
+        shape: 'dot',
+        size: 13,
+        font: { size: 13, color: '#000000', face: 'Arial, sans-serif', vadjust: 0, align: 'center' },
+        color: {
+          border: '#000',
+          highlight: { background: '#d10000', border: '#d10000' },
+          hover: { background: '#d10000', border: '#d10000' }
+        },
+        borderWidth: 1.6,
+        margin: 4
+      },
+      edges: {
+        color: { color: '#bbb' },
+        width: 1.6,
+        smooth: { enabled: true, type: 'cubicBezier' },
+        dashes: [5, 5]
+      },
+      groups: {
+        social:  { color: { background: '#d10000', border: '#b30000' }, font: { color: '#000000' } },
+        material:{ color: { background: '#000000', border: '#000000' }, font: { color: '#000000' } },
+        sensory: { color: { background: '#800000', border: '#5a0000' }, font: { color: '#000000' } },
+        spatial: { color: { background: '#ffcccc', border: '#ffbebe' }, font: { color: '#000000' } }
+      },
+      interaction: {
+        hover: true,
+        tooltipDelay: 100,
+        dragView: true,
+        dragNodes: true,
+        multiselect: true,
+        zoomView: false
+      },
+      physics: {
+        stabilization: true,
+        barnesHut: { gravitationalConstant: -3000, springLength: 140, springConstant: 0.02 }
+      },
+      layout: { improvedLayout: true }
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    function resizeNetwork() {
+      const panel = document.getElementById('bg-network-panel');
+      if(!panel) return;
+      const w = Math.min(560, window.innerWidth - 20);
+      const h = Math.min(460, window.innerHeight - 20);
+      panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
+      panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      network.redraw();
+    }
+    window.addEventListener('resize', resizeNetwork);
+
+    // Click -> scroll to strategy
+    network.on('click', function(params) {
+      if (!params.nodes || !params.nodes.length) return;
+      const nodeId = params.nodes[0];
+      const idx = strategyMap[nodeId];
+      const strategies = document.querySelectorAll('.strategy');
+      const target = strategies[idx];
+      if (target) {
+        window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+        network.selectNodes([nodeId]);
+        nodes.update({ id: nodeId, size: 28 });
+        setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
+      }
+    });
+
+    // Highlight node based on scroll
+    const strategies = Array.from(document.querySelectorAll('.strategy'));
+    const observedMap = {};
+    for (const [nodeId, idx] of Object.entries(strategyMap)) {
+      if (strategies[idx]) observedMap[idx] = Number(nodeId);
+    }
+
+    const io = new IntersectionObserver(entries => {
+      let best = null;
+      entries.forEach(ent => { if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent; });
+      if (best && best.intersectionRatio > 0.3) {
+        const index = strategies.indexOf(best.target);
+        const nodeId = observedMap[index];
+        if (nodeId) {
+          network.selectNodes([nodeId]);
+          nodes.update({ id: nodeId, size: 26 });
+          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 20 }); });
+        }
+      }
+    }, { root: null, rootMargin: '0px', threshold: [0.3, 0.6] });
+    strategies.forEach(s => io.observe(s));
+
+    // Accessibility live region
+    const live = document.createElement('div');
+    live.setAttribute('aria-live', 'polite');
+    live.style.position = 'absolute';
+    live.style.left = '-9999px';
+    live.style.width = '1px';
+    live.style.height = '1px';
+    document.body.appendChild(live);
+
+    network.on('selectNode', function(params) {
+      if (!params.nodes || !params.nodes.length) return;
+      const id = params.nodes[0];
+      const idx = strategyMap[id];
+      const label = strategies[idx]?.querySelector('.strategy-title')?.innerText || nodes.get(id).label;
+      live.textContent = label + ' selected';
+    });
+  }
+
+  if (document.getElementById('bg-network')) initNetwork();
+  else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
+})();
+</script>
+  <script>
+  const synth = window.speechSynthesis;
+
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.main-content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
+
+  function stopReading() {
+    synth.cancel();
+  }
+
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const glideBtn = document.querySelector(".main-glide-btn");
+  const glideMenu = document.querySelector(".glide-menu");
+
+  if (glideBtn && glideMenu) {
+    glideBtn.addEventListener("click", function() {
+      glideMenu.classList.toggle("active");
+    });
+  }
+});
+</script>
+
+
+</body>
+</html>
