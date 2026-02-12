@@ -153,6 +153,16 @@
             <li><a href="index1.html">Index</a></li>
           </ul>
         </div>
+        <div class="menu-group expandable">
+  <button class="expand-btn" aria-expanded="false">
+    Fieldwork ▼
+  </button>
+
+  <div class="submenu">
+    <a href="Schools.html">Schools</a>
+    <a href="Tactile Scores.html">Tactile Scores</a>
+  </div>
+</div>
         <div class="menu-info">
           <ul>
             <li><a href="info.html">Info</a></li>
@@ -556,6 +566,58 @@
         setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
       }
     });
+    /* Expandable menu */
+
+.expandable {
+  display: flex;
+  flex-direction: column;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.expand-btn:hover {
+  color: red;
+}
+
+/* Submenu animation */
+.submenu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: 
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.submenu a {
+  font-size: 13px;
+  padding: 3px 0 3px 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.submenu a:hover {
+  color: red;
+}
+
+/* Active state */
+.expandable.active .submenu {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+}
 
     // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
@@ -621,6 +683,7 @@
   document.getElementById("readTextBtn").addEventListener("click", readPage);
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 </script>
+  
 
 </body>
 </html>
