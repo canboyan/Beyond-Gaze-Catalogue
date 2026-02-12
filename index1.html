@@ -687,13 +687,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <script>
-const mainButton = document.querySelector('.glide-menu > .main-glide-btn');
-const glideMenu = mainButton.parentElement;
+  const readBtn = document.getElementById('readTextBtn');
+  const stopBtn = document.getElementById('stopTextBtn');
+  // ...existing TTS code...
 
-mainButton.addEventListener('click', () => {
-  glideMenu.classList.toggle('active');
-});
+  // Add this for Practice menu toggle
+  document.querySelectorAll('.main-glide-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const menu = button.parentElement; 
+      menu.classList.toggle('active');
+    });
+  });
 </script>
-
 </body>
 </html>
