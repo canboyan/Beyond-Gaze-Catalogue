@@ -197,14 +197,15 @@
           </ul>
         </div>
        <div class="menu-group">
-  <div class="glide-menu">
-    <button class="main-glide-btn">Practice</button>
 
-    <div class="glide-options">
-      <a href="theory.html">Special Education</a>
-      <a href="methods.html">Tactile Scores</a>
-    </div>
+<div class="glide-menu">
+  <button class="main-glide-btn">Practice</button>
+
+  <div class="glide-options">
+    <a href="SpecialEd.html">Special Education</a>
+    <a href="TactileScores.html">Tactile Scores</a>
   </div>
+</div>
 </div>
         <div class="menu-info">
           <ul>
@@ -213,7 +214,7 @@
         </div>
       </nav>
       <div class="info">
-        <p><strong>Last edited Tue Sep 27<br>16:43:30 2025<br>UTC +2</strong></p>
+        <p><strong>Last edited Thu Feb 12<br>16:00:24 2025<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
         <div class="tts-controls">
@@ -221,13 +222,18 @@
   <button id="stopTextBtn"> Stop</button>
 </div>
     </aside>
-<div class="main-content">
-  <div class="header">
-  <div class="contents">COMING SOON</div>  
-  </div>
-</div>
 
-  
+    <div class="main-content">
+      <div class="header">
+        <div class="main-title">Touch-led Artistic Strategies: Index</div>
+<p style="font-size: 13px; margin-top: 2px; margin-bottom: 0;">
+  Boyan, C. (2025). Beyond Gaze Research Catalogue. 
+  <a href="https://doi.org/10.5281/zenodo.17316698" style="color: red;">
+    https://doi.org/10.5281/zenodo.17316698
+  </a>
+</p>
+      </div>
+
 <!-- Fixed right-side interactive network -->
 <div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
   <div id="bg-network" aria-hidden="false" tabindex="0"></div>
@@ -240,14 +246,6 @@
 </div>
 
 <style>
-
-.contents {
-  font-size: 80px;
-  font-family: 'Arial Black', sans-serif;
-  font-weight: bold;
-  white-space: nowrap;   /* prevents wrapping */
-  overflow: hidden;      /* optional, avoids overflow */
-}
   /* Right-side panel */
   #bg-network-panel {
     position: fixed;
@@ -463,19 +461,32 @@
   document.getElementById("readTextBtn").addEventListener("click", readPage);
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 </script>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-  const glideBtn = document.querySelector(".main-glide-btn");
-  const glideMenu = document.querySelector(".glide-menu");
-
-  if (glideBtn && glideMenu) {
-    glideBtn.addEventListener("click", function() {
-      glideMenu.classList.toggle("active");
+  // Toggle the Practice menu
+  document.querySelectorAll('.main-glide-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const glideMenu = button.closest('.glide-menu'); // <-- this is safer
+      if (glideMenu) glideMenu.classList.toggle('active');
     });
-  }
+  });
+
+  // Text-to-speech buttons
+  const readBtn = document.getElementById('readTextBtn');
+  const stopBtn = document.getElementById('stopTextBtn');
+  const synth = window.speechSynthesis;
+
+  readBtn.addEventListener('click', () => {
+    const text = document.querySelector('.main-content').innerText;
+    if (synth.speaking) synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    synth.speak(utter);
+  });
+
+  stopBtn.addEventListener('click', () => {
+    if (synth.speaking) synth.cancel();
+  });
 });
 </script>
-
-
 </body>
 </html>
