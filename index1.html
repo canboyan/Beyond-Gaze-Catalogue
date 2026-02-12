@@ -674,13 +674,13 @@
   document.getElementById("readTextBtn").addEventListener("click", readPage);
   document.getElementById("stopTextBtn").addEventListener("click", stopReading);
 </script>
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   // Toggle the Practice menu
   document.querySelectorAll('.main-glide-btn').forEach(button => {
     button.addEventListener('click', () => {
-      const menu = button.parentElement; // the .glide-menu container
-      menu.classList.toggle('active');
+      const glideMenu = button.closest('.glide-menu'); // <-- this is safer
+      if (glideMenu) glideMenu.classList.toggle('active');
     });
   });
 
