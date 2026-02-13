@@ -680,11 +680,11 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Toggle the Practice menu
-document.querySelectorAll('.main-glide-btn').forEach(button => {
+  document.querySelectorAll('.main-glide-btn').forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const glideMenu = button.closest('.glide-menu');
-    if (glideMenu) glideMenu.classList.add('active'); // ONLY ADD, no toggle
+    if (glideMenu) glideMenu.classList.toggle('active');
   });
 });
   // Text-to-speech buttons
