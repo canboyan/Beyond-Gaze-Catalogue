@@ -470,12 +470,16 @@
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Toggle the Practice menu
-document.querySelectorAll('.main-glide-btn').forEach(button => {
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const glideMenu = button.closest('.glide-menu');
-    if (glideMenu) glideMenu.classList.toggle('active');
+  document.querySelectorAll('.glide-menu').forEach(menu => {
+    // Make menu open by default
+    menu.classList.add('active');
+
+    // Set up toggle on button click
+    const button = menu.querySelector('.main-glide-btn');
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      menu.classList.toggle('active'); // closes if open, opens if closed
+    });
   });
 });
 
