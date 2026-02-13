@@ -32,6 +32,125 @@
 }
 
 </style>
+    <style>
+.glide-menu {
+  margin-top: 8px;
+}
+
+.main-glide-btn {
+  background: none;
+  border: none;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 14px;
+  color: black;              /* ADD THIS */
+  text-decoration: none;     /* ADD THIS */
+  display: inline-block;     /* ADD THIS */
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.main-glide-btn:hover {
+  color: red;
+}
+
+.glide-options {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.glide-menu.active .glide-options {
+  max-height: 500px; /* increase so all links fit */
+  opacity: 1;
+}
+
+.glide-options a {
+  text-decoration: none;
+  font-size: 14px;
+  color: red;
+  margin: 2px 0;
+  padding-left: 12px;
+}
+.glide-options a:hover {
+  color: red;
+}
+    /* index1.css styles for main content only */
+    .main-content {
+      font-family: 'EB Garamond', serif;
+      font-weight: normal !important;
+      color: black !important;
+      max-width: 650px;
+      font-weight: 400;  
+      font-size: 15px !important;
+      line-height: 1.25 !important;
+      margin-left: 40px !important;
+    }
+
+    .main-content .header {
+      margin-bottom: 30px;
+    }
+
+    .main-content .strategies-main-title,
+    .main-content .main-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-top: 15px; /* adjust as needed */
+      margin-bottom: 5px;
+    }
+
+    .main-content .strategies-attribution,
+    .main-content .attribution {
+      font-size: 12px !important;
+      font-style: italic !important;
+    }
+
+    .main-content .strategy-section,
+    .main-content .strategy {
+      margin-bottom: 40px !important;
+    }
+
+    .main-content .strategy-section-title,
+    .main-content .strategy-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-bottom: 10px !important;
+      
+    }
+    .main-content .strategy-title em {
+  font-weight: normal !important;
+}
+
+    .main-content .section-label {
+      font-weight: bold !important;
+    }
+
+    .main-content .strategy p,
+    .main-content p {
+      margin-bottom: 12px !important;
+    }
+
+    .main-content .strategy-references,
+    .main-content .references {
+      font-size: 12px !important;
+      margin-top: 15px !important;
+      line-height: 1.3 !important;
+      padding-left: 0px !important;
+      text-indent: 0px !important;
+      font-family: "Times New Roman", Georgia, serif !important;
+    }
+
+    .main-content .strategy-references a,
+    .main-content .references a {
+      color: red !important;
+      text-decoration: underline !important;
+      font-weight: normal !important;
+    font-family: "Times New Roman", Georgia, serif !important;
+    }
+  </style>
 <style>
 /* ----------------------
    MAIN CONTENT STACKING
@@ -215,6 +334,17 @@ audio::-webkit-media-controls-volume-slider:focus {
             <li><a href="index1.html">Index</a></li>  
           </ul>
         </div>
+           <div class="menu-group">
+
+<div class="glide-menu">
+  <a class="main-glide-btn">Practice</a>
+
+  <div class="glide-options">
+    <a href="SpecialEd.html">Special Education</a>
+    <a href="TactileScores.html">Tactile Scores</a>
+  </div>
+</div>
+</div>
         <div class="menu-info">
           <ul>
             <li><a href="info.html">Info</a></li>
@@ -387,6 +517,33 @@ document.addEventListener("DOMContentLoaded", function() {
     "https://orcid.org/0009-0004-8549-2899"
   ]
 }
+</script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Toggle the Practice menu
+document.querySelectorAll('.main-glide-btn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const glideMenu = button.closest('.glide-menu');
+    if (glideMenu) glideMenu.classList.add('active'); // ONLY ADD, no toggle
+  });
+});
+  // Text-to-speech buttons
+  const readBtn = document.getElementById('readTextBtn');
+  const stopBtn = document.getElementById('stopTextBtn');
+  const synth = window.speechSynthesis;
+
+  readBtn.addEventListener('click', () => {
+    const text = document.querySelector('.main-content').innerText;
+    if (synth.speaking) synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    synth.speak(utter);
+  });
+
+  stopBtn.addEventListener('click', () => {
+    if (synth.speaking) synth.cancel();
+  });
+});
 </script>
 </main>
 </body>
