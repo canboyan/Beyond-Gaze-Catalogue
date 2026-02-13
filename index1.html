@@ -684,10 +684,9 @@ document.querySelectorAll('.main-glide-btn').forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const glideMenu = button.closest('.glide-menu');
-    if (glideMenu) glideMenu.classList.toggle('active');
+    if (glideMenu) glideMenu.classList.add('active'); // ONLY ADD, no toggle
   });
 });
-
   // Text-to-speech buttons
   const readBtn = document.getElementById('readTextBtn');
   const stopBtn = document.getElementById('stopTextBtn');
