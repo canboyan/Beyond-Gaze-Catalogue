@@ -521,15 +521,13 @@ document.addEventListener("DOMContentLoaded", function() {
     <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Toggle the Practice menu
-document.querySelectorAll('.main-glide-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      const glideMenu = button.closest('.glide-menu');
-      if (glideMenu) {
-        glideMenu.classList.toggle('active');
-      }
-    });
+  document.querySelectorAll('.main-glide-btn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const glideMenu = button.closest('.glide-menu');
+    if (glideMenu) glideMenu.classList.toggle('active');
   });
+});
   // Text-to-speech buttons
   const readBtn = document.getElementById('readTextBtn');
   const stopBtn = document.getElementById('stopTextBtn');
