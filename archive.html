@@ -55,12 +55,12 @@
 }
 
 .glide-options {
-  display: flex;
+  display: flex !important;   /* always visible */
   flex-direction: column;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible;
+  transition: none;
 }
 
 .glide-menu.active .glide-options {
