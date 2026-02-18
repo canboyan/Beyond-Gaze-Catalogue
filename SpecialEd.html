@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="index.css">
  <link rel="icon" href="/favicon.ico?v=2">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-  <style>
+   <style>
 .tts-controls {
     display: flex;
     flex-direction: column; /* stack buttons vertically */
@@ -48,17 +48,17 @@
   padding: 4px 0;
   text-align: left;
 }
-
 .main-glide-btn:hover {
   color: red;
 }
 
-.glide-options a {
-  text-decoration: none;
-  font-size: 14px;
-  color: red;
-  margin: 2px 0;
-  padding-left: 12px;
+.glide-options {
+  display: flex !important;   /* always visible */
+  flex-direction: column;
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible;
+  transition: none;
 }
 
 .glide-menu.active .glide-options {
@@ -67,14 +67,13 @@
 }
 
 .glide-options a {
-  display: block;       /* stack vertically */
+  text-decoration: none;
   font-size: 14px;
   color: red;
   margin: 2px 0;
   padding-left: 12px;
-  text-decoration: none;
 }
-      
+
 .glide-options a:hover {
   color: red;
 }
@@ -150,7 +149,7 @@
       font-weight: normal !important;
     font-family: "Times New Roman", Georgia, serif !important;
     }
-      .main-content .header .contents {
+            .main-content .header .contents {
     font-family: 'Arial Black', sans-serif !important;
     font-size: 80px !important;
     margin-top: 5px; 
