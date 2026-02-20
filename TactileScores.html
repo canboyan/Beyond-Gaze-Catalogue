@@ -266,22 +266,34 @@
       <p style="text-align: justify; font-size: 0.72em; color: #555; margin: 10px 0 15px 0; font-family: Arial, sans-serif; font-weight: normal; line-height: 1.2;"><strong>Metadata:</strong> Participants built their own scores.</p>
     </div>
  <!-- Video 1 Bundle -->
-  <div class="bundle">
-    <div class="video-wrapper" style="position: relative; width: 544px; margin-top: 0px;">
-      <img src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/Screenshot%202026-02-20%20at%2022.11.41.png" 
-           alt="Video thumbnail 1" 
-           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
-      <div class="custom-play" onclick="playVideo(this)" 
-           style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                  width: 75px; height: 75px; background: black; border-radius: 50%;
-                  cursor: pointer; display: flex; align-items: center; justify-content: center;
-                  filter: grayscale(100%); transition: opacity 0.6s ease; z-index: 3;">
-        <div style="width: 0; height: 0; border-left: 15px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent;"></div>
-      </div>
-      <div class="yt-player" id="yt-player-1" data-video-id="VmPUZAQbI-Q" 
-           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
-    </div>
+<div style="width: 635px; margin-top: 20px;">
 
+  <div style="position: relative; width: 635px; height: 357px;">
+    <img id="thumb-1" src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/Screenshot%202026-02-20%20at%2022.11.41.png"
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;">
+    <div id="play-1" onclick="playVideo('yt-1', 'VmPUZAQbI-Q', 'thumb-1', 'play-1')"
+         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 75px; height: 75px; background: black; border-radius: 50%;
+                cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3;">
+      <div style="width: 0; height: 0; border-left: 15px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px;"></div>
+    </div>
+    <iframe id="yt-1" src="" frameborder="0" allowfullscreen allow="autoplay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></iframe>
+  </div>
+
+  <p style="text-align: justify; font-size: 0.72em; color: #555; margin: 10px 0 15px 0; font-family: Arial, sans-serif; font-weight: normal; line-height: 1.2;">
+    <strong>Metadata:</strong> Video documentation of Session 1.
+  </p>
+
+</div>
+
+<script>
+function playVideo(iframeId, videoId, thumbId, playId) {
+  document.getElementById(iframeId).src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+  document.getElementById(thumbId).style.display = 'none';
+  document.getElementById(playId).style.display = 'none';
+}
+</script>
     <!-- Text Under Video 1 -->
        <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color:#000000; width: 544px; font-weight: normal; margin-top: 15px; text-align: justify; text-justify: inter-word;">
       <p><strong>Tactile Scores - Session 1</strong></p>
