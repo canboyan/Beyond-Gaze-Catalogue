@@ -277,8 +277,8 @@
                 cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3;">
       <div style="width: 0; height: 0; border-left: 15px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px;"></div>
     </div>
-    <iframe id="yt-1" src="" frameborder="0" allowfullscreen allow="autoplay"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></iframe>
+<iframe id="yt-1" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></iframe>
   </div>
 
   <p style="text-align: justify; font-size: 0.72em; color: #555; margin: 10px 0 15px 0; font-family: Arial, sans-serif; font-weight: normal; line-height: 1.2;">
@@ -289,7 +289,7 @@
 
 <script>
 function playVideo(iframeId, videoId, thumbId, playId) {
-  document.getElementById(iframeId).src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+  document.getElementById(iframeId).src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
   document.getElementById(thumbId).style.display = 'none';
   document.getElementById(playId).style.display = 'none';
 }
