@@ -33,7 +33,7 @@ body {
 /* Container Styles */
 .container {
   display: flex;
-  min-height: 100vh;
+  min-height: auto;
   overflow: visible;
   width: auto;
 }
