@@ -154,5 +154,7 @@ body {
   cursor: pointer;
 }
 
-
+.sidebar nav .main-glide-btn:hover {
+  color: black !important;
+}
 
