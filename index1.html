@@ -353,7 +353,7 @@
 </div>
 
       <!-- Strategy [8] -->
-<div class="strategy" data-node="[8]">
+<div class="strategy" data-node="8">
   <div class="strategy-title">Tactile Scores <em>(Material-Led Composition)</em></div>
 
   <p><span class="section-label">Description:</span> Participants construct musical scores not from written notation but from physical materials (wood, felt, vinyl, jute, textile, and found objects) whose weight, resistance, elasticity, and spatial behaviour function as compositional propositions. Through handling, arranging, cutting, tensioning, and spatializing these objects, an ensemble collectively negotiates a shared material vocabulary that is then rehearsed into performable pieces. Interpretation becomes compositional method: sound emerges through participatory sense-making, collective agreement, repetition, and adjustment (De Jaegher & Di Paolo 2007). The process positions tactility as an epistemological entry point into musical structure, reorganising the conditions of music-making rather than supplementing them. It draws on material engagement theory, which holds that cognition is not merely situated in but constituted through material interaction (Malafouris 2013), and on graphic and open score traditions in which notation is reconceived as a set of affordances rather than prescriptions (Cardew 1971; Cage 1969; Sauer 2009). It extends these traditions into participatory embodied pedagogy, connecting material intelligence with universal design principles and collective authorship.</p>
@@ -584,8 +584,7 @@
 
 <script>
 (function() {
- const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7 };
-
+  
   const nodes = new vis.DataSet([
     { id: 1, label: "Tactile Storying", group: "social", title: "Sequential tactile narration." },
     { id: 2, label: "Object-As-Score", group: "material", title: "Material-led tracing" },
@@ -674,18 +673,25 @@
 
     // Click -> scroll to strategy
     network.on('click', function(params) {
-      if (!params.nodes || !params.nodes.length) return;
-      const nodeId = params.nodes[0];
-      const idx = strategyMap[nodeId];
-      const strategies = document.querySelectorAll('.strategy');
-      const target = strategies[idx];
-      if (target) {
-        window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
-        network.selectNodes([nodeId]);
-        nodes.update({ id: nodeId, size: 28 });
-        setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
-      }
+  if (!params.nodes || !params.nodes.length) return;
+
+  const nodeId = params.nodes[0];
+
+  const target = document.querySelector(
+    '.strategy[data-node="' + nodeId + '"]'
+  );
+
+  if (target) {
+    window.scrollTo({
+      top: target.offsetTop - 20,
+      behavior: 'smooth'
     });
+
+    network.selectNodes([nodeId]);
+    nodes.update({ id: nodeId, size: 28 });
+    setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
+  }
+});
 
     // Highlight node based on scroll
     const strategies = Array.from(document.querySelectorAll('.strategy'));
