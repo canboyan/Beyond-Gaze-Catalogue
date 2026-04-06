@@ -32,7 +32,7 @@
 }
 
 </style>
-    <style>
+      <style>
 .glide-menu {
   margin-top: 8px;
 }
@@ -49,7 +49,6 @@
   padding: 4px 0;
   text-align: left;
 }
-
 .main-glide-btn:hover {
   color: red;
 }
@@ -64,16 +63,41 @@
 }
 
 .glide-menu.active .glide-options {
-  max-height: 500px; /* increase so all links fit */
+  max-height: 100px;
   opacity: 1;
 }
 
-.glide-options a {
+/* Main items (Special Education, Tactile Scores) */
+.glide-options > a,
+.menu-item > a {
+  display: block;
   text-decoration: none;
   font-size: 14px;
   color: red;
-  margin: 2px 0;
+  margin: 4px 0;
   padding-left: 12px;
+  font-weight: normal;
+}
+
+/* Group wrapper (Special Education + its child) */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px; /* THIS fixes spacing before Tactile Scores */
+}
+
+/* Sub item (Sessions 1–4) */
+.sub-item a {
+  display: block;
+  font-size: 15px;          /* smaller */
+  padding-left: 26px;       /* indented */
+  margin: 2px 0 6px 0;      /* spacing under it */
+  opacity: 1;
+}
+
+/* Optional polish */
+.sub-item a:hover {
+  opacity: 1;
 }
 .glide-options a:hover {
   color: red;
@@ -150,6 +174,16 @@
       font-weight: normal !important;
     font-family: "Times New Roman", Georgia, serif !important;
     }
+            .main-content .header .contents {
+    font-family: 'Arial Black', sans-serif !important;
+    font-size: 80px !important;
+    margin-top: 5px; 
+    font-weight: bold;
+    white-space: nowrap;
+    color: black; /* optional */
+    line-height: 1; /* optional to control spacing */
+    letter-spacing: -2px;
+}
   </style>
 <style>
 /* ----------------------
