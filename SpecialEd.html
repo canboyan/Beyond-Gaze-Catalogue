@@ -66,14 +66,38 @@
   opacity: 1;
 }
 
-.glide-options a {
+/* Main items (Special Education, Tactile Scores) */
+.glide-options > a,
+.menu-item > a {
+  display: block;
   text-decoration: none;
   font-size: 14px;
   color: red;
-  margin: 2px 0;
+  margin: 4px 0;
   padding-left: 12px;
+  font-weight: normal;
 }
 
+/* Group wrapper (Special Education + its child) */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; /* THIS fixes spacing before Tactile Scores */
+}
+
+/* Sub item (Sessions 1–4) */
+.sub-item a {
+  display: block;
+  font-size: 12px;          /* smaller */
+  padding-left: 26px;       /* indented */
+  margin: 2px 0 6px 0;      /* spacing under it */
+  opacity: 0.85;
+}
+
+/* Optional polish */
+.sub-item a:hover {
+  opacity: 1;
+}
 .glide-options a:hover {
   color: red;
 }
@@ -222,7 +246,7 @@
       
       <!-- Special Education with one child item -->
       <div class="menu-item">
-        <a class="main-glide-btn">Special Education</a>
+        <a>Special Education</a>
         <div class="sub-item">
           <a href="SpecialEd.html">Sessions 1–4</a>
         </div>
