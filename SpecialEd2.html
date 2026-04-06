@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Education - Beyond Gaze Catalogue</title>
+  <link rel="stylesheet" href="index.css">
+ <link rel="icon" href="/favicon.ico?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+   <style>
+.tts-controls {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: flex-start; /* align left */
+    gap: 1px; /* small space between buttons */
+    margin: 0; /* remove any default margin */
+}
+
+.tts-controls button {
+    background: none; /* remove button background */
+    border: none;     /* remove button border */
+    padding: 0;       /* remove padding */
+    cursor: pointer;
+    font-family: 'Arial Black', sans-serif; /* your chosen font */
+    color: red;       /* red text */
+    font-size: 14px;
+  font-weight: bold;  
+}
+
+.tts-controls button:hover {
+    color: black;       /* red text */
+}
+</style>
+    <style>
+.glide-menu {
+  margin-top: 8px;
+}
+
+.main-glide-btn {
+  background: none;
+  border: none;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 14px;
+  color: black;              /* ADD THIS */
+  text-decoration: none;     /* ADD THIS */
+  display: inline-block;     /* ADD THIS */
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+}
+.main-glide-btn:hover {
+  color: red;
+}
+
+.glide-options {
+  display: flex !important;   /* always visible */
+  flex-direction: column;
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible;
+  transition: none;
+}
+
+.glide-menu.active .glide-options {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* Main items (Special Education, Tactile Scores) */
+.glide-options > a,
+.menu-item > a {
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: red;
+  margin: 2px 0;
+  padding-left: 12px;
+  font-weight: normal;
+}
+
+/* Group wrapper (Special Education + its child) */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px; /* THIS fixes spacing before Tactile Scores */
+}
+
+/* Sub item (Sessions 1–4) */
+.sub-item a {
+  display: block;
+  font-size: 14px;          /* smaller */
+  padding-left: 26px;       /* indented */
+  margin: 0px 0 6px 0;      /* spacing under it */
+  opacity: 1;
+}
+
+/* Optional polish */
+.sub-item a:hover {
+  opacity: 1;
+}
+.glide-options a:hover {
+  color: red;
+}
+    /* index1.css styles for main content only */
+    .main-content {
+      font-family: 'EB Garamond', serif;
+      font-weight: normal !important;
+      color: black !important;
+      max-width: 650px;
+      font-weight: 400;  
+      font-size: 15px !important;
+      line-height: 1.25 !important;
+      margin-left: 40px !important;
+    }
+
+    .main-content .header {
+      margin-bottom: 30px;
+    }
+
+    .main-content .strategies-main-title,
+    .main-content .main-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-top: 15px; /* adjust as needed */
+      margin-bottom: 5px;
+    }
+
+    .main-content .strategies-attribution,
+    .main-content .attribution {
+      font-size: 12px !important;
+      font-style: italic !important;
+    }
+
+    .main-content .strategy-section,
+    .main-content .strategy {
+      margin-bottom: 40px !important;
+    }
+
+    .main-content .strategy-section-title,
+    .main-content .strategy-title {
+      font-weight: bold !important;
+      font-size: 15px !important;
+      margin-bottom: 10px !important;
+      
+    }
+    .main-content .strategy-title em {
+  font-weight: normal !important;
+}
+
+    .main-content .section-label {
+      font-weight: bold !important;
+    }
+
+    .main-content .strategy p,
+    .main-content p {
+      margin-bottom: 12px !important;
+    }
+
+    .main-content .strategy-references,
+    .main-content .references {
+      font-size: 12px !important;
+      margin-top: 15px !important;
+      line-height: 1.3 !important;
+      padding-left: 0px !important;
+      text-indent: 0px !important;
+      font-family: "Times New Roman", Georgia, serif !important;
+    }
+
+    .main-content .strategy-references a,
+    .main-content .references a {
+      color: red !important;
+      text-decoration: underline !important;
+      font-weight: normal !important;
+    font-family: "Times New Roman", Georgia, serif !important;
+    }
+            .main-content .header .contents {
+    font-family: 'Arial Black', sans-serif !important;
+    font-size: 80px !important;
+    margin-top: 5px; 
+    font-weight: bold;
+    white-space: nowrap;
+    color: black; /* optional */
+    line-height: 1; /* optional to control spacing */
+    letter-spacing: -2px;
+}
+  </style>
+     <!-- Meta Description (invisible to visitors) -->
+  <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
+
+ <!-- Structured Data for Google and Google Scholar (invisible) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Touch-led Dramatic Inquiry: Beyond Gaze Research Catalogue",
+    "author": {
+      "@type": "Person",
+      "name": "Can Boyan",
+      "affiliation": [
+        {
+          "@type": "Organization",
+          "name": "Royal Conservatoire of Antwerp"
+        },
+        {
+          "@type": "Organization",
+          "name": "University of Antwerp ARIA"
+        }
+      ]
+    },
+    "datePublished": "2025-09-11",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Beyond Gaze Catalogue"
+    },
+    "description": "This research investigates touch as an artistic and pedagogical medium, and proposes a touch-led dramatic inquiry framework for inclusive and full-bodied educational experiences among children with and without sensory impairments.",
+    "url": "https://www.beyondgaze.work/info.html"
+  }
+  </script>
+
+  <!-- Optional: Robots Meta Tag (invisible) -->
+  <meta name="robots" content="index, follow">
+
+</head>
+<body class="catalogue-page">
+  <div class="container">
+    <aside class="sidebar">
+      <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
+        <nav>
+  <div class="menu-group">
+    <ul>
+      <li><a href="index1.html">Index</a></li>
+    </ul>
+  </div>
+
+  <div class="menu-group">
+    <ul>
+      <li><a href="archive.html">Archive</a></li>
+    </ul>
+  </div>
+<div class="menu-group">
+  <div class="glide-menu" style="margin-bottom: 15px;">
+    
+    <a class="main-glide-btn">Practice</a>
+
+    <div class="glide-options">
+      
+<!-- Special Education with one child item -->
+<div class="menu-item">
+  <a class="main-glide-btn">Special Education</a>
+  <div class="sub-item">
+    <a href="SpecialEd.html">Sessions I - 4</a>
+  </div>
+</div>
+
+<!-- Tactile Scores with one child item -->
+<div class="menu-item">
+  <a class="main-glide-btn">Tactile Scores</a>
+  <div class="sub-item">
+    <a href="TactileScores.html">Session I</a>
+  </div>
+</div>
+</div>
+  <div class="menu-info">
+    <ul>
+      <li><a href="info.html">Info</a></li>
+    </ul>
+  </div>
+</nav>
+      <div class="info">
+        <p><strong>Last edited Thu Feb 14<br>15:04:11 2026<br>UTC +2</strong></p>
+        <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
+      </div>
+        <div class="tts-controls">
+  <button id="readTextBtn"> Read Page</button>
+  <button id="stopTextBtn"> Stop</button>
+</div>
+    </aside>
+<main class="main-content">
+  
+
+
+<!-- BLOCK 1 -->
+<div style="margin-bottom:50px; margin-top:10px;">
+
+  <div class="image-wrapper" style="position: relative; width: 1200px; margin-top: 10px;">
+    <img src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/TS%20-%20OBJ2a.jpg" style="width:100%; height:auto; display:block;">
+  </div>
+
+  <div style="width:544px; margin-top:15px; font-family:Arial, sans-serif; font-size:13px; line-height:1.5; text-align:justify;">
+    <p><strong>Tactile Storying - Session 2</strong></p>
+    <p style="font-size:0.9em; color:#555;"><strong>Metadata:</strong> 28 Jan 2026, A special education school in Flanders.</p>
+    <p>A second implementation of the Tactile Storying protocol was conducted with a different group of three blind and low-vision children at the same school in Flanders, under the same conditions: circular seating, teacher transcription, researcher documentation, and an initial exploration phase of approximately four minutes before the first turn began. The object in this session was distinct in both construction and intention. Its body was pillow-like but uneven, its surface assembled from patches of fabric in contrasting textures and weights, with a cavity running through its core. Through this cavity passed a wooden arm wrapped in fabric, articulated at its far end to an abstract wooden form (loosely suggestive of a small landscape) around which string was wound. The mechanism was quiet but consequential: pulling the arm caused the lower piece to rise; releasing it drew the arm back into the body's hollow. The object moved. It responded. It had an interior. Where the first object offered the children forms they could read (the human, the bird, the enclosure) this one was built to resist premature reading. Its deliberate semantic openness was not absence of design but a different kind of design: an invitation to cognitive work rather than recognition (Egan, 1988), constructed so that material properties would generate associations rather than confirm them. During the exploration phase the children's engagement was more investigative and tentative than in the first session, as though the object required time before it would yield. When contributions began, the narrative did not settle quickly on a single figure or world. It arrived through contact, turn by turn.</p>
+    <p>The fabric cavity, when one child's hand moved inside it, became a nest. When another child performed the same gesture several turns later, it became a threshold: entering, going inside a household. The same zone, handled identically, held two distinct narrative possibilities without contradiction, because the story had grown around both. The object's spatial depth made this possible; its ambiguity made it necessary. Children generated meaning not despite the object's abstraction but through it, their contributions remaining materially grounded even as the narrative expanded into territory the object had not literally suggested (De Jaegher & Di Paolo, 2007; Gallagher, 2017). The kinetic mechanism (the arm, the string, the responsive lower form) entered the story only after the children had established a world in which such movement could signify something. Material properties did not dictate the narrative; they were read through it, and in being read, extended it.</p>
+    <p>As in the first session, the object's mnemonic function became structurally evident across the arc of the workshop. Children operated within the narrative framework the artefact had helped to preserve, referencing encoded zones without tactile re-verification, the haptic token carrying sequential history across turns and across speakers (Hutchins, 1995; Wegner, 1987). Collaborative repair operated through material re-anchoring: when a contribution diverged from the collective arc, the child who followed would return to a zone already carrying shared meaning and draw the story back, not correcting but continuing, the repair folded into the logic of the protocol (Sawyer, 2003). Every child contributed at every turn. The story that emerged across the session was one that no single participant could have authored alone, and one that could only be fully retold by someone who had held the object from the beginning.</p>
+
+    <div style="margin-top:20px; font-size:0.88em; color:#555; font-family:Arial, sans-serif; line-height:1;">
+ <p style="margin:0 0 10px 0;"><strong>References</strong></p>
+    <p style="margin:0 0 10px 0;">
+    De Jaegher, H., & Di Paolo, E. (2007). Participatory sense-making. <em>Phenomenology and the Cognitive Sciences, 6</em>(4), 485–507.
+  </p>
+
+  <p style="margin:0 0 10px 0;">
+    Egan, K. (1988). <em>Teaching as story telling.</em> University of Chicago Press.
+  </p>
+
+   <p style="margin:0 0 10px 0;">
+    Gallagher, S. (2017). <em>Enactivist interventions: Rethinking the mind.</em> Oxford University Press.
+  </p>
+
+    <p style="margin:0 0 10px 0;">
+    Hutchins, E. (1995). <em>Cognition in the wild.</em> MIT Press.
+  </p>
+
+   <p style="margin:0 0 10px 0;">
+    Iwasaki, S., Bartlett, M., Manns, H., & Willoughby, L. (2022). Touch in social interaction. <em>Sign Language Studies, 22</em>(3).
+  </p>
+
+  <p style="margin:0 0 10px 0;">
+    Paterson, M. (2007). <em>The senses of touch: Haptics, affects and technologies.</em> Berg.
+  </p>
+
+    <p style="margin:0 0 10px 0;">
+    Sawyer, R. K. (2003). <em>Improvised dialogues: Emergence and creativity in conversation.</em> Ablex Publishing.
+  </p>
+
+  <p style="margin:0;">
+    Wegner, D. M. (1987). Transactive memory: A contemporary analysis of the group mind. In B. Mullen & G. R. Goethals (Eds.), <em>Theories of group behavior</em> (pp. 185–208). Springer-Verlag.
+  </p>
+
+</div>
+</div> <!-- ← MISSING: closes the width:544px content div -->
+</div>   <!-- ← MISSING: closes the outer margin-bottom:10px block -->
+ 
+</div>
+<!-- Fixed right-side interactive network -->
+<div id="bg-network-panel" role="complementary" aria-label="Interactive strategy network">
+  <div id="bg-network" aria-hidden="false" tabindex="0"></div>
+</div>
+
+<!-- Horizontal legend directly below the panel -->
+<div id="network-legend-box">
+  <em>Social</em> &nbsp; Red &nbsp; &nbsp; <em>Material</em> &nbsp; Black &nbsp; &nbsp; <em>Sensory</em> &nbsp; Dark Red &nbsp; &nbsp; <em>Spatial</em> &nbsp; Beige
+
+</div>
+
+<style>
+  /* Right-side panel */
+  #bg-network-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 660px;
+    height: 460px;
+    max-width: 90vw;
+    max-height: 50vh;
+    background: transparent;
+    border-radius: 10px;
+    z-index: 9999;
+    padding: 12px;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: none;
+  }
+
+  #bg-network {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  /* Legend box under the network panel */
+  #network-legend-box {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 660px;
+    max-width: 90vw;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    z-index: 10002;
+    margin-bottom: 13px;
+  }
+</style>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+<script>
+(function() {
+ const strategyMap = { 1:0, 2:1, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7 };
+
+  const nodes = new vis.DataSet([
+    { id: 1, label: "Tactile Storying", group: "social", title: "Sequential tactile narration." },
+    { id: 2, label: "Object-As-Score", group: "material", title: "Material-led tracing" },
+    { id: 3, label: "Collaborative Weaving", group: "material", title: "Collective weaving" },
+    { id: 4, label: "Anticipatory Tactility", group: "sensory", title: "Predict → touch → reflect" },
+    { id: 5, label: "Guided Tactile Circuit", group: "social", title: "Sequential touch improvisation" },
+    { id: 6, label: "Mirrored Haptic Exploration", group: "social", title: "Kinesthetic Pairing" },
+    { id: 7, label: "Touch-led Spatial Exploration", group: "spatial", title: "Haptic Cartography" },
+    { id: 8, label: "Tactile Scores", group: "material", title: "Material-Led Composition" }
+  ]);
+
+   const edges = new vis.DataSet([
+    { from: 1, to: 3 },
+    { from: 1, to: 8 },  
+    { from: 2, to: 4 },
+    { from: 3, to: 5 },
+    { from: 4, to: 7 },
+    { from: 2, to: 6 },
+    { from: 6, to: 7 },
+    { from: 4, to: 5 },
+    { from: 7, to: 3 },
+    { from: 8, to: 3 },
+    { from: 8, to: 5 }
+  ]);
+
+
+  function initNetwork() {
+    const container = document.getElementById('bg-network');
+    if (!container) return;
+
+    const data = { nodes, edges };
+
+    const options = {
+      nodes: {
+        shape: 'dot',
+        size: 13,
+        font: { size: 13, color: '#000000', face: 'Arial, sans-serif', vadjust: 0, align: 'center' },
+        color: {
+          border: '#000',
+          highlight: { background: '#d10000', border: '#d10000' },
+          hover: { background: '#d10000', border: '#d10000' }
+        },
+        borderWidth: 1.6,
+        margin: 4
+      },
+      edges: {
+        color: { color: '#bbb' },
+        width: 1.6,
+        smooth: { enabled: true, type: 'cubicBezier' },
+        dashes: [5, 5]
+      },
+      groups: {
+        social:  { color: { background: '#d10000', border: '#b30000' }, font: { color: '#000000' } },
+        material:{ color: { background: '#000000', border: '#000000' }, font: { color: '#000000' } },
+        sensory: { color: { background: '#800000', border: '#5a0000' }, font: { color: '#000000' } },
+        spatial: { color: { background: '#ffcccc', border: '#ffbebe' }, font: { color: '#000000' } }
+      },
+      interaction: {
+        hover: true,
+        tooltipDelay: 100,
+        dragView: true,
+        dragNodes: true,
+        multiselect: true,
+        zoomView: false
+      },
+      physics: {
+        stabilization: true,
+        barnesHut: { gravitationalConstant: -3000, springLength: 140, springConstant: 0.02 }
+      },
+      layout: { improvedLayout: true }
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    function resizeNetwork() {
+      const panel = document.getElementById('bg-network-panel');
+      if(!panel) return;
+      const w = Math.min(560, window.innerWidth - 20);
+      const h = Math.min(460, window.innerHeight - 20);
+      panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
+      panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      network.redraw();
+    }
+    window.addEventListener('resize', resizeNetwork);
+
+    // Click -> scroll to strategy
+    network.on('click', function(params) {
+      if (!params.nodes || !params.nodes.length) return;
+      const nodeId = params.nodes[0];
+      const idx = strategyMap[nodeId];
+      const strategies = document.querySelectorAll('.strategy');
+      const target = strategies[idx];
+      if (target) {
+        window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+        network.selectNodes([nodeId]);
+        nodes.update({ id: nodeId, size: 28 });
+        setTimeout(() => nodes.update({ id: nodeId, size: 20 }), 650);
+      }
+    });
+
+    // Highlight node based on scroll
+    const strategies = Array.from(document.querySelectorAll('.strategy'));
+    const observedMap = {};
+    for (const [nodeId, idx] of Object.entries(strategyMap)) {
+      if (strategies[idx]) observedMap[idx] = Number(nodeId);
+    }
+
+    const io = new IntersectionObserver(entries => {
+      let best = null;
+      entries.forEach(ent => { if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent; });
+      if (best && best.intersectionRatio > 0.3) {
+        const index = strategies.indexOf(best.target);
+        const nodeId = observedMap[index];
+        if (nodeId) {
+          network.selectNodes([nodeId]);
+          nodes.update({ id: nodeId, size: 26 });
+          Object.values(observedMap).forEach(id => { if (id !== nodeId) nodes.update({ id: id, size: 20 }); });
+        }
+      }
+    }, { root: null, rootMargin: '0px', threshold: [0.3, 0.6] });
+    strategies.forEach(s => io.observe(s));
+
+    // Accessibility live region
+    const live = document.createElement('div');
+    live.setAttribute('aria-live', 'polite');
+    live.style.position = 'absolute';
+    live.style.left = '-9999px';
+    live.style.width = '1px';
+    live.style.height = '1px';
+    document.body.appendChild(live);
+
+    network.on('selectNode', function(params) {
+      if (!params.nodes || !params.nodes.length) return;
+      const id = params.nodes[0];
+      const idx = strategyMap[id];
+      const label = strategies[idx]?.querySelector('.strategy-title')?.innerText || nodes.get(id).label;
+      live.textContent = label + ' selected';
+    });
+  }
+
+  if (document.getElementById('bg-network')) initNetwork();
+  else setTimeout(() => { if (document.getElementById('bg-network')) initNetwork(); }, 80);
+})();
+</script>
+  <script>
+  const synth = window.speechSynthesis;
+
+  function readPage() {
+    synth.cancel();
+    const text = document.querySelector('.main-content').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    synth.speak(utterance);
+  }
+
+  function stopReading() {
+    synth.cancel();
+  }
+
+  document.getElementById("readTextBtn").addEventListener("click", readPage);
+  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Toggle the Practice menu
+  document.querySelectorAll('.main-glide-btn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const glideMenu = button.closest('.glide-menu');
+    if (glideMenu) glideMenu.classList.toggle('active');
+  });
+});
+
+  // Text-to-speech buttons
+  const readBtn = document.getElementById('readTextBtn');
+  const stopBtn = document.getElementById('stopTextBtn');
+  const synth = window.speechSynthesis;
+
+  readBtn.addEventListener('click', () => {
+    const text = document.querySelector('.main-content').innerText;
+    if (synth.speaking) synth.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    synth.speak(utter);
+  });
+
+  stopBtn.addEventListener('click', () => {
+    if (synth.speaking) synth.cancel();
+  });
+});
+</script>
+</body>
+</html>
