@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="info.css" />
 
-  <style>
+ <style>
 .tts-controls {
     display: flex;
     flex-direction: column; /* stack buttons vertically */
@@ -50,7 +50,7 @@
   text-align: left;
 }
 .main-glide-btn:hover {
-  color: black !important;
+  color: red;
 }
 
 .glide-options {
@@ -67,14 +67,38 @@
   opacity: 1;
 }
 
-.glide-options a {
+/* Main items (Special Education, Tactile Scores) */
+.glide-options > a,
+.menu-item > a {
+  display: block;
   text-decoration: none;
   font-size: 14px;
   color: red;
-  margin: 2px 0;
+  margin: 4px 0;
   padding-left: 12px;
+  font-weight: normal;
 }
 
+/* Group wrapper (Special Education + its child) */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; /* THIS fixes spacing before Tactile Scores */
+}
+
+/* Sub item (Sessions 1–4) */
+.sub-item a {
+  display: block;
+  font-size: 14px;          /* smaller */
+  padding-left: 26px;       /* indented */
+  margin: 2px 0 6px 0;      /* spacing under it */
+  opacity: 1;
+}
+
+/* Optional polish */
+.sub-item a:hover {
+  opacity: 1;
+}
 .glide-options a:hover {
   color: red;
 }
@@ -208,14 +232,24 @@
     </ul>
   </div>
  <div class="menu-group">
-    <div class="glide-menu" style="margin-bottom: 15px;">
-      <a class="main-glide-btn">Practice</a>
-      <div class="glide-options">
-        <a href="SpecialEd.html">Special Education</a>
-        <a href="TactileScores.html">Tactile Scores</a>
-      </div>
-    </div>
+    <ul>
+      <li><a href="archive.html">Archive</a></li>
+    </ul>
   </div>
+<div class="menu-group">
+  <div class="glide-menu" style="margin-bottom: 15px;">
+    
+    <a class="main-glide-btn">Practice</a>
+
+    <div class="glide-options">
+      
+      <!-- Special Education with one child item -->
+      <div class="menu-item">
+        <a>Special Education</a>
+        <div class="sub-item">
+          <a href="SpecialEd.html">Sessions 1 - 4</a>
+        </div>
+      </div>
   <div class="menu-info">
     <ul>
       <li><a href="info.html">Info</a></li>
