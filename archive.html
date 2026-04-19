@@ -228,9 +228,20 @@
   overflow: hidden;
   border-radius: 12px;
 }
- .audio-block {
-  width: 649px;
-  height: 365px;
+.audio-block {
+  width: 635px;
+  height: 357px; /* 16:9 */
+  overflow: hidden;
+  position: relative;
+  border-radius: 0; /* no rounded corners */
+}
+ .audio-block audio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 2;
 }
 
 /* BACKGROUND IMAGE */
