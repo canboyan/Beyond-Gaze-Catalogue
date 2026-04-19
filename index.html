@@ -221,7 +221,49 @@
    position: relative;
   margin-bottom: 15px;    /* space between audio and its text below */
 }
+.media-wrapper {
+  position: relative;
+  width: 544px;
+  height: 300px;   /* ADD THIS */
+  overflow: hidden;
+  border-radius: 12px;
+}
+.audio-block {
+  width: 635px;
+  height: 357px; /* 16:9 */
+  overflow: hidden;
+  position: relative;
+  border-radius: 0; /* no rounded corners */
+}
+ .audio-block audio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 2;
+}
 
+/* BACKGROUND IMAGE */
+.audio-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* AUDIO ON TOP */
+.media-wrapper audio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 2;
+}
 /* ----------------------
    TEXT UNDER VIDEOS / AUDIO
    Controls text blocks below media
@@ -359,20 +401,20 @@ audio::-webkit-media-controls-volume-slider:focus {
   <div class="container">
     <aside class="sidebar">
       <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
- <nav>
+   <nav>
   <div class="menu-group">
     <ul>
       <li><a href="index1.html">Index</a></li>
     </ul>
   </div>
 
-
+ 
   <div class="menu-group">
     <ul>
       <li><a href="archive.html">Archive</a></li>
     </ul>
   </div>
-<div class="menu-group">
+ <div class="menu-group">
   <div class="glide-menu" style="margin-bottom: 15px;">
     
     <a class="main-glide-btn">Practice</a>
@@ -476,12 +518,15 @@ audio::-webkit-media-controls-volume-slider:focus {
   </div> <!-- end bundle -->
 
   <!-- Audio Bundle -->
-  <div class="bundle" style="margin-bottom: 45px;">
-    <div class="media-wrapper">
-      <audio controls style="width: 540px; border-radius: 12px;">
-        <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mp4">
-      </audio>
-    </div>
+<div class="bundle">
+
+<div class="media-wrapper audio-block">
+  <img src="https://raw.githubusercontent.com/canboyan/Beyond-Gaze-Catalogue/refs/heads/main/KF.jpg" class="audio-bg">
+
+  <audio controls>
+    <source src="https://archive.org/download/fk-113/FK113.m4a" type="audio/mp4">
+  </audio>
+</div>
 
     <!-- Text Under Audio -->
 <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color:#000000; width: 520px; font-weight: normal; text-align: justify; margin-top: 30px;">      <p><strong><em>(Audio recording)</em></strong></p>
@@ -493,7 +538,7 @@ audio::-webkit-media-controls-volume-slider:focus {
     </div>
   </div> <!-- end bundle -->
 
-   <p style="font-size: 30px;">[Coming Soon]</p>
+ <p style="font-size: 25px;">[Coming Soon]</p>
 
 <!-- Image Bundle 1 -->
 <div class="bundle" style="margin-bottom: 60px;">
@@ -522,7 +567,6 @@ audio::-webkit-media-controls-volume-slider:focus {
     </p>
   </div>
 </div>
-
 </main>
     
 <!-- YouTube IFrame API -->
