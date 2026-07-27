@@ -2,114 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Info - Beyond Gaze Catalogue</title>
   <link rel="icon" href="/favicon.ico?v=2">
-<link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="index.css" />
 
-<!-- Inside your <head> -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-.tts-controls {
-    display: flex;
-    flex-direction: column; /* stack buttons vertically */
-    align-items: flex-start; /* align left */
-    gap: 1px; /* small space between buttons */
-    margin: 0; /* remove any default margin */
-}
-.hover-text {
-  transition: color 0.3s ease;
-}
-.hover-text:hover {
-  color: red;
-  cursor: default;
-}
-.tts-controls button {
-    background: none; /* remove button background */
-    border: none;     /* remove button border */
-    padding: 0;       /* remove padding */
-    cursor: pointer;
-    font-family: 'Arial Black', sans-serif; /* your chosen font */
-    color: red;       /* red text */
-    font-size: 14px;
-  font-weight: bold;  
-}
+    .tts-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+      margin: 0;
+      padding: 0;
+    }
+    .hover-text {
+      transition: color 0.3s ease;
+    }
+    .hover-text:hover {
+      color: red;
+      cursor: default;
+    }
+    .tts-controls button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Arial Black', sans-serif;
+      color: red;
+      font-size: 14px;
+      font-weight: bold;  
+    }
+    .tts-controls button:hover {
+      color: black;
+    }
 
-.tts-controls button:hover {
-    color: black;       /* red text */
-}
-</style>
-    <style>
-.glide-menu {
-  margin-top: 8px;
-}
+    .glide-menu {
+      margin-top: 8px;
+    }
+    .main-glide-btn {
+      background: none;
+      border: none;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 14px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      padding: 4px 0;
+      text-align: left;
+    }
+    .main-glide-btn:hover {
+      color: red;
+    }
+    .glide-options {
+      display: flex !important;
+      flex-direction: column;
+      max-height: none !important;
+      opacity: 1 !important;
+      overflow: visible;
+      transition: none;
+    }
+    .glide-menu.active .glide-options {
+      max-height: 100px;
+      opacity: 1;
+    }
+    .glide-options > a,
+    .menu-item > a {
+      display: block;
+      text-decoration: none;
+      font-size: 14px;
+      color: red;
+      margin: 2px 0;
+      padding-left: 12px;
+      font-weight: normal;
+    }
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0px;
+    }
+    .sub-item a {
+      display: block;
+      font-size: 14px;
+      padding-left: 26px;
+      margin: 0px 0 6px 0;
+      opacity: 1;
+    }
+    .sub-item a:hover {
+      opacity: 1;
+    }
+    .glide-options a:hover {
+      color: red;
+    }
 
-.main-glide-btn {
-  background: none;
-  border: none;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 14px;
-  color: black;              /* ADD THIS */
-  text-decoration: none;     /* ADD THIS */
-  display: inline-block;     /* ADD THIS */
-  cursor: pointer;
-  padding: 4px 0;
-  text-align: left;
-}
-.main-glide-btn:hover {
-  color: red;
-}
-
-.glide-options {
-  display: flex !important;   /* always visible */
-  flex-direction: column;
-  max-height: none !important;
-  opacity: 1 !important;
-  overflow: visible;
-  transition: none;
-}
-
-.glide-menu.active .glide-options {
-  max-height: 100px;
-  opacity: 1;
-}
-
-/* Main items (Special Education, Tactile Scores) */
-.glide-options > a,
-.menu-item > a {
-  display: block;
-  text-decoration: none;
-  font-size: 14px;
-  color: red;
-  margin: 2px 0;
-  padding-left: 12px;
-  font-weight: normal;
-}
-
-/* Group wrapper (Special Education + its child) */
-.menu-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0px; /* THIS fixes spacing before Tactile Scores */
-}
-
-/* Sub item (Sessions 1–4) */
-.sub-item a {
-  display: block;
-  font-size: 14px;          /* smaller */
-  padding-left: 26px;       /* indented */
-  margin: 0px 0 6px 0;      /* spacing under it */
-  opacity: 1;
-}
-
-/* Optional polish */
-.sub-item a:hover {
-  opacity: 1;
-}
-.glide-options a:hover {
-  color: red;
-}
-    /* index1.css styles for main content only */
+    /* Main content styles */
     .main-content {
       font-family: 'EB Garamond', serif;
       font-weight: normal !important;
@@ -120,50 +107,41 @@
       line-height: 1.25 !important;
       margin-left: 40px !important;
     }
-
     .main-content .header {
       margin-bottom: 30px;
     }
-
     .main-content .strategies-main-title,
     .main-content .main-title {
       font-weight: bold !important;
       font-size: 15px !important;
-      margin-top: 15px; /* adjust as needed */
+      margin-top: 15px;
       margin-bottom: 5px;
     }
-
     .main-content .strategies-attribution,
     .main-content .attribution {
       font-size: 12px !important;
       font-style: italic !important;
     }
-
     .main-content .strategy-section,
     .main-content .strategy {
       margin-bottom: 40px !important;
     }
-
     .main-content .strategy-section-title,
     .main-content .strategy-title {
       font-weight: bold !important;
       font-size: 15px !important;
       margin-bottom: 10px !important;
-      
     }
     .main-content .strategy-title em {
-  font-weight: normal !important;
-}
-
+      font-weight: normal !important;
+    }
     .main-content .section-label {
       font-weight: bold !important;
     }
-
     .main-content .strategy p,
     .main-content p {
       margin-bottom: 12px !important;
     }
-
     .main-content .strategy-references,
     .main-content .references {
       font-size: 12px !important;
@@ -173,34 +151,47 @@
       text-indent: 0px !important;
       font-family: "Times New Roman", Georgia, serif !important;
     }
-
     .main-content .strategy-references a,
     .main-content .references a {
       color: red !important;
       text-decoration: underline !important;
       font-weight: normal !important;
-    font-family: "Times New Roman", Georgia, serif !important;
+      font-family: "Times New Roman", Georgia, serif !important;
     }
-            .main-content .header .contents {
-    font-family: 'Arial Black', sans-serif !important;
-    font-size: 80px !important;
-    margin-top: 5px; 
-    font-weight: bold;
-    white-space: nowrap;
-    color: black; /* optional */
-    line-height: 1; /* optional to control spacing */
-    letter-spacing: -2px;
-}
+    .main-content .header .contents {
+      font-family: 'Arial Black', sans-serif !important;
+      font-size: 80px !important;
+      margin-top: 5px; 
+      font-weight: bold;
+      white-space: normal !important;
+      color: black;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    /* --- MOBILE FIX: This automatically stacks your layout on phone screens --- */
+    @media screen and (max-width: 768px) {
+      .container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .sidebar {
+        width: 100% !important;
+        margin-bottom: 25px !important;
+      }
+      .main-content {
+        margin-left: 0px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+      }
+    }
   </style>
-  <style>
-.main-content .header .contents {
-  white-space: normal !important;
-}
-</style>
-    <!-- Meta Description (invisible to visitors) -->
+
   <meta name="description" content="Beyond Gaze Catalogue explores touch as an artistic and pedagogical medium, developing a touch-led dramatic inquiry framework to enhance artistic collaboration, sense-making, and inclusive education among children with diverse abilities.">
 
- <!-- Structured Data for Google and Google Scholar (invisible) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -230,76 +221,72 @@
   }
   </script>
 
-  <!-- Optional: Robots Meta Tag (invisible) -->
   <meta name="robots" content="index, follow">
-
 </head>
+
 <body class="catalogue-page">
   <div class="container">
     <aside class="sidebar">
       <h1><a href="index.html">BEYOND GAZE CATALOGUE</a></h1>
-        <nav>
-  <div class="menu-group">
-    <ul>
-      <li><a href="index1.html">Index</a></li>
-    </ul>
-  </div>
+      <nav>
+        <div class="menu-group">
+          <ul>
+            <li><a href="index1.html">Index</a></li>
+          </ul>
+        </div>
 
+        <div class="menu-group">
+          <ul>
+            <li><a href="archive.html">Archive</a></li>
+          </ul>
+        </div>
 
+        <div class="menu-group">
+          <div class="glide-menu" style="margin-bottom: 15px;">
+            <a class="main-glide-btn">Practice</a>
+            <div class="glide-options">
+              <div class="menu-item">
+                <a class="main-glide-btn">Special Education</a>
+                <div class="sub-item">
+                  <a href="SpecialEd.html">Session I</a>
+                </div>
+                <div class="sub-item">
+                  <a href="SpecialEd2.html">Session II</a>
+                </div>
+                <div class="sub-item">
+                  <a href="SpecialEd3-4.html">Sessions III-IV</a>
+                </div>
+              </div>
+              <div class="menu-item">
+                <a class="main-glide-btn">Tactile Scores</a>
+                <div class="sub-item">
+                  <a href="TactileScores.html">Session I</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-info">
+            <ul>
+              <li><a href="info.html">Info</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-  <div class="menu-group">
-    <ul>
-      <li><a href="archive.html">Archive</a></li>
-    </ul>
-  </div>
-<div class="menu-group">
-  <div class="glide-menu" style="margin-bottom: 15px;">
-    
-    <a class="main-glide-btn">Practice</a>
-
-    <div class="glide-options">
-      
-      
-<!-- Special Education with one child item -->
-<div class="menu-item">
-  <a class="main-glide-btn">Special Education</a>
-  <div class="sub-item">
-    <a href="SpecialEd.html">Session I</a>
-  </div>
-    <div class="sub-item">
-    <a href="SpecialEd2.html">Session II</a>
-  </div>
-    <div class="sub-item">
-    <a href="SpecialEd3-4.html">Sessions III-IV</a>
-  </div>
-</div>
-<!-- Tactile Scores with one child item -->
-<div class="menu-item">
-  <a class="main-glide-btn">Tactile Scores</a>
-  <div class="sub-item">
-    <a href="TactileScores.html">Session I</a>
-  </div>
-</div>
-</div>
-  <div class="menu-info">
-    <ul>
-      <li><a href="info.html">Info</a></li>
-    </ul>
-  </div>
-</nav>
       <div class="info">
         <p><strong>Last edited Thu Feb 14<br>15:04:11 2026<br>UTC +2</strong></p>
         <p><strong><a href="contact.html">Contact</a> - <a href="license.html">License</a></strong></p>
       </div>
-        <div class="tts-controls">
-  <button id="readTextBtn"> Read Page</button>
-  <button id="stopTextBtn"> Stop</button>
-</div>
+
+      <div class="tts-controls">
+        <button id="readTextBtn"> Read Page</button>
+        <button id="stopTextBtn"> Stop</button>
+      </div>
     </aside>
 
-<main class="content">
-  <p class="hover-text">
-      Beyond Gaze investigates touch as an artistic and pedagogical medium, and proposes that when combined creatively, touch-led strategies and dramatic inquiry methods hold a great potential in joining differences productively, empower individuals of different abilities to learn from one another through a shared sense modality.
+    <main class="main-content">
+      <p class="hover-text">
+        Beyond Gaze investigates touch as an artistic and pedagogical medium, and proposes that when combined creatively, touch-led strategies and dramatic inquiry methods hold a great potential in joining differences productively, empower individuals of different abilities to learn from one another through a shared sense modality.
       </p>
 
       <p class="hover-text">
@@ -309,69 +296,45 @@
       <p class="hover-text">
         How can a touch-led dramatic inquiry framework function as an educational medium that develops artistic collaboration, sense-making, and community among children, including both able-bodied children and those with sensory impairments? What role can a touch-led dramatic inquiry framework play in moving process drama toward more inclusive, fully embodied practices? How can a touch-led dramatic inquiry framework be applied in (art) educational settings?
       </p>
-        <p class="hover-text">
-      What role can a touch-led dramatic inquiry framework play in moving process drama toward more inclusive, fully embodied practices?
-      </p>
- <p class="hover-text">
-     How can a touch-led dramatic inquiry framework be applied in (art) educational settings?
-      </p>
-       <p> 
-       
-       </p>
+
       <p class="hover-text">
-      The project brings together a presentation series and a workshop series. The analysis of practices of practitioners from the presentation series form the basis for indexing touch-led artistic strategies. Workshops utilize activities designed in tandem with the participants which in turn model the scaffolding for the touch-led dramatic inquiry framework.
+        What role can a touch-led dramatic inquiry framework play in moving process drama toward more inclusive, fully embodied practices?
+      </p>
+
+      <p class="hover-text">
+        How can a touch-led dramatic inquiry framework be applied in (art) educational settings?
+      </p>
+
+      <p></p>
+
+      <p class="hover-text">
+        The project brings together a presentation series and a workshop series. The analysis of practices of practitioners from the presentation series form the basis for indexing touch-led artistic strategies. Workshops utilize activities designed in tandem with the participants which in turn model the scaffolding for the touch-led dramatic inquiry framework.
       </p>
     </main>
   </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const synth = window.speechSynthesis;
 
-  function readPage() {
-    synth.cancel();
-    const text = document.querySelector('.content').innerText;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    synth.speak(utterance);
-  }
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const synth = window.speechSynthesis;
 
-  function stopReading() {
-    synth.cancel();
-  }
+    function readPage() {
+      synth.cancel();
+      // Updated target to match the new main-content class name
+      const text = document.querySelector('.main-content').innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      synth.speak(utterance);
+    }
 
-  document.getElementById("readTextBtn").addEventListener("click", readPage);
-  document.getElementById("stopTextBtn").addEventListener("click", stopReading);
-});
-</script>
-    
-<style>
-.tts-controls {
-  display: flex;
-  flex-direction: column; /* stack buttons vertically */
-  align-items: flex-start; /* align left */
-  gap: 1px; /* space between buttons */
-  margin: 0;
-  padding: 0;
-}
+    function stopReading() {
+      synth.cancel();
+    }
 
-.tts-controls button {
-  background: none; /* remove button box */
-  border: none;     /* remove border */
-  padding: 0;       /* remove padding */
-  cursor: pointer;
-  font-family: 'Arial Black', sans-serif; /* font */
-  color: red;       /* red text */
-  font-size: 14px;
-  font-weight: bold;  
-}
-
-.tts-controls button:hover {
-  color: black; /* hover color */
-}
-
-</style>
+    document.getElementById("readTextBtn").addEventListener("click", readPage);
+    document.getElementById("stopTextBtn").addEventListener("click", stopReading);
+  });
+  </script>
 </body>
 </html>
-
