@@ -592,12 +592,12 @@
   /* Right-side panel */
   #bg-network-panel {
     position: fixed;
-    bottom: 20px;
-    right: 10px;
-    width: 660px;
-    height: 460px;
-    max-width: 90vw;
-    max-height: 50vh;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
     background: transparent;
     border-radius: 10px;
     z-index: 9999;
@@ -713,17 +713,15 @@
 
     const network = new vis.Network(container, data, options);
 
-    function resizeNetwork() {
-      const panel = document.getElementById('bg-network-panel');
-      if(!panel) return;
-      const w = Math.min(560, window.innerWidth - 20);
-      const h = Math.min(460, window.innerHeight - 20);
-      panel.style.width = (window.innerWidth < 560 ? w : 560) + 'px';
-      panel.style.height = (window.innerHeight < 460 ? h : 460) + 'px';
-      container.style.width = '100%';
-      container.style.height = '100%';
-      network.redraw();
-    }
+function resizeNetwork() {
+  const panel = document.getElementById('bg-network-panel');
+  if(!panel) return;
+  panel.style.width = window.innerWidth + 'px';
+  panel.style.height = window.innerHeight + 'px';
+  container.style.width = '100%';
+  container.style.height = '100%';
+  network.redraw();
+}
     window.addEventListener('resize', resizeNetwork);
 
     // Click -> scroll to strategy
