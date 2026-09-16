@@ -590,14 +590,14 @@
 
 <style>
   /* Right-side panel */
-  #bg-network-panel {
+#bg-network-panel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
+    bottom: 20px;
+    right: 10px;
+    width: 660px;
+    height: 460px;
+    max-width: 90vw;
+    max-height: 50vh;
     background: transparent;
     border-radius: 10px;
     z-index: 9999;
@@ -712,7 +712,42 @@
     };
 
     const network = new vis.Network(container, data, options);
+// Move the whole network around the page with ALT + drag
+const panel = document.getElementById('bg-network-panel');
 
+let draggingPanel = false;
+let startX, startY, startLeft, startTop;
+
+panel.addEventListener('pointerdown', function(e) {
+  if (!e.altKey) return;
+
+  draggingPanel = true;
+
+  const rect = panel.getBoundingClientRect();
+  startX = e.clientX;
+  startY = e.clientY;
+  startLeft = rect.left;
+  startTop = rect.top;
+
+  panel.style.left = startLeft + 'px';
+  panel.style.top = startTop + 'px';
+  panel.style.right = 'auto';
+  panel.style.bottom = 'auto';
+
+  panel.setPointerCapture(e.pointerId);
+});
+
+panel.addEventListener('pointermove', function(e) {
+  if (!draggingPanel) return;
+
+  panel.style.left = (startLeft + e.clientX - startX) + 'px';
+  panel.style.top = (startTop + e.clientY - startY) + 'px';
+});
+
+panel.addEventListener('pointerup', function(e) {
+  draggingPanel = false;
+  panel.releasePointerCapture(e.pointerId);
+});
 function resizeNetwork() {
   const panel = document.getElementById('bg-network-panel');
   if(!panel) return;
